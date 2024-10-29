@@ -172,7 +172,7 @@
 
         var dirJson;
 
-        fetch('./proxy.php?type=directions&time='+proxyTime)
+        fetch('https://live.mpk.czest.pl/api/directions/'+proxyTime)
             .then((response) => response.json())
             .then(json => {
                 dirJson = json;
