@@ -1,0 +1,20 @@
+1a0131b9-d672-46dd-a8d8-f1fd2a1b7595
+b3d5d7a6-df28-4dd7-9b71-42a6ea926e2c
+
+187 
+
+zmieniono z + 2 na + 1
+
+linijka 266 kontynuacja przełączania kart
+
+
+
+
+
+wyświetlanie domyślnego wariantu
+
+sortowanie wariantów wg ilości kursów
+
+wóz informacje undefined błąd
+
+zostają warianty przy zmianie lini bug, nadpisują się dopiero po wybraniu kierunka

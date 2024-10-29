@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <meta charset="UTF-8">
+    <title>Dekoder</title>
+</head>
+<body>
+
+    <h1>LOCATION</h1>
+
+    ID<input id="id-loc" type="text"><button onclick="idLocF()">Dekoduj</button><br>
+    Przystanek<input id="kier-loc" type="text"><button onclick="kierLocF()">Dekoduj</button>
+
+    <br><br><br>
+
+    <button onclick="locCzysc()">[CLEAR]</button>
+
+    <h1>VEHICLE</h1>
+
+    ID<input id="id-veh" type="text"><button onclick="idVehF()">Dekoduj</button><br>
+    Numer boczny<input id="nr-veh" type="text"><button onclick="nrVehF()">Dekoduj</button>
+
+    <br><br><br>
+
+    <button onclick="vehCzysc()">[CLEAR]</button>
+
+    <script>
+
+        /*/  L O C A T I O N  /*/
+
+        var locJson;
+
+        fetch('./data/locations.json')
+            .then((response) => response.json())
+            .then(json => {
+                locJson = json;
+                console.log('Pobrano '+ locJson.length);
+
+            })
+            .catch(error => console.error('Błąd:', error));
+
+        console.log(locJson);
+
+        var idLoc = document.getElementById('id-loc');
+        var kierLoc = document.getElementById('kier-loc');
+
+
+        function idLocF(){
+            if (locJson != undefined){
+                var find = locJson.find(item => item.locationID == idLoc.value)
+                if (find){
+                    console.log(find.name);
+                    kierLoc.value = find.name;
+                } else{
+                    console.log('Nie zalneziono elementu ' + idLoc.value);
+                }
+            }
+        }
+
+        function kierLocF(){
+            if (locJson != undefined){
+                var find = locJson.find(item => item.name == kierLoc.value)
+                if (find){
+                    console.log(find.locationID);
+                    idLoc.value = find.locationID;
+                } else{
+                    console.log('Nie zalneziono elementu ' + kierLoc.value);
+                }
+            }
+        }
+
+        function locCzysc(){
+            idLoc.value = '';
+            kierLoc.value = '';
+        }
+
+
+        /*/  V E H I C L E  /*/
+
+
+        var vehJson;
+
+        fetch('./data/vehicles.json')
+            .then((response) => response.json())
+            .then(json => {
+                vehJson = json;
+                console.log('Pobrano '+ vehJson.length);
+
+            })
+            .catch(error => console.error('Błąd:', error));
+
+        console.log(vehJson);
+
+        var idVeh = document.getElementById('id-veh');
+        var nrVeh = document.getElementById('nr-veh');
+
+
+        function idVehF(){
+            if (vehJson != undefined){
+                var find = vehJson.find(item => item.vehicleID == idVeh.value)
+                if (find){
+                    console.log(find.sideNo);
+                    nrVeh.value = find.sideNo;
+                } else{
+                    console.log('Nie zalneziono elementu ' + idVeh.value);
+                }
+            }
+        }
+
+        function nrVehF(){
+            if (vehJson != undefined){
+                var find = vehJson.find(item => item.sideNo == nrVeh.value)
+                if (find){
+                    console.log(find.vehicleID);
+                    idVeh.value = find.vehicleID;
+                } else{
+                    console.log('Nie zalneziono elementu ' + nrVeh.value);
+                }
+            }
+        }
+
+        function vehCzysc(){
+            idVeh.value = '';
+            nrVeh.value = '';
+        }
+    </script>
+</body>
+</html>
