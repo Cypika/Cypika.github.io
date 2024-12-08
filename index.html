@@ -52,8 +52,16 @@
 
 
     </div>
+    <div id="errory">Brak błędów na razie</div>
 
     <script>
+        var errory = document.getElementById('errory');
+
+        window.onerror = function (message, source, lineno, colno, error) {
+            errory.innerHTML += (message + "<br>" + source + "<br>" +lineno + "<br>" + colno + "<br>" + error + "<br><br>");
+        };
+
+
         var today = new Date();
 
         var minDate = new Date();
