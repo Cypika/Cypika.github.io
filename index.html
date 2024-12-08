@@ -227,7 +227,7 @@
                 console.log('cuda na kiju');
             }
             dirJson = '';
-            fetch("https://live.mpk.czest.pl/api/directions/"+proxyTime)
+            fetch("https://cors-anywhere.herokuapp.com/https://live.mpk.czest.pl/api/directions/"+proxyTime)
                 .then((response) => response.json())
                 .then(json => {
                     dirJson = json;
@@ -358,7 +358,7 @@
                 var stopsJson;
                 aktualnyKier = linia + location;
 
-                fetch("https://live.mpk.czest.pl/api/directions/full/"+proxyTime+"/"+liniaID+"/"+locationID)
+                fetch("https://cors-anywhere.herokuapp.com/https://live.mpk.czest.pl/api/directions/full/"+proxyTime+"/"+liniaID+"/"+locationID)
                     .then((response) => response.json())
                     .then(json => {
 
@@ -487,7 +487,7 @@
 
             console.log("Linia: "+lines(liniaID) + " Przystanek: " + locations(locationID) + " Z: " + firstStop + " Do: " + lastStop);
             
-            fetch("https://live.mpk.czest.pl/api/locations/"+locationID+"/timetables/"+proxyTime)
+            fetch("https://cors-anywhere.herokuapp.com/https://live.mpk.czest.pl/api/locations/"+locationID+"/timetables/"+proxyTime)
             .then((response) => response.json())
             .then(json => {
                 dataJson = json;
