@@ -1,0 +1,1657 @@
+[
+    {
+      "lineID": "afc38a38-e1ce-439f-b198-477009bdd505",
+      "locationID": "9e27f3f2-7604-47d7-8b48-d6725c27f382",
+      "day": "2024-10-07T22:00:00.000Z",
+      "timetable": [
+        {
+          "dateTime": "2024-10-08T21:44:00.000Z",
+          "runID": "e57b0cf4-8835-4cb5-8144-dd433e163771",
+          "vehicleID": "a1793387-fbb8-4e1c-8ab4-ca0c610eae37",
+          "direction": "f416cd5e-8f54-4cec-9ac2-c463331e83f1"
+        },
+        {
+          "dateTime": "2024-10-08T22:14:00.000Z",
+          "runID": "f3b40618-3579-4ae9-acc3-34ce66909736",
+          "vehicleID": "05b0c3d1-5f79-45ae-88b8-92a2af9cb4e4",
+          "direction": "f416cd5e-8f54-4cec-9ac2-c463331e83f1"
+        },
+        {
+          "dateTime": "2024-10-08T22:44:00.000Z",
+          "runID": "cc744c33-ff1e-4f16-9c04-3b1d4a677c43",
+          "vehicleID": "f58bb05d-8a9e-4458-9f60-e39429d429da",
+          "direction": "f416cd5e-8f54-4cec-9ac2-c463331e83f1"
+        },
+        {
+          "dateTime": "2024-10-08T23:14:00.000Z",
+          "runID": "05b471a3-1cec-4350-b7bf-3c32206ae233",
+          "vehicleID": "a1793387-fbb8-4e1c-8ab4-ca0c610eae37",
+          "direction": "f416cd5e-8f54-4cec-9ac2-c463331e83f1"
+        },
+        {
+          "dateTime": "2024-10-08T23:44:00.000Z",
+          "runID": "38fb5291-f00f-4b18-8f6a-e5a66375912c",
+          "vehicleID": "05b0c3d1-5f79-45ae-88b8-92a2af9cb4e4",
+          "direction": "f416cd5e-8f54-4cec-9ac2-c463331e83f1"
+        },
+        {
+          "dateTime": "2024-10-09T00:14:00.000Z",
+          "runID": "067f9bbe-a5c4-4e6a-b563-71d055161f81",
+          "vehicleID": "f58bb05d-8a9e-4458-9f60-e39429d429da",
+          "direction": "f416cd5e-8f54-4cec-9ac2-c463331e83f1"
+        },
+        {
+          "dateTime": "2024-10-09T00:44:00.000Z",
+          "runID": "6050c481-b18c-4484-a449-5287e2353dd9",
+          "vehicleID": "a1793387-fbb8-4e1c-8ab4-ca0c610eae37",
+          "direction": "f416cd5e-8f54-4cec-9ac2-c463331e83f1"
+        },
+        {
+          "dateTime": "2024-10-09T01:14:00.000Z",
+          "runID": "52542f1b-041f-4f7d-a5e0-a71e88b34a56",
+          "vehicleID": "05b0c3d1-5f79-45ae-88b8-92a2af9cb4e4",
+          "direction": "f416cd5e-8f54-4cec-9ac2-c463331e83f1"
+        },
+        {
+          "dateTime": "2024-10-09T01:44:00.000Z",
+          "runID": "3668abdd-09ca-44cc-b4b2-0f5f3dbbc0f6",
+          "vehicleID": "f58bb05d-8a9e-4458-9f60-e39429d429da",
+          "direction": "f416cd5e-8f54-4cec-9ac2-c463331e83f1"
+        }
+      ]
+    },
+    {
+      "lineID": "578496a7-7ac7-4de7-bf81-080f50711642",
+      "locationID": "9e27f3f2-7604-47d7-8b48-d6725c27f382",
+      "day": "2024-10-07T22:00:00.000Z",
+      "timetable": [
+        {
+          "dateTime": "2024-10-08T02:45:00.000Z",
+          "runID": "b064b340-270a-434c-a990-dcd86ced1ba1",
+          "vehicleID": "3cbae894-732f-4ee8-a587-ca6862281b54",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T02:58:00.000Z",
+          "runID": "fa3a86d3-8c4f-464f-8365-28155ee93004",
+          "vehicleID": "86082b7d-cf39-4d02-bf64-cfd1534ff09e",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T03:13:00.000Z",
+          "runID": "7e9f9948-675e-47c2-8836-541700c1a752",
+          "vehicleID": "05b0c3d1-5f79-45ae-88b8-92a2af9cb4e4",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T03:21:00.000Z",
+          "runID": "5e54ae23-e425-4526-98d7-4b66e821c2ba",
+          "vehicleID": "bf226690-dd7a-4972-8d37-f42baac178df",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T03:28:00.000Z",
+          "runID": "bb033355-671e-42a7-b4d3-9322ec4c522b",
+          "vehicleID": "bf226690-dd7a-4972-8d37-f42baac178df",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T03:36:00.000Z",
+          "runID": "4c71d7a9-1c9c-4a40-850e-3920a32cc535",
+          "vehicleID": "a2f7c887-6d21-429f-8d13-789b75633122",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T03:43:00.000Z",
+          "runID": "0bd8f394-bd7f-4aeb-a5ba-58463750b171",
+          "vehicleID": "6a27b397-ff2b-4323-8352-31b020c93f37",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T03:51:00.000Z",
+          "runID": "fd23b6e8-dad5-4d9f-84d2-073b6e5b0455",
+          "vehicleID": "3cbae894-732f-4ee8-a587-ca6862281b54",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T03:58:00.000Z",
+          "runID": "b09d9067-8da4-4eb4-9288-acdade8ebeb6",
+          "vehicleID": "3cbae894-732f-4ee8-a587-ca6862281b54",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T04:06:00.000Z",
+          "runID": "80791d82-3804-469c-b1bb-fbd7b19fe7de",
+          "vehicleID": "86082b7d-cf39-4d02-bf64-cfd1534ff09e",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T04:13:00.000Z",
+          "runID": "3b969a91-eaa8-4e89-a422-2ae4e5a257d6",
+          "vehicleID": "86082b7d-cf39-4d02-bf64-cfd1534ff09e",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T04:21:00.000Z",
+          "runID": "9b1ee476-e7fd-441f-be58-8a42136a3a0b",
+          "vehicleID": "05b0c3d1-5f79-45ae-88b8-92a2af9cb4e4",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T04:28:00.000Z",
+          "runID": "5349f82b-a0c3-492d-8afc-e9ebd4e61129",
+          "vehicleID": "05b0c3d1-5f79-45ae-88b8-92a2af9cb4e4",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T04:36:00.000Z",
+          "runID": "6f4b5553-bb48-407c-a4f1-a405514e3961",
+          "vehicleID": "bf226690-dd7a-4972-8d37-f42baac178df",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T04:43:00.000Z",
+          "runID": "dc25d740-1fe6-40b4-9a33-cd9e0f3070af",
+          "vehicleID": "bf226690-dd7a-4972-8d37-f42baac178df",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T04:51:00.000Z",
+          "runID": "3df275e2-d388-4d16-9920-e7e67d8c73df",
+          "vehicleID": "6a27b397-ff2b-4323-8352-31b020c93f37",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T04:57:00.000Z",
+          "runID": "0583ef40-4101-48fb-89fa-e08bb8f251d7",
+          "vehicleID": "a2f7c887-6d21-429f-8d13-789b75633122",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T05:06:00.000Z",
+          "runID": "4e0d762c-880b-440a-a336-6aa9b3099b95",
+          "vehicleID": "3cbae894-732f-4ee8-a587-ca6862281b54",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T05:12:00.000Z",
+          "runID": "70fdf395-8861-4ed4-bf44-240d25f75be3",
+          "vehicleID": "3cbae894-732f-4ee8-a587-ca6862281b54",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T05:22:00.000Z",
+          "runID": "919fbfee-c849-4bb4-8f82-24f06c1e4400",
+          "vehicleID": "86082b7d-cf39-4d02-bf64-cfd1534ff09e",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T05:27:00.000Z",
+          "runID": "5e6968ac-11c6-4500-a438-5d6ac0ad6306",
+          "vehicleID": "86082b7d-cf39-4d02-bf64-cfd1534ff09e",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T05:37:00.000Z",
+          "runID": "272de77d-b1fd-4d91-bddc-ed933f0db4d4",
+          "vehicleID": "05b0c3d1-5f79-45ae-88b8-92a2af9cb4e4",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T05:42:00.000Z",
+          "runID": "d7e6ec67-edca-4135-837e-83adef70d4a4",
+          "vehicleID": "05b0c3d1-5f79-45ae-88b8-92a2af9cb4e4",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T05:52:00.000Z",
+          "runID": "41cf7c36-4869-4ba3-ab20-f92bf9005b06",
+          "vehicleID": "bf226690-dd7a-4972-8d37-f42baac178df",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T05:57:00.000Z",
+          "runID": "c46cc777-f8b1-4f9e-9b1b-90d78d3dc201",
+          "vehicleID": "bf226690-dd7a-4972-8d37-f42baac178df",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T06:07:00.000Z",
+          "runID": "11a85f17-3f2b-442c-a84c-aa4f4be1bc1e",
+          "vehicleID": "a2f7c887-6d21-429f-8d13-789b75633122",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T06:12:00.000Z",
+          "runID": "f85255ab-66f4-4b1f-85a0-d9e85f166f45",
+          "vehicleID": "a2f7c887-6d21-429f-8d13-789b75633122",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T06:22:00.000Z",
+          "runID": "d3c8c125-7cee-477d-89c5-211f5a3555df",
+          "vehicleID": "3cbae894-732f-4ee8-a587-ca6862281b54",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T06:27:00.000Z",
+          "runID": "d2a433f5-6810-4bf0-8267-d302edfcb25f",
+          "vehicleID": "3cbae894-732f-4ee8-a587-ca6862281b54",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T06:37:00.000Z",
+          "runID": "4619a27b-f578-4e5f-915e-3cbe87ec06e9",
+          "vehicleID": "86082b7d-cf39-4d02-bf64-cfd1534ff09e",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T06:42:00.000Z",
+          "runID": "adf53b75-1c60-470e-ae07-9e9bd50361ba",
+          "vehicleID": "86082b7d-cf39-4d02-bf64-cfd1534ff09e",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T06:52:00.000Z",
+          "runID": "1a0b60a5-004b-4b02-94e4-de41ab512815",
+          "vehicleID": "05b0c3d1-5f79-45ae-88b8-92a2af9cb4e4",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T06:56:00.000Z",
+          "runID": "3694875c-f640-4b53-9001-337e7df0d604",
+          "vehicleID": "05b0c3d1-5f79-45ae-88b8-92a2af9cb4e4",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T07:07:00.000Z",
+          "runID": "d39232bc-375e-4fe4-98e7-46e41e060d26",
+          "vehicleID": "27c97d1f-86b8-4bec-b9b4-92a399fe88be",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T07:11:00.000Z",
+          "runID": "17d04198-0329-476c-b410-3374e6135b03",
+          "vehicleID": "27c97d1f-86b8-4bec-b9b4-92a399fe88be",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T07:22:00.000Z",
+          "runID": "d95e286d-54fd-4a44-8d91-44fea53670b7",
+          "vehicleID": "bf226690-dd7a-4972-8d37-f42baac178df",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T07:26:00.000Z",
+          "runID": "ca962c7b-ad78-447a-b76f-0c904bd3a94f",
+          "vehicleID": "bf226690-dd7a-4972-8d37-f42baac178df",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T07:37:00.000Z",
+          "runID": "e2ef01f0-5dcd-4071-bc0e-f8ab603fd744",
+          "vehicleID": "a2f7c887-6d21-429f-8d13-789b75633122",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T07:41:00.000Z",
+          "runID": "ed88ae11-f0e3-43a8-aaf4-345d02601630",
+          "vehicleID": "a2f7c887-6d21-429f-8d13-789b75633122",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T07:52:00.000Z",
+          "runID": "0c088b53-bb28-44eb-b9c9-bdd1025bd75e",
+          "vehicleID": "3cbae894-732f-4ee8-a587-ca6862281b54",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T07:56:00.000Z",
+          "runID": "a4269715-3fce-4d7c-81e1-1c8420de9ebf",
+          "vehicleID": "3cbae894-732f-4ee8-a587-ca6862281b54",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T08:07:00.000Z",
+          "runID": "c0efe88c-bca1-4575-96f4-53f87c572131",
+          "vehicleID": "86082b7d-cf39-4d02-bf64-cfd1534ff09e",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T08:11:00.000Z",
+          "runID": "449285f3-9359-40b3-8fa3-0aca4d49650f",
+          "vehicleID": "86082b7d-cf39-4d02-bf64-cfd1534ff09e",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T08:22:00.000Z",
+          "runID": "0f6d6705-2e4f-4415-b28f-be8f0aeb57ce",
+          "vehicleID": "05b0c3d1-5f79-45ae-88b8-92a2af9cb4e4",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T08:26:00.000Z",
+          "runID": "c60fb527-6e45-4943-a7d9-c2bd9937e2d9",
+          "vehicleID": "05b0c3d1-5f79-45ae-88b8-92a2af9cb4e4",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T08:37:00.000Z",
+          "runID": "87e29a85-8119-49bc-8265-8639e99b0ad2",
+          "vehicleID": "27c97d1f-86b8-4bec-b9b4-92a399fe88be",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T08:41:00.000Z",
+          "runID": "a5ff2915-5c0b-44e0-aee9-5c8f75f6945f",
+          "vehicleID": "27c97d1f-86b8-4bec-b9b4-92a399fe88be",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T08:52:00.000Z",
+          "runID": "f952285e-1da2-4403-a33a-1cdbf673d350",
+          "vehicleID": "bf226690-dd7a-4972-8d37-f42baac178df",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T08:56:00.000Z",
+          "runID": "c060a740-6b4f-4c6e-b31e-168d889fc0a8",
+          "vehicleID": "bf226690-dd7a-4972-8d37-f42baac178df",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T09:07:00.000Z",
+          "runID": "c0010001-1526-4544-86b0-fd3c56ef9c90",
+          "vehicleID": "a2f7c887-6d21-429f-8d13-789b75633122",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T09:11:00.000Z",
+          "runID": "022b05b3-aa93-4540-a3c1-dda8bd9b8cc1",
+          "vehicleID": "a2f7c887-6d21-429f-8d13-789b75633122",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T09:22:00.000Z",
+          "runID": "f44f63f3-b04a-4534-bb6f-d3f866d3252d",
+          "vehicleID": "3cbae894-732f-4ee8-a587-ca6862281b54",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T09:26:00.000Z",
+          "runID": "d3c70abd-fd6c-4e36-8a2a-3c3b9a975b76",
+          "vehicleID": "3cbae894-732f-4ee8-a587-ca6862281b54",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T09:37:00.000Z",
+          "runID": "e7f9d813-5303-4a07-9af5-ff4bf7f202eb",
+          "vehicleID": "86082b7d-cf39-4d02-bf64-cfd1534ff09e",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T09:41:00.000Z",
+          "runID": "2e7172da-2786-4c1e-a7a9-2c242f3e3cfb",
+          "vehicleID": "86082b7d-cf39-4d02-bf64-cfd1534ff09e",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T09:52:00.000Z",
+          "runID": "5169feed-7c5f-4509-8a98-db4817619113",
+          "vehicleID": "05b0c3d1-5f79-45ae-88b8-92a2af9cb4e4",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T09:56:00.000Z",
+          "runID": "6f322ed6-9633-43a1-910e-9271ca60f1ef",
+          "vehicleID": "05b0c3d1-5f79-45ae-88b8-92a2af9cb4e4",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T10:07:00.000Z",
+          "runID": "33877000-5ff1-485a-b9d9-15bc6d9d3c01",
+          "vehicleID": "27c97d1f-86b8-4bec-b9b4-92a399fe88be",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T10:11:00.000Z",
+          "runID": "04de6046-dc0c-49c3-adfa-577a79be14f3",
+          "vehicleID": "27c97d1f-86b8-4bec-b9b4-92a399fe88be",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T10:22:00.000Z",
+          "runID": "cb09fb92-1aad-411e-b897-1eab37be0892",
+          "vehicleID": "bf226690-dd7a-4972-8d37-f42baac178df",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T10:26:00.000Z",
+          "runID": "04da212b-94b3-45cc-914a-a395657a2fdb",
+          "vehicleID": "bf226690-dd7a-4972-8d37-f42baac178df",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T10:37:00.000Z",
+          "runID": "94741ed6-511e-4972-a35b-f4420208bd85",
+          "vehicleID": "a2f7c887-6d21-429f-8d13-789b75633122",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T10:41:00.000Z",
+          "runID": "51b35cb4-bb66-4e06-bea4-1b7117e5e393",
+          "vehicleID": "a2f7c887-6d21-429f-8d13-789b75633122",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T10:52:00.000Z",
+          "runID": "4a13bfe9-9c3f-4053-bcb5-8eadba1135ae",
+          "vehicleID": "3cbae894-732f-4ee8-a587-ca6862281b54",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T10:56:00.000Z",
+          "runID": "da187be3-cd2d-465d-839a-abd9da5d3754",
+          "vehicleID": "3cbae894-732f-4ee8-a587-ca6862281b54",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T11:07:00.000Z",
+          "runID": "c4e7c123-80e3-46ed-a56b-6f604725a616",
+          "vehicleID": "86082b7d-cf39-4d02-bf64-cfd1534ff09e",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T11:11:00.000Z",
+          "runID": "39a3489e-6713-4f1d-9a9d-503e1d9853ee",
+          "vehicleID": "86082b7d-cf39-4d02-bf64-cfd1534ff09e",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T11:22:00.000Z",
+          "runID": "cbc428c6-b23f-4a36-97c9-bf7b66ba9f1a",
+          "vehicleID": "05b0c3d1-5f79-45ae-88b8-92a2af9cb4e4",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T11:26:00.000Z",
+          "runID": "67138beb-bb58-4595-b06b-258d00340f19",
+          "vehicleID": "05b0c3d1-5f79-45ae-88b8-92a2af9cb4e4",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T11:37:00.000Z",
+          "runID": "e687eb81-4c07-4b03-af59-8ba975f3bed7",
+          "vehicleID": "27c97d1f-86b8-4bec-b9b4-92a399fe88be",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T11:41:00.000Z",
+          "runID": "5b6ef4ea-06c1-4c9b-9ceb-1462a55cd8f8",
+          "vehicleID": "27c97d1f-86b8-4bec-b9b4-92a399fe88be",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T11:52:00.000Z",
+          "runID": "c69c9779-9671-4e10-a06d-f64974dead27",
+          "vehicleID": "bf226690-dd7a-4972-8d37-f42baac178df",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T11:56:00.000Z",
+          "runID": "f95c6ba7-7858-4e25-bde7-9a6b9a00be83",
+          "vehicleID": "bf226690-dd7a-4972-8d37-f42baac178df",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T12:07:00.000Z",
+          "runID": "8cf461e8-f5a1-4aef-9483-13ec9c46f77e",
+          "vehicleID": "a2f7c887-6d21-429f-8d13-789b75633122",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T12:11:00.000Z",
+          "runID": "7f0dc368-7db6-4832-a374-1901e0f82928",
+          "vehicleID": "a2f7c887-6d21-429f-8d13-789b75633122",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T12:22:00.000Z",
+          "runID": "998d412b-cd37-4919-b1d7-85eb4ee8f9b9",
+          "vehicleID": "3cbae894-732f-4ee8-a587-ca6862281b54",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T12:26:00.000Z",
+          "runID": "85d36542-c2b0-4d7d-8ea7-66bd8063df68",
+          "vehicleID": "3cbae894-732f-4ee8-a587-ca6862281b54",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T12:37:00.000Z",
+          "runID": "589726f5-704c-4a9d-a838-b60df3c0f4a3",
+          "vehicleID": "86082b7d-cf39-4d02-bf64-cfd1534ff09e",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T12:41:00.000Z",
+          "runID": "966df9d3-7543-4533-bb42-bea9675ed7f3",
+          "vehicleID": "86082b7d-cf39-4d02-bf64-cfd1534ff09e",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T12:52:00.000Z",
+          "runID": "ee8164f5-b8c3-4fcc-a9da-fc8b3bfbf705",
+          "vehicleID": "05b0c3d1-5f79-45ae-88b8-92a2af9cb4e4",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T12:56:00.000Z",
+          "runID": "c6093fb7-8559-46ed-970e-67ac2d73a08a",
+          "vehicleID": "05b0c3d1-5f79-45ae-88b8-92a2af9cb4e4",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T13:07:00.000Z",
+          "runID": "986121bb-d6e1-4c63-b4bf-f090d56427ec",
+          "vehicleID": "27c97d1f-86b8-4bec-b9b4-92a399fe88be",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T13:11:00.000Z",
+          "runID": "dba572e4-8238-4b00-b7a2-2b693ef02ad6",
+          "vehicleID": "27c97d1f-86b8-4bec-b9b4-92a399fe88be",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T13:22:00.000Z",
+          "runID": "54281b9d-59b1-47a1-9b13-3d318eb89ad1",
+          "vehicleID": "bf226690-dd7a-4972-8d37-f42baac178df",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T13:26:00.000Z",
+          "runID": "4c89fba1-aac2-458d-87d1-93504e3f90ca",
+          "vehicleID": "bf226690-dd7a-4972-8d37-f42baac178df",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T13:37:00.000Z",
+          "runID": "02d4e94e-59a1-4edb-a291-bc6ce707403a",
+          "vehicleID": "a2f7c887-6d21-429f-8d13-789b75633122",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T13:41:00.000Z",
+          "runID": "7c18c5aa-e57e-496a-b771-81e9048ee4b4",
+          "vehicleID": "a2f7c887-6d21-429f-8d13-789b75633122",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T13:52:00.000Z",
+          "runID": "0c417c59-1245-4927-997e-6fa88148fb61",
+          "vehicleID": "3cbae894-732f-4ee8-a587-ca6862281b54",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T13:56:00.000Z",
+          "runID": "49a55403-ec11-4476-8463-4b9abb4a66ff",
+          "vehicleID": "3cbae894-732f-4ee8-a587-ca6862281b54",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T14:07:00.000Z",
+          "runID": "e53e2ed6-59fb-4949-91b3-fa9bd1c6d3a4",
+          "vehicleID": "86082b7d-cf39-4d02-bf64-cfd1534ff09e",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T14:11:00.000Z",
+          "runID": "eaf4aa6d-0047-4e1b-9461-7efd7160fb5f",
+          "vehicleID": "86082b7d-cf39-4d02-bf64-cfd1534ff09e",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T14:22:00.000Z",
+          "runID": "705a93ed-0186-4de6-ad57-b84459b5b2fa",
+          "vehicleID": "05b0c3d1-5f79-45ae-88b8-92a2af9cb4e4",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T14:26:00.000Z",
+          "runID": "3e76371e-3165-4c68-bd10-96451a6eabbd",
+          "vehicleID": "05b0c3d1-5f79-45ae-88b8-92a2af9cb4e4",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T14:37:00.000Z",
+          "runID": "1c577e5f-73df-4ab5-a1fd-b184d8b702b4",
+          "vehicleID": "27c97d1f-86b8-4bec-b9b4-92a399fe88be",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T14:41:00.000Z",
+          "runID": "edbf350d-818d-46a1-a554-edc477928f6f",
+          "vehicleID": "27c97d1f-86b8-4bec-b9b4-92a399fe88be",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T14:52:00.000Z",
+          "runID": "aa2fc7c7-0f05-4714-82de-8f50922ac23a",
+          "vehicleID": "bf226690-dd7a-4972-8d37-f42baac178df",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T14:58:00.000Z",
+          "runID": "31a624a1-345c-4c18-911b-8aaaa22f35db",
+          "vehicleID": "bf226690-dd7a-4972-8d37-f42baac178df",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T15:07:00.000Z",
+          "runID": "e4984351-39ae-4bf9-b116-cac0889365a6",
+          "vehicleID": "a2f7c887-6d21-429f-8d13-789b75633122",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T15:13:00.000Z",
+          "runID": "59132061-807e-4ccf-a0de-f8c85285b119",
+          "vehicleID": "a2f7c887-6d21-429f-8d13-789b75633122",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T15:22:00.000Z",
+          "runID": "04b3497b-7bc6-47dc-ae57-07fe25cd1648",
+          "vehicleID": "3cbae894-732f-4ee8-a587-ca6862281b54",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T15:28:00.000Z",
+          "runID": "d6ff844e-e8d7-42a2-aada-2fee5226b516",
+          "vehicleID": "3cbae894-732f-4ee8-a587-ca6862281b54",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T15:37:00.000Z",
+          "runID": "7a2ad44a-038d-4299-95d5-e1b1036ca57d",
+          "vehicleID": "86082b7d-cf39-4d02-bf64-cfd1534ff09e",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T15:43:00.000Z",
+          "runID": "37c3849f-615b-48e0-ac61-c00ba3e468b5",
+          "vehicleID": "86082b7d-cf39-4d02-bf64-cfd1534ff09e",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T15:52:00.000Z",
+          "runID": "a95c9c0a-1579-4262-a236-d25579e1d359",
+          "vehicleID": "27c97d1f-86b8-4bec-b9b4-92a399fe88be",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T15:58:00.000Z",
+          "runID": "9aa10952-3d95-4429-876a-abf61e86c69f",
+          "vehicleID": "27c97d1f-86b8-4bec-b9b4-92a399fe88be",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T16:07:00.000Z",
+          "runID": "41d54c14-8fa0-42cf-9e14-a916b07b4c94",
+          "vehicleID": "bf226690-dd7a-4972-8d37-f42baac178df",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T16:13:00.000Z",
+          "runID": "e1379e15-f084-43bb-865f-f0993836a146",
+          "vehicleID": "bf226690-dd7a-4972-8d37-f42baac178df",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T16:22:00.000Z",
+          "runID": "3b4e43f9-6023-4dba-a4d8-1ea7855ff195",
+          "vehicleID": "33bb50bc-f6b5-4c6d-8b89-83b867a480d0",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T16:28:00.000Z",
+          "runID": "0b46f29c-33d8-4555-bc87-5dfd44f6b114",
+          "vehicleID": "33bb50bc-f6b5-4c6d-8b89-83b867a480d0",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T16:37:00.000Z",
+          "runID": "0afbb43f-6d94-4ea3-a5b8-1d9502485bf7",
+          "vehicleID": "3cbae894-732f-4ee8-a587-ca6862281b54",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T16:43:00.000Z",
+          "runID": "5a5d0ab3-1d98-4cbe-a1fd-6e328fa7cb73",
+          "vehicleID": "3cbae894-732f-4ee8-a587-ca6862281b54",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T16:52:00.000Z",
+          "runID": "94aa20bb-8dce-479b-9f50-603b41abc1f6",
+          "vehicleID": "86082b7d-cf39-4d02-bf64-cfd1534ff09e",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T16:58:00.000Z",
+          "runID": "44ea7113-efad-4dcc-8a7a-8ef67030f21a",
+          "vehicleID": "86082b7d-cf39-4d02-bf64-cfd1534ff09e",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T17:07:00.000Z",
+          "runID": "079b70c4-0d14-451d-ab34-60ce4a6a8a06",
+          "vehicleID": "27c97d1f-86b8-4bec-b9b4-92a399fe88be",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T17:13:00.000Z",
+          "runID": "a4845597-7cdd-4383-b9b4-4a087a90d751",
+          "vehicleID": "27c97d1f-86b8-4bec-b9b4-92a399fe88be",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T17:31:00.000Z",
+          "runID": "0d8ebde3-ce8a-4a61-9070-41a63e7a2be8",
+          "vehicleID": "bf226690-dd7a-4972-8d37-f42baac178df",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T17:43:00.000Z",
+          "runID": "2b17ac7f-e0f0-4300-a234-5716f7e9b391",
+          "vehicleID": "bf226690-dd7a-4972-8d37-f42baac178df",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T18:01:00.000Z",
+          "runID": "191a8287-2cc3-420c-9f20-7b70cdb2fd25",
+          "vehicleID": "3cbae894-732f-4ee8-a587-ca6862281b54",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T18:13:00.000Z",
+          "runID": "de0f68ca-2797-4722-b388-25ee76522cf8",
+          "vehicleID": "3cbae894-732f-4ee8-a587-ca6862281b54",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T18:31:00.000Z",
+          "runID": "9c12e107-0e97-4567-bea3-281258a966c3",
+          "vehicleID": "27c97d1f-86b8-4bec-b9b4-92a399fe88be",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T18:43:00.000Z",
+          "runID": "0f1d275d-b58b-43aa-9e55-f8af0a621f2f",
+          "vehicleID": "27c97d1f-86b8-4bec-b9b4-92a399fe88be",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T19:01:00.000Z",
+          "runID": "67f120cc-05be-47d3-bb6f-9968bb7ef67a",
+          "vehicleID": "bf226690-dd7a-4972-8d37-f42baac178df",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T19:15:00.000Z",
+          "runID": "edbe846a-ba3c-4ca1-a636-ddcc5ec0e7e5",
+          "vehicleID": "bf226690-dd7a-4972-8d37-f42baac178df",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T19:31:00.000Z",
+          "runID": "20dad466-b3ac-4a52-b736-1162c7bd3aab",
+          "vehicleID": "3cbae894-732f-4ee8-a587-ca6862281b54",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T19:45:00.000Z",
+          "runID": "d175a139-f912-44e7-a86a-4c10d604152c",
+          "vehicleID": "3cbae894-732f-4ee8-a587-ca6862281b54",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T20:01:00.000Z",
+          "runID": "7f1550e7-b4a1-4677-b378-c7e6d1997601",
+          "vehicleID": "27c97d1f-86b8-4bec-b9b4-92a399fe88be",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T20:15:00.000Z",
+          "runID": "b82eee86-0666-486d-9f12-f554c8e1a6db",
+          "vehicleID": "27c97d1f-86b8-4bec-b9b4-92a399fe88be",
+          "direction": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+        },
+        {
+          "dateTime": "2024-10-08T20:31:00.000Z",
+          "runID": "12701a64-50fd-4fc4-996d-91c916cd0393",
+          "vehicleID": "bf226690-dd7a-4972-8d37-f42baac178df",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        },
+        {
+          "dateTime": "2024-10-08T21:01:00.000Z",
+          "runID": "c49ccf2a-f1ce-4b2e-b4cf-5da50145e7ec",
+          "vehicleID": "3cbae894-732f-4ee8-a587-ca6862281b54",
+          "direction": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+        }
+      ]
+    },
+    {
+      "lineID": "9ac060c2-463b-4a3f-98c2-3f6cbeb2ad36",
+      "locationID": "9e27f3f2-7604-47d7-8b48-d6725c27f382",
+      "day": "2024-10-07T22:00:00.000Z",
+      "timetable": [
+        {
+          "dateTime": "2024-10-08T03:12:00.000Z",
+          "runID": "1d78bacc-b111-4e39-bb8f-0557e27e7d2a",
+          "vehicleID": "61478161-1093-4b68-bb76-a680542e82d2",
+          "direction": "4994285b-db0f-4e35-81f1-96fd424b2c22"
+        },
+        {
+          "dateTime": "2024-10-08T04:17:00.000Z",
+          "runID": "4bffa1d7-eb36-4a1f-a543-6e1d632af877",
+          "vehicleID": "9860670e-18a4-4aa5-a33d-46f41c73005b",
+          "direction": "4994285b-db0f-4e35-81f1-96fd424b2c22"
+        },
+        {
+          "dateTime": "2024-10-08T04:57:00.000Z",
+          "runID": "07f2cf2c-db8d-49c0-82a6-7176827e7b5b",
+          "vehicleID": "8088e7a4-584e-4a2b-b3fd-5798ba1d73ff",
+          "direction": "c6692890-9dfa-4de3-a04f-c275d542b2c8"
+        },
+        {
+          "dateTime": "2024-10-08T05:22:00.000Z",
+          "runID": "dcfda5bd-7428-4d1d-8e1c-9849eff046d7",
+          "vehicleID": "61478161-1093-4b68-bb76-a680542e82d2",
+          "direction": "c6692890-9dfa-4de3-a04f-c275d542b2c8"
+        },
+        {
+          "dateTime": "2024-10-08T06:22:00.000Z",
+          "runID": "299af214-8312-4bcc-aa7a-d56793488e4d",
+          "vehicleID": "9860670e-18a4-4aa5-a33d-46f41c73005b",
+          "direction": "c6692890-9dfa-4de3-a04f-c275d542b2c8"
+        },
+        {
+          "dateTime": "2024-10-08T07:22:00.000Z",
+          "runID": "1cbe6302-3c97-413a-bcfd-d652560d22a5",
+          "vehicleID": "61478161-1093-4b68-bb76-a680542e82d2",
+          "direction": "c6692890-9dfa-4de3-a04f-c275d542b2c8"
+        },
+        {
+          "dateTime": "2024-10-08T08:22:00.000Z",
+          "runID": "4ba7b205-ccac-4bd8-b479-8bcd51d66c8b",
+          "vehicleID": "9860670e-18a4-4aa5-a33d-46f41c73005b",
+          "direction": "c6692890-9dfa-4de3-a04f-c275d542b2c8"
+        },
+        {
+          "dateTime": "2024-10-08T09:22:00.000Z",
+          "runID": "5e3f1045-6115-4381-b3e3-7ff3201a59de",
+          "vehicleID": "61478161-1093-4b68-bb76-a680542e82d2",
+          "direction": "c6692890-9dfa-4de3-a04f-c275d542b2c8"
+        },
+        {
+          "dateTime": "2024-10-08T10:22:00.000Z",
+          "runID": "b5136274-7a29-4c35-886f-b574ee3e9942",
+          "vehicleID": "9860670e-18a4-4aa5-a33d-46f41c73005b",
+          "direction": "c6692890-9dfa-4de3-a04f-c275d542b2c8"
+        },
+        {
+          "dateTime": "2024-10-08T11:12:00.000Z",
+          "runID": "e17558b5-1de6-4633-a54a-13842d2f9f27",
+          "vehicleID": "61478161-1093-4b68-bb76-a680542e82d2",
+          "direction": "4994285b-db0f-4e35-81f1-96fd424b2c22"
+        },
+        {
+          "dateTime": "2024-10-08T12:22:00.000Z",
+          "runID": "a352982d-a4d6-43cf-9460-cdf2fe95dc66",
+          "vehicleID": "9860670e-18a4-4aa5-a33d-46f41c73005b",
+          "direction": "c6692890-9dfa-4de3-a04f-c275d542b2c8"
+        },
+        {
+          "dateTime": "2024-10-08T12:52:00.000Z",
+          "runID": "b289eaf0-2d95-4c8a-b575-26432901fc94",
+          "vehicleID": "c7163864-028e-45d2-96f6-7a565ace0847",
+          "direction": "c6692890-9dfa-4de3-a04f-c275d542b2c8"
+        },
+        {
+          "dateTime": "2024-10-08T13:22:00.000Z",
+          "runID": "7f6bff64-539d-4b14-b614-26bf840cf723",
+          "vehicleID": "61478161-1093-4b68-bb76-a680542e82d2",
+          "direction": "c6692890-9dfa-4de3-a04f-c275d542b2c8"
+        },
+        {
+          "dateTime": "2024-10-08T14:22:00.000Z",
+          "runID": "b651bef4-a9de-42cd-92c9-36eb74357029",
+          "vehicleID": "9860670e-18a4-4aa5-a33d-46f41c73005b",
+          "direction": "c6692890-9dfa-4de3-a04f-c275d542b2c8"
+        },
+        {
+          "dateTime": "2024-10-08T15:22:00.000Z",
+          "runID": "67067beb-0f61-4542-9dd6-eec34efa0344",
+          "vehicleID": "61478161-1093-4b68-bb76-a680542e82d2",
+          "direction": "c6692890-9dfa-4de3-a04f-c275d542b2c8"
+        },
+        {
+          "dateTime": "2024-10-08T16:22:00.000Z",
+          "runID": "62935eb3-1083-4f7b-b3ed-bdb59b0ef5f8",
+          "vehicleID": "9860670e-18a4-4aa5-a33d-46f41c73005b",
+          "direction": "c6692890-9dfa-4de3-a04f-c275d542b2c8"
+        },
+        {
+          "dateTime": "2024-10-08T17:22:00.000Z",
+          "runID": "5ec2ab41-121b-4c95-99c0-80ede14ff224",
+          "vehicleID": "61478161-1093-4b68-bb76-a680542e82d2",
+          "direction": "c6692890-9dfa-4de3-a04f-c275d542b2c8"
+        },
+        {
+          "dateTime": "2024-10-08T18:22:00.000Z",
+          "runID": "3bc040dc-e90c-410a-874e-1684d4ac9f53",
+          "vehicleID": "9860670e-18a4-4aa5-a33d-46f41c73005b",
+          "direction": "c6692890-9dfa-4de3-a04f-c275d542b2c8"
+        },
+        {
+          "dateTime": "2024-10-08T19:17:00.000Z",
+          "runID": "46a19773-1d56-4fc1-ae6d-6979500333d3",
+          "vehicleID": "61478161-1093-4b68-bb76-a680542e82d2",
+          "direction": "4994285b-db0f-4e35-81f1-96fd424b2c22"
+        }
+      ]
+    },
+    {
+      "lineID": "ed919a35-84b1-490c-8087-301f67e9c23e",
+      "locationID": "9e27f3f2-7604-47d7-8b48-d6725c27f382",
+      "day": "2024-10-07T22:00:00.000Z",
+      "timetable": [
+        {
+          "dateTime": "2024-10-08T02:43:00.000Z",
+          "runID": "2e1f3ac1-67bf-47f3-b22b-2d1efaa22d73",
+          "vehicleID": "361b22be-797d-442d-962a-7dca09932f54",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T03:04:00.000Z",
+          "runID": "4e09f2e8-8272-493f-893a-f047ef51cada",
+          "vehicleID": "7a18f0e5-bdd6-42a6-a004-f0f89d19df61",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T03:19:00.000Z",
+          "runID": "1d1ef33f-2f87-43d6-a44b-d624a98d2124",
+          "vehicleID": "907d2588-06bc-47a5-8d15-79127e742ada",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T03:34:00.000Z",
+          "runID": "98e5e1e0-8794-4621-8d51-4ffb16f33fdc",
+          "vehicleID": "86c21eca-0d9a-4993-9d38-ba2630ada548",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T03:49:00.000Z",
+          "runID": "12422746-91ab-41e9-adac-00721e1cc9e1",
+          "vehicleID": "29ef224d-15cc-4087-a75f-a3ea5849edfa",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T04:04:00.000Z",
+          "runID": "028f0d0f-419b-48ad-a1d5-6b1327ab4e66",
+          "vehicleID": "af3e6cfb-2ac2-46e4-9612-f6c6d3f5852c",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T04:19:00.000Z",
+          "runID": "53290097-2836-4713-9a08-0b92355703cf",
+          "vehicleID": "361b22be-797d-442d-962a-7dca09932f54",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T04:34:00.000Z",
+          "runID": "c18ac27f-ea0b-408b-9e46-32777fb54b79",
+          "vehicleID": "7a18f0e5-bdd6-42a6-a004-f0f89d19df61",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T04:46:00.000Z",
+          "runID": "d1bbec00-470c-40ee-a06f-1a421a6f4b8c",
+          "vehicleID": "907d2588-06bc-47a5-8d15-79127e742ada",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T04:58:00.000Z",
+          "runID": "9828092b-94ed-4d56-8c3b-2ae64d781789",
+          "vehicleID": "8def3b75-f2a4-4883-80dc-e61659d6847e",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T05:10:00.000Z",
+          "runID": "5e7dc265-b47f-4074-8cc2-4a144e991b0b",
+          "vehicleID": "86c21eca-0d9a-4993-9d38-ba2630ada548",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T05:22:00.000Z",
+          "runID": "bc4cc0b0-8c58-488f-a64d-6f3033a15fb2",
+          "vehicleID": "29ef224d-15cc-4087-a75f-a3ea5849edfa",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T05:34:00.000Z",
+          "runID": "471b4678-9a1b-45c0-aafc-a3fabfe89bd4",
+          "vehicleID": "af3e6cfb-2ac2-46e4-9612-f6c6d3f5852c",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T05:46:00.000Z",
+          "runID": "49794db5-afea-45f6-9eae-0ba0c692f53e",
+          "vehicleID": "f0f91905-8ea2-469b-8ae1-14b575b4fdfa",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T05:58:00.000Z",
+          "runID": "972db2dd-b16e-47c9-b99a-4742e4dee17f",
+          "vehicleID": "361b22be-797d-442d-962a-7dca09932f54",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T06:15:00.000Z",
+          "runID": "51165b33-0805-4a99-8c43-44ef5d70c74c",
+          "vehicleID": "7a18f0e5-bdd6-42a6-a004-f0f89d19df61",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T06:34:00.000Z",
+          "runID": "078bc8f2-2e13-4cda-aef1-b8b04f77729c",
+          "vehicleID": "907d2588-06bc-47a5-8d15-79127e742ada",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T06:49:00.000Z",
+          "runID": "d71ab110-e45a-428d-9acf-e9cfeec584e6",
+          "vehicleID": "86c21eca-0d9a-4993-9d38-ba2630ada548",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T07:04:00.000Z",
+          "runID": "bda0c530-e0f6-4c86-b132-029fd955729c",
+          "vehicleID": "29ef224d-15cc-4087-a75f-a3ea5849edfa",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T07:19:00.000Z",
+          "runID": "acd4e548-0fac-4a03-8c86-ef1d739a824e",
+          "vehicleID": "af3e6cfb-2ac2-46e4-9612-f6c6d3f5852c",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T07:34:00.000Z",
+          "runID": "2775886b-d4a3-44e8-8936-565cae21ab89",
+          "vehicleID": "f0f91905-8ea2-469b-8ae1-14b575b4fdfa",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T07:49:00.000Z",
+          "runID": "ea1fab9e-d501-4aad-aba2-58ad545578db",
+          "vehicleID": "361b22be-797d-442d-962a-7dca09932f54",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T08:04:00.000Z",
+          "runID": "72e5ba35-f55c-4476-85cc-6a6d4b852fdb",
+          "vehicleID": "7a18f0e5-bdd6-42a6-a004-f0f89d19df61",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T08:19:00.000Z",
+          "runID": "20821a73-d19c-49bd-a856-552764d5ee4e",
+          "vehicleID": "907d2588-06bc-47a5-8d15-79127e742ada",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T08:34:00.000Z",
+          "runID": "03ec34f9-a5ad-4233-9b13-9da979ffc27f",
+          "vehicleID": "af40940f-1a7e-4dc3-a074-15b1d509b14f",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T08:49:00.000Z",
+          "runID": "550354a6-2304-4b76-aaaf-d2064e8af6b2",
+          "vehicleID": "29ef224d-15cc-4087-a75f-a3ea5849edfa",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T09:04:00.000Z",
+          "runID": "9186c934-e5db-4e5c-9c8c-8348bce95972",
+          "vehicleID": "af3e6cfb-2ac2-46e4-9612-f6c6d3f5852c",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T09:19:00.000Z",
+          "runID": "352fa677-0f64-4a17-850a-ac46d7c63e56",
+          "vehicleID": "f0f91905-8ea2-469b-8ae1-14b575b4fdfa",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T09:34:00.000Z",
+          "runID": "b79ef489-6b8d-4078-9ef3-7822ec43f2fc",
+          "vehicleID": "361b22be-797d-442d-962a-7dca09932f54",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T09:49:00.000Z",
+          "runID": "4c382995-16c4-4f6e-8cc0-2e4bf18cd117",
+          "vehicleID": "7a18f0e5-bdd6-42a6-a004-f0f89d19df61",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T10:04:00.000Z",
+          "runID": "fd730bb4-ff00-4d7f-9a7f-f0f463fd815a",
+          "vehicleID": "907d2588-06bc-47a5-8d15-79127e742ada",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T10:19:00.000Z",
+          "runID": "f2a425af-442e-4a8b-b562-c1b1dc0034b5",
+          "vehicleID": "af40940f-1a7e-4dc3-a074-15b1d509b14f",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T10:34:00.000Z",
+          "runID": "f49187eb-294c-4405-a70f-e1dfb68b56fe",
+          "vehicleID": "29ef224d-15cc-4087-a75f-a3ea5849edfa",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T10:49:00.000Z",
+          "runID": "599883a1-135b-4590-bd70-50ef8725e88c",
+          "vehicleID": "af3e6cfb-2ac2-46e4-9612-f6c6d3f5852c",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T11:04:00.000Z",
+          "runID": "b371946f-eb0c-4112-bf30-47d6635f8afe",
+          "vehicleID": "f0f91905-8ea2-469b-8ae1-14b575b4fdfa",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T11:19:00.000Z",
+          "runID": "3ddf896d-6b2e-4aed-9de1-0c1b7ba651d9",
+          "vehicleID": "361b22be-797d-442d-962a-7dca09932f54",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T11:34:00.000Z",
+          "runID": "202b6bba-3945-45a8-b42e-9a1ac4b98619",
+          "vehicleID": "7a18f0e5-bdd6-42a6-a004-f0f89d19df61",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T11:49:00.000Z",
+          "runID": "b989fb6b-f12c-44fb-97d5-b9c98c68f567",
+          "vehicleID": "907d2588-06bc-47a5-8d15-79127e742ada",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T12:04:00.000Z",
+          "runID": "5de0f180-a405-4c69-a17e-c11b1d726e77",
+          "vehicleID": "af40940f-1a7e-4dc3-a074-15b1d509b14f",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T12:19:00.000Z",
+          "runID": "807eed25-cb03-45e4-abf5-20450c4b6f30",
+          "vehicleID": "29ef224d-15cc-4087-a75f-a3ea5849edfa",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T12:34:00.000Z",
+          "runID": "ada38bde-ab95-41b1-aceb-d1ef379b7e8a",
+          "vehicleID": "af3e6cfb-2ac2-46e4-9612-f6c6d3f5852c",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T12:49:00.000Z",
+          "runID": "d8d44a5e-7010-4626-a4b5-6557e342ff9c",
+          "vehicleID": "f0f91905-8ea2-469b-8ae1-14b575b4fdfa",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T13:04:00.000Z",
+          "runID": "ed3b2c93-f29d-4d4f-baaf-8e3cafae6da6",
+          "vehicleID": "361b22be-797d-442d-962a-7dca09932f54",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T13:19:00.000Z",
+          "runID": "838cd677-5be1-4596-bccc-549e2b6afd4b",
+          "vehicleID": "7a18f0e5-bdd6-42a6-a004-f0f89d19df61",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T13:34:00.000Z",
+          "runID": "3774851a-8057-4246-95a3-68364f1acbfb",
+          "vehicleID": "907d2588-06bc-47a5-8d15-79127e742ada",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T13:49:00.000Z",
+          "runID": "5f79c87d-dbf2-4100-ab6c-1ca6953854ad",
+          "vehicleID": "af40940f-1a7e-4dc3-a074-15b1d509b14f",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T14:04:00.000Z",
+          "runID": "21b3805b-f558-403f-9657-14c264dc568c",
+          "vehicleID": "29ef224d-15cc-4087-a75f-a3ea5849edfa",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T14:19:00.000Z",
+          "runID": "f89b7500-159a-49d5-a930-167d4e54b1e7",
+          "vehicleID": "af3e6cfb-2ac2-46e4-9612-f6c6d3f5852c",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T14:34:00.000Z",
+          "runID": "72a6e069-6d84-44c5-8cc9-693a117b1a22",
+          "vehicleID": "f0f91905-8ea2-469b-8ae1-14b575b4fdfa",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T14:49:00.000Z",
+          "runID": "8263c7f0-3217-4d6b-bf54-fe36426304f4",
+          "vehicleID": "361b22be-797d-442d-962a-7dca09932f54",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T15:04:00.000Z",
+          "runID": "787639dd-5c19-4617-bd34-3b0e68764269",
+          "vehicleID": "7a18f0e5-bdd6-42a6-a004-f0f89d19df61",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T15:24:00.000Z",
+          "runID": "5db1fb88-0359-4f03-936f-a57cd04ff44a",
+          "vehicleID": "c7163864-028e-45d2-96f6-7a565ace0847",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T15:44:00.000Z",
+          "runID": "fcff146b-1f25-4162-a1c7-dc44acc9e1f5",
+          "vehicleID": "29ef224d-15cc-4087-a75f-a3ea5849edfa",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T16:04:00.000Z",
+          "runID": "d308c748-7638-4479-9a59-cf52ce360ebf",
+          "vehicleID": "af3e6cfb-2ac2-46e4-9612-f6c6d3f5852c",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T16:24:00.000Z",
+          "runID": "abf91dd6-38b1-48c9-9653-3acb36d83dac",
+          "vehicleID": "f0f91905-8ea2-469b-8ae1-14b575b4fdfa",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T16:44:00.000Z",
+          "runID": "c341c589-bc76-4cb6-a7cf-bb6226ab0645",
+          "vehicleID": "7a18f0e5-bdd6-42a6-a004-f0f89d19df61",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T17:07:00.000Z",
+          "runID": "45b21c35-496c-4921-aacf-8fe3b8f0a247",
+          "vehicleID": "c7163864-028e-45d2-96f6-7a565ace0847",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T17:32:00.000Z",
+          "runID": "6b92bd3b-99fc-4d45-8b7d-444945af98fa",
+          "vehicleID": "29ef224d-15cc-4087-a75f-a3ea5849edfa",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T18:02:00.000Z",
+          "runID": "ea9b7da4-4ba0-4a85-a411-c1fbc1b93ddd",
+          "vehicleID": "f0f91905-8ea2-469b-8ae1-14b575b4fdfa",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T18:32:00.000Z",
+          "runID": "b42155cb-b92a-46d4-841e-003583a2abf5",
+          "vehicleID": "7a18f0e5-bdd6-42a6-a004-f0f89d19df61",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T19:01:00.000Z",
+          "runID": "8232c246-1598-4f75-bf15-059d0ba1c1df",
+          "vehicleID": "c7163864-028e-45d2-96f6-7a565ace0847",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T19:21:00.000Z",
+          "runID": "7aef924f-ebda-4d26-9908-f3ab56bb9b6f",
+          "vehicleID": "f0f91905-8ea2-469b-8ae1-14b575b4fdfa",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T20:01:00.000Z",
+          "runID": "3854cca7-44c5-490f-a5c6-ecf8ca1a7de1",
+          "vehicleID": "7a18f0e5-bdd6-42a6-a004-f0f89d19df61",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T20:31:00.000Z",
+          "runID": "42dd87b7-27a3-47a7-8288-b19788f9f2d0",
+          "vehicleID": "c7163864-028e-45d2-96f6-7a565ace0847",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        },
+        {
+          "dateTime": "2024-10-08T21:01:00.000Z",
+          "runID": "93760af2-43aa-4de8-874d-de33e393d9bd",
+          "vehicleID": "f0f91905-8ea2-469b-8ae1-14b575b4fdfa",
+          "direction": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+        }
+      ]
+    },
+    {
+      "lineID": "17a7066c-9896-452c-a4d0-82b8d788138b",
+      "locationID": "9e27f3f2-7604-47d7-8b48-d6725c27f382",
+      "day": "2024-10-07T22:00:00.000Z",
+      "timetable": [
+        {
+          "dateTime": "2024-10-08T03:05:00.000Z",
+          "runID": "ffb27fc7-5ae2-4196-9142-b6be8e8c5294",
+          "vehicleID": "c06ede17-0514-4bc5-8e35-f12ccad3e3f4",
+          "direction": "217a99fc-d3c4-4766-b4a4-dd6d7b4142c1"
+        },
+        {
+          "dateTime": "2024-10-08T03:31:00.000Z",
+          "runID": "ebe777ae-f902-4f61-ba43-91ad5b98e7d0",
+          "vehicleID": "98a402ee-4375-4b40-8e29-5380a54377b6",
+          "direction": "f5379774-b18e-4d1f-ade7-db266e912632"
+        },
+        {
+          "dateTime": "2024-10-08T03:56:00.000Z",
+          "runID": "177fd40e-d5b9-4191-895f-4ad13d7a6eea",
+          "vehicleID": "245d09f8-e7d8-4114-9fef-9f51efebd0c2",
+          "direction": "ef4449ac-3c24-4bad-95a7-bd233b8ffeb4"
+        },
+        {
+          "dateTime": "2024-10-08T04:21:00.000Z",
+          "runID": "72799c2d-e6a8-429b-8513-d029d5bbab5e",
+          "vehicleID": "1606a7a4-b1fc-4765-b5a0-3126324e77b4",
+          "direction": "217a99fc-d3c4-4766-b4a4-dd6d7b4142c1"
+        },
+        {
+          "dateTime": "2024-10-08T04:46:00.000Z",
+          "runID": "c9be5068-6cb2-464e-b8ba-b596f03d3ebe",
+          "vehicleID": "6e22ba60-ce24-4a75-b552-8208653e7395",
+          "direction": "ef4449ac-3c24-4bad-95a7-bd233b8ffeb4"
+        },
+        {
+          "dateTime": "2024-10-08T05:06:00.000Z",
+          "runID": "5b174b51-72ab-4aee-bac9-df6f1d82e358",
+          "vehicleID": null,
+          "direction": "ef4449ac-3c24-4bad-95a7-bd233b8ffeb4"
+        },
+        {
+          "dateTime": "2024-10-08T05:26:00.000Z",
+          "runID": "8e3ce12a-1fbb-4247-bd70-cf2ea833abdb",
+          "vehicleID": "77620f5f-1dcf-47b0-8948-ffa84dd4c291",
+          "direction": "217a99fc-d3c4-4766-b4a4-dd6d7b4142c1"
+        },
+        {
+          "dateTime": "2024-10-08T05:46:00.000Z",
+          "runID": "4aad3006-0016-4d05-bf04-086dba74f930",
+          "vehicleID": "c06ede17-0514-4bc5-8e35-f12ccad3e3f4",
+          "direction": "ef4449ac-3c24-4bad-95a7-bd233b8ffeb4"
+        },
+        {
+          "dateTime": "2024-10-08T06:04:00.000Z",
+          "runID": "525cdc5f-0da5-466c-82cc-b6fbbab2ff56",
+          "vehicleID": "98a402ee-4375-4b40-8e29-5380a54377b6",
+          "direction": "ef4449ac-3c24-4bad-95a7-bd233b8ffeb4"
+        },
+        {
+          "dateTime": "2024-10-08T06:26:00.000Z",
+          "runID": "2c222f6a-59f1-4870-9174-7b56df290d33",
+          "vehicleID": "50a561ba-8d31-4195-b40b-43a9f6175410",
+          "direction": "217a99fc-d3c4-4766-b4a4-dd6d7b4142c1"
+        },
+        {
+          "dateTime": "2024-10-08T06:46:00.000Z",
+          "runID": "c6eea7d4-fa1f-4bb7-adf3-b33a6584e634",
+          "vehicleID": "245d09f8-e7d8-4114-9fef-9f51efebd0c2",
+          "direction": "ef4449ac-3c24-4bad-95a7-bd233b8ffeb4"
+        },
+        {
+          "dateTime": "2024-10-08T07:06:00.000Z",
+          "runID": "45d99fab-0563-4d32-a825-a1d9befde4d6",
+          "vehicleID": "1606a7a4-b1fc-4765-b5a0-3126324e77b4",
+          "direction": "ef4449ac-3c24-4bad-95a7-bd233b8ffeb4"
+        },
+        {
+          "dateTime": "2024-10-08T07:26:00.000Z",
+          "runID": "1c00a526-2a02-4403-8aeb-3e6b52f7d622",
+          "vehicleID": "6e22ba60-ce24-4a75-b552-8208653e7395",
+          "direction": "217a99fc-d3c4-4766-b4a4-dd6d7b4142c1"
+        },
+        {
+          "dateTime": "2024-10-08T07:46:00.000Z",
+          "runID": "b57f846e-054e-402b-a4f1-a62d5d1129a3",
+          "vehicleID": null,
+          "direction": "ef4449ac-3c24-4bad-95a7-bd233b8ffeb4"
+        },
+        {
+          "dateTime": "2024-10-08T08:07:00.000Z",
+          "runID": "d4614f3a-6260-457c-b035-641ca91e14a0",
+          "vehicleID": "77620f5f-1dcf-47b0-8948-ffa84dd4c291",
+          "direction": "ef4449ac-3c24-4bad-95a7-bd233b8ffeb4"
+        },
+        {
+          "dateTime": "2024-10-08T08:37:00.000Z",
+          "runID": "048bf443-f1a8-43d1-89d7-32a731b9cd90",
+          "vehicleID": "c06ede17-0514-4bc5-8e35-f12ccad3e3f4",
+          "direction": "217a99fc-d3c4-4766-b4a4-dd6d7b4142c1"
+        },
+        {
+          "dateTime": "2024-10-08T09:07:00.000Z",
+          "runID": "70312111-5737-48b8-a76c-4ae3a63e7c74",
+          "vehicleID": "50a561ba-8d31-4195-b40b-43a9f6175410",
+          "direction": "ef4449ac-3c24-4bad-95a7-bd233b8ffeb4"
+        },
+        {
+          "dateTime": "2024-10-08T09:37:00.000Z",
+          "runID": "78a9b0fd-9cd7-45e6-99be-454acd5306b9",
+          "vehicleID": "1606a7a4-b1fc-4765-b5a0-3126324e77b4",
+          "direction": "217a99fc-d3c4-4766-b4a4-dd6d7b4142c1"
+        },
+        {
+          "dateTime": "2024-10-08T10:07:00.000Z",
+          "runID": "04f166ea-4c7a-4515-bdb1-053039158a5b",
+          "vehicleID": "6e22ba60-ce24-4a75-b552-8208653e7395",
+          "direction": "ef4449ac-3c24-4bad-95a7-bd233b8ffeb4"
+        },
+        {
+          "dateTime": "2024-10-08T10:37:00.000Z",
+          "runID": "5535deab-1214-4284-9903-df8fa862d8af",
+          "vehicleID": "77620f5f-1dcf-47b0-8948-ffa84dd4c291",
+          "direction": "217a99fc-d3c4-4766-b4a4-dd6d7b4142c1"
+        },
+        {
+          "dateTime": "2024-10-08T11:06:00.000Z",
+          "runID": "0f95ba1b-6f9e-4d46-bb16-c6285a82a85e",
+          "vehicleID": "c06ede17-0514-4bc5-8e35-f12ccad3e3f4",
+          "direction": "217a99fc-d3c4-4766-b4a4-dd6d7b4142c1"
+        },
+        {
+          "dateTime": "2024-10-08T11:27:00.000Z",
+          "runID": "06f74e8c-4812-48bc-9ab0-3959e0ba5aa5",
+          "vehicleID": "a601269c-46a9-47f4-bacb-8f46035bbe29",
+          "direction": "f5379774-b18e-4d1f-ade7-db266e912632"
+        },
+        {
+          "dateTime": "2024-10-08T11:47:00.000Z",
+          "runID": "271e9ef7-fca4-48b5-a05c-e4d4afaef5a9",
+          "vehicleID": "50a561ba-8d31-4195-b40b-43a9f6175410",
+          "direction": "ef4449ac-3c24-4bad-95a7-bd233b8ffeb4"
+        },
+        {
+          "dateTime": "2024-10-08T12:07:00.000Z",
+          "runID": "f4c87851-1f4e-43ac-8946-dbd38536e0e0",
+          "vehicleID": "1606a7a4-b1fc-4765-b5a0-3126324e77b4",
+          "direction": "ef4449ac-3c24-4bad-95a7-bd233b8ffeb4"
+        },
+        {
+          "dateTime": "2024-10-08T12:27:00.000Z",
+          "runID": "4de6bc2b-d00d-48fd-8ede-7613dd89cffb",
+          "vehicleID": "4d638265-b885-4a3d-8929-c802ea519624",
+          "direction": "217a99fc-d3c4-4766-b4a4-dd6d7b4142c1"
+        },
+        {
+          "dateTime": "2024-10-08T12:47:00.000Z",
+          "runID": "b0300675-15d2-467f-8ab7-33682219e738",
+          "vehicleID": "6e22ba60-ce24-4a75-b552-8208653e7395",
+          "direction": "ef4449ac-3c24-4bad-95a7-bd233b8ffeb4"
+        },
+        {
+          "dateTime": "2024-10-08T13:07:00.000Z",
+          "runID": "4c815a8a-068a-47f3-be73-cd7e2031fda3",
+          "vehicleID": "77620f5f-1dcf-47b0-8948-ffa84dd4c291",
+          "direction": "ef4449ac-3c24-4bad-95a7-bd233b8ffeb4"
+        },
+        {
+          "dateTime": "2024-10-08T13:27:00.000Z",
+          "runID": "cc57eda9-1ec7-4e8f-8877-fe876f4c0801",
+          "vehicleID": "2c2d6d73-1379-4435-b2f7-2cbc2df36835",
+          "direction": "217a99fc-d3c4-4766-b4a4-dd6d7b4142c1"
+        },
+        {
+          "dateTime": "2024-10-08T13:47:00.000Z",
+          "runID": "5b3ab1df-d48c-4ffc-84b9-d7ebb3d8f8d5",
+          "vehicleID": "c06ede17-0514-4bc5-8e35-f12ccad3e3f4",
+          "direction": "ef4449ac-3c24-4bad-95a7-bd233b8ffeb4"
+        },
+        {
+          "dateTime": "2024-10-08T14:07:00.000Z",
+          "runID": "cbf7d40e-0ac8-4012-8f65-c4af1f1e3b66",
+          "vehicleID": "81c18c7a-d5fc-4fa1-b216-26d20732ea46",
+          "direction": "ef4449ac-3c24-4bad-95a7-bd233b8ffeb4"
+        },
+        {
+          "dateTime": "2024-10-08T14:27:00.000Z",
+          "runID": "66983ce7-6c3d-412d-9930-7fac1d348205",
+          "vehicleID": "50a561ba-8d31-4195-b40b-43a9f6175410",
+          "direction": "217a99fc-d3c4-4766-b4a4-dd6d7b4142c1"
+        },
+        {
+          "dateTime": "2024-10-08T14:47:00.000Z",
+          "runID": "06a4a76b-7de7-4abb-801c-6662429e3645",
+          "vehicleID": "1606a7a4-b1fc-4765-b5a0-3126324e77b4",
+          "direction": "ef4449ac-3c24-4bad-95a7-bd233b8ffeb4"
+        },
+        {
+          "dateTime": "2024-10-08T15:07:00.000Z",
+          "runID": "6686d0c3-e81e-420c-9a36-0d0884d6b6d7",
+          "vehicleID": "9f77321f-10cf-42b4-a92f-7a2a573756fe",
+          "direction": "ef4449ac-3c24-4bad-95a7-bd233b8ffeb4"
+        },
+        {
+          "dateTime": "2024-10-08T15:25:00.000Z",
+          "runID": "79a50aa3-a588-4815-9a92-9886b5a3d18e",
+          "vehicleID": "6e22ba60-ce24-4a75-b552-8208653e7395",
+          "direction": "f5379774-b18e-4d1f-ade7-db266e912632"
+        },
+        {
+          "dateTime": "2024-10-08T15:45:00.000Z",
+          "runID": "71e4971e-9535-46c8-9072-82d0ce9dc672",
+          "vehicleID": "77620f5f-1dcf-47b0-8948-ffa84dd4c291",
+          "direction": "ef4449ac-3c24-4bad-95a7-bd233b8ffeb4"
+        },
+        {
+          "dateTime": "2024-10-08T16:05:00.000Z",
+          "runID": "3cb660a4-362f-4138-a48b-8b0179d5d675",
+          "vehicleID": "2c2d6d73-1379-4435-b2f7-2cbc2df36835",
+          "direction": "ef4449ac-3c24-4bad-95a7-bd233b8ffeb4"
+        },
+        {
+          "dateTime": "2024-10-08T16:25:00.000Z",
+          "runID": "b505a676-b397-4c34-838f-6c635b921e12",
+          "vehicleID": "c06ede17-0514-4bc5-8e35-f12ccad3e3f4",
+          "direction": "ef4449ac-3c24-4bad-95a7-bd233b8ffeb4"
+        },
+        {
+          "dateTime": "2024-10-08T16:45:00.000Z",
+          "runID": "d11df751-58a7-40b8-ab60-a88f4393732b",
+          "vehicleID": "81c18c7a-d5fc-4fa1-b216-26d20732ea46",
+          "direction": "217a99fc-d3c4-4766-b4a4-dd6d7b4142c1"
+        },
+        {
+          "dateTime": "2024-10-08T17:05:00.000Z",
+          "runID": "161df570-8d01-42ee-b373-8bdbbd82aa2b",
+          "vehicleID": "50a561ba-8d31-4195-b40b-43a9f6175410",
+          "direction": "ef4449ac-3c24-4bad-95a7-bd233b8ffeb4"
+        },
+        {
+          "dateTime": "2024-10-08T17:30:00.000Z",
+          "runID": "a4910a6c-97da-4c21-a7b2-3da4468b12a9",
+          "vehicleID": "1606a7a4-b1fc-4765-b5a0-3126324e77b4",
+          "direction": "217a99fc-d3c4-4766-b4a4-dd6d7b4142c1"
+        },
+        {
+          "dateTime": "2024-10-08T18:00:00.000Z",
+          "runID": "1feaa0a2-f033-4a42-8b4e-914ca9f10be2",
+          "vehicleID": "6e22ba60-ce24-4a75-b552-8208653e7395",
+          "direction": "ef4449ac-3c24-4bad-95a7-bd233b8ffeb4"
+        },
+        {
+          "dateTime": "2024-10-08T18:30:00.000Z",
+          "runID": "2373c4d1-200c-4c95-a5cc-fa598944212a",
+          "vehicleID": "2c2d6d73-1379-4435-b2f7-2cbc2df36835",
+          "direction": "217a99fc-d3c4-4766-b4a4-dd6d7b4142c1"
+        },
+        {
+          "dateTime": "2024-10-08T19:00:00.000Z",
+          "runID": "7840a383-d49e-4f35-b427-3ed97719e1ee",
+          "vehicleID": "81c18c7a-d5fc-4fa1-b216-26d20732ea46",
+          "direction": "ef4449ac-3c24-4bad-95a7-bd233b8ffeb4"
+        },
+        {
+          "dateTime": "2024-10-08T19:29:00.000Z",
+          "runID": "b80654aa-67f0-4157-8784-d1cf85d1d439",
+          "vehicleID": "50a561ba-8d31-4195-b40b-43a9f6175410",
+          "direction": "f5379774-b18e-4d1f-ade7-db266e912632"
+        },
+        {
+          "dateTime": "2024-10-08T19:59:00.000Z",
+          "runID": "b84511f5-f436-4753-b1c5-346a6dde2b3c",
+          "vehicleID": "1606a7a4-b1fc-4765-b5a0-3126324e77b4",
+          "direction": "ef4449ac-3c24-4bad-95a7-bd233b8ffeb4"
+        },
+        {
+          "dateTime": "2024-10-08T20:29:00.000Z",
+          "runID": "7c935979-06f8-42fd-84c3-08bd1f7f04fb",
+          "vehicleID": "6e22ba60-ce24-4a75-b552-8208653e7395",
+          "direction": "ef4449ac-3c24-4bad-95a7-bd233b8ffeb4"
+        },
+        {
+          "dateTime": "2024-10-08T20:59:00.000Z",
+          "runID": "95ef9848-3986-404d-9665-a229f0e7ba8c",
+          "vehicleID": "2c2d6d73-1379-4435-b2f7-2cbc2df36835",
+          "direction": "ef4449ac-3c24-4bad-95a7-bd233b8ffeb4"
+        },
+        {
+          "dateTime": "2024-10-08T21:29:00.000Z",
+          "runID": "fdc49c71-765e-436c-9403-bc4f11452a7f",
+          "vehicleID": "81c18c7a-d5fc-4fa1-b216-26d20732ea46",
+          "direction": "ef4449ac-3c24-4bad-95a7-bd233b8ffeb4"
+        }
+      ]
+    }
+  ]

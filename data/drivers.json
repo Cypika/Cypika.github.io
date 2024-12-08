@@ -1,0 +1,42 @@
+{
+    "drivers":
+    [
+        {
+            "driverID": "21a98d56-ad8c-49f5-b97a-cc6506f49bd4",
+            "nick": "Wujek",
+            "imie": "?",
+            "nazwisko": "?",
+            "ocena": "5"
+        },
+        {
+            "driverID": "85b80971-09b0-40c0-8ce2-6a2e9107cef0",
+            "nick": "Mirek",
+            "imie": "Mirosław",
+            "nazwisko": "?",
+            "ocena": "5" 
+        },
+        {
+            "driverID": "f1848e7a-b868-4685-ab5f-bcc4f307941c",
+            "nick": "Turko / Turas / Doner / Rafaello",
+            "imie": "Rafał",
+            "nazwisko": "Lizon",
+            "ocena": "5" 
+        },
+        {
+            "driverID": "ed882b4f-754d-4530-8286-786aafc3a006",
+            "nick": "Roszczochraniec",
+            "imie": "Marek",
+            "nazwisko": "Zbrojkiewicz",
+            "ocena": "5" 
+        },
+        {
+            "driverID": "ab04f355-3c18-432c-b43a-c150f4106618",
+            "nick": "Tomek?",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5" 
+        }
+
+    ]
+
+}

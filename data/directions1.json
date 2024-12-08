@@ -1,0 +1,824 @@
+[
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "00dc75c3-8bca-4fba-86e3-45c551708b21",
+    "locationID": "2ecc71f6-1ef8-4d50-9919-7d09ba49744b"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "00dc75c3-8bca-4fba-86e3-45c551708b21",
+    "locationID": "48cb3ffa-44e3-43ed-8665-859f0b53ea34"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "00dc75c3-8bca-4fba-86e3-45c551708b21",
+    "locationID": "5ed931f8-5e86-459c-81f6-b6567c3d31fc"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "00dc75c3-8bca-4fba-86e3-45c551708b21",
+    "locationID": "80e1694c-500a-4eb5-8fdc-5238f7520976"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "00dc75c3-8bca-4fba-86e3-45c551708b21",
+    "locationID": "d1ec1b81-96dd-4bdf-ba79-c9d894eb3a16"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "00dc75c3-8bca-4fba-86e3-45c551708b21",
+    "locationID": "f416cd5e-8f54-4cec-9ac2-c463331e83f1"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "0b9bd7c5-4ef0-45b4-b240-31c027915f9b",
+    "locationID": "7e182190-3afe-471d-a97d-de62753e5174"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "0b9bd7c5-4ef0-45b4-b240-31c027915f9b",
+    "locationID": "b498c3b1-5d9e-443d-ae13-2b9dbc0837f0"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "1111c073-b540-4b3e-852b-692255f48fa6",
+    "locationID": "19b1eba3-cba2-45f8-ae81-04cd19b1bffb"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "1111c073-b540-4b3e-852b-692255f48fa6",
+    "locationID": "504a9cd0-5a9b-43d3-a5fc-2fa5baa3a6c5"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "1111c073-b540-4b3e-852b-692255f48fa6",
+    "locationID": "80ac53dd-3514-49d1-983c-0e334c9ce01c"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "1111c073-b540-4b3e-852b-692255f48fa6",
+    "locationID": "b4cc2e58-b363-4e7e-9ac2-2fc8acdb0906"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "1111c073-b540-4b3e-852b-692255f48fa6",
+    "locationID": "bd3955b6-f367-45f1-bc60-8763240fd1e5"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "1111c073-b540-4b3e-852b-692255f48fa6",
+    "locationID": "c0a09c95-1848-429f-93d4-5c3e32ae7ec5"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "1111c073-b540-4b3e-852b-692255f48fa6",
+    "locationID": "f832bb51-9b5d-4b71-ba0f-69ae5eb9b8d5"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "11c3fc3e-210f-4f7e-8e16-89105efb7edf",
+    "locationID": "1c76f4eb-8786-4c14-b63c-74fa9b344b5a"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "11c3fc3e-210f-4f7e-8e16-89105efb7edf",
+    "locationID": "22b23cf1-5938-4b75-a7c7-bbe9f63f30bd"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "11c3fc3e-210f-4f7e-8e16-89105efb7edf",
+    "locationID": "582b9200-b8be-4c62-bc56-8b6af02de781"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "11c3fc3e-210f-4f7e-8e16-89105efb7edf",
+    "locationID": "7d0cd09c-5035-4de6-bbb2-829146164d1e"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "17a7066c-9896-452c-a4d0-82b8d788138b",
+    "locationID": "217a99fc-d3c4-4766-b4a4-dd6d7b4142c1"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "17a7066c-9896-452c-a4d0-82b8d788138b",
+    "locationID": "768c4ab5-faf4-45be-9619-dc380f54928a"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "17a7066c-9896-452c-a4d0-82b8d788138b",
+    "locationID": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "17a7066c-9896-452c-a4d0-82b8d788138b",
+    "locationID": "ef4449ac-3c24-4bad-95a7-bd233b8ffeb4"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "17a7066c-9896-452c-a4d0-82b8d788138b",
+    "locationID": "f5379774-b18e-4d1f-ade7-db266e912632"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "1a0131b9-d672-46dd-a8d8-f1fd2a1b7595",
+    "locationID": "48cb3ffa-44e3-43ed-8665-859f0b53ea34"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "1a0131b9-d672-46dd-a8d8-f1fd2a1b7595",
+    "locationID": "4dbcd1a1-198c-49a2-99fb-8bdcfed385fb"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "1a0131b9-d672-46dd-a8d8-f1fd2a1b7595",
+    "locationID": "b3d5d7a6-df28-4dd7-9b71-42a6ea926e2c"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "1a0131b9-d672-46dd-a8d8-f1fd2a1b7595",
+    "locationID": "d1ec1b81-96dd-4bdf-ba79-c9d894eb3a16"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "1a0131b9-d672-46dd-a8d8-f1fd2a1b7595",
+    "locationID": "e625d2bf-0e52-41ec-8ff5-65a4b5357481"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "1ad3d167-2a14-40ef-8c56-f60e699e36e1",
+    "locationID": "48cb3ffa-44e3-43ed-8665-859f0b53ea34"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "1ad3d167-2a14-40ef-8c56-f60e699e36e1",
+    "locationID": "c377fd94-a4cc-4b30-8677-a244cfad0c4d"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "1ad3d167-2a14-40ef-8c56-f60e699e36e1",
+    "locationID": "f212e576-4246-409a-8705-5abf0d05f296"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "1ad3d167-2a14-40ef-8c56-f60e699e36e1",
+    "locationID": "f416cd5e-8f54-4cec-9ac2-c463331e83f1"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "434238b4-3161-4f33-b1a7-0267551b4cbe",
+    "locationID": "217a99fc-d3c4-4766-b4a4-dd6d7b4142c1"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "434238b4-3161-4f33-b1a7-0267551b4cbe",
+    "locationID": "621dd03b-95f8-40c8-add1-1d4bdc4bdc5b"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "434238b4-3161-4f33-b1a7-0267551b4cbe",
+    "locationID": "c07a09b7-4345-4d02-94f9-11980679de06"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "434238b4-3161-4f33-b1a7-0267551b4cbe",
+    "locationID": "ea3fee48-b2df-46d1-8ae3-f1e33844e233"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "434238b4-3161-4f33-b1a7-0267551b4cbe",
+    "locationID": "ef4449ac-3c24-4bad-95a7-bd233b8ffeb4"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "434238b4-3161-4f33-b1a7-0267551b4cbe",
+    "locationID": "f5379774-b18e-4d1f-ade7-db266e912632"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "49b87a8c-2558-493b-bae8-697cc1badb08",
+    "locationID": "284226d6-eba0-43a0-a59d-d5a927b5c159"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "49b87a8c-2558-493b-bae8-697cc1badb08",
+    "locationID": "3fbd1012-e6bb-4bec-b339-e8fe48ec109c"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "49b87a8c-2558-493b-bae8-697cc1badb08",
+    "locationID": "70738d2b-2b68-4179-afa5-6b6868ea75aa"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "54ca5d6b-1d38-4852-be2d-fc75eb5192da",
+    "locationID": "63cc99c2-3871-470a-a7bb-96b4e1cb1208"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "54ca5d6b-1d38-4852-be2d-fc75eb5192da",
+    "locationID": "a82ede46-0eb9-49e4-98ee-e52b5ec3e770"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "54ca5d6b-1d38-4852-be2d-fc75eb5192da",
+    "locationID": "b498c3b1-5d9e-443d-ae13-2b9dbc0837f0"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "54ca5d6b-1d38-4852-be2d-fc75eb5192da",
+    "locationID": "bdfe788a-8b00-45d0-b218-c85e8cdfe588"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "578496a7-7ac7-4de7-bf81-080f50711642",
+    "locationID": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "578496a7-7ac7-4de7-bf81-080f50711642",
+    "locationID": "9e27f3f2-7604-47d7-8b48-d6725c27f382"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "5c90b6b0-ea1c-4a35-ac8d-bdf00c8096a9",
+    "locationID": "1873db81-b1b0-4610-9cb0-97e909d22589"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "5c90b6b0-ea1c-4a35-ac8d-bdf00c8096a9",
+    "locationID": "5894b4e5-7ca2-44a8-a7a8-a2c10b370329"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "5c90b6b0-ea1c-4a35-ac8d-bdf00c8096a9",
+    "locationID": "80ac53dd-3514-49d1-983c-0e334c9ce01c"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "5c90b6b0-ea1c-4a35-ac8d-bdf00c8096a9",
+    "locationID": "bdfe788a-8b00-45d0-b218-c85e8cdfe588"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "5c90b6b0-ea1c-4a35-ac8d-bdf00c8096a9",
+    "locationID": "f79c13b0-9901-4cd0-89f2-f69b82aeb5a4"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "5c90b6b0-ea1c-4a35-ac8d-bdf00c8096a9",
+    "locationID": "f832bb51-9b5d-4b71-ba0f-69ae5eb9b8d5"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "6fc9e538-e568-42fa-a9f4-cd5e6776106e",
+    "locationID": "47a75840-8af1-46d2-8dee-f5a566fb0074"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "6fc9e538-e568-42fa-a9f4-cd5e6776106e",
+    "locationID": "7e182190-3afe-471d-a97d-de62753e5174"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "76f7093f-fd25-47f5-afd0-efb83a4e13b7",
+    "locationID": "7aa79cfa-29f7-4b7e-86aa-9d8d1f109cd2"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "76f7093f-fd25-47f5-afd0-efb83a4e13b7",
+    "locationID": "7e182190-3afe-471d-a97d-de62753e5174"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "76f7093f-fd25-47f5-afd0-efb83a4e13b7",
+    "locationID": "c0520f45-6e83-44e0-9f72-5954e75aeb62"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "807792cf-1032-4b44-a2bb-6ac10369fc8e",
+    "locationID": "1188093c-cfb0-48f1-b845-69d0e0e813ce"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "807792cf-1032-4b44-a2bb-6ac10369fc8e",
+    "locationID": "621dd03b-95f8-40c8-add1-1d4bdc4bdc5b"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "807792cf-1032-4b44-a2bb-6ac10369fc8e",
+    "locationID": "6919dbfd-5dd2-4286-b4fb-01861494d6c2"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "807792cf-1032-4b44-a2bb-6ac10369fc8e",
+    "locationID": "7e750afb-a1df-49fb-bc2d-ed0d686b232a"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "807792cf-1032-4b44-a2bb-6ac10369fc8e",
+    "locationID": "ff0c6106-decf-4780-92f8-4e5b8dfb24eb"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "8234f3d4-4f75-4061-b11f-6e2e1c0dcd9a",
+    "locationID": "2ecc71f6-1ef8-4d50-9919-7d09ba49744b"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "8234f3d4-4f75-4061-b11f-6e2e1c0dcd9a",
+    "locationID": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "88585980-6dd3-4670-a6df-01772e122f1f",
+    "locationID": "7606dfe0-ee6a-45d5-a260-a1766d22f4cb"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "88585980-6dd3-4670-a6df-01772e122f1f",
+    "locationID": "7aa79cfa-29f7-4b7e-86aa-9d8d1f109cd2"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "88585980-6dd3-4670-a6df-01772e122f1f",
+    "locationID": "8fef6bcd-4852-40ab-bd47-b81a255e1500"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "88585980-6dd3-4670-a6df-01772e122f1f",
+    "locationID": "de0fcd01-5fac-41c4-8335-3eece26fd14e"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "8aafd657-3d18-49d2-be4f-05c23bb4ccb7",
+    "locationID": "0a9b6edb-1c90-4fc5-a996-84e006f6538c"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "8aafd657-3d18-49d2-be4f-05c23bb4ccb7",
+    "locationID": "a82ede46-0eb9-49e4-98ee-e52b5ec3e770"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "961c0f1f-1745-4a14-b3ec-37471079da55",
+    "locationID": "0aa706f1-024e-4458-8edc-d067fcb068bf"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "961c0f1f-1745-4a14-b3ec-37471079da55",
+    "locationID": "217a99fc-d3c4-4766-b4a4-dd6d7b4142c1"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "961c0f1f-1745-4a14-b3ec-37471079da55",
+    "locationID": "8a86bdf7-d2e5-4783-a015-8fe2d5b5347d"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "961c0f1f-1745-4a14-b3ec-37471079da55",
+    "locationID": "ef4449ac-3c24-4bad-95a7-bd233b8ffeb4"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "961c0f1f-1745-4a14-b3ec-37471079da55",
+    "locationID": "f5379774-b18e-4d1f-ade7-db266e912632"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "9ac060c2-463b-4a3f-98c2-3f6cbeb2ad36",
+    "locationID": "4994285b-db0f-4e35-81f1-96fd424b2c22"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "9ac060c2-463b-4a3f-98c2-3f6cbeb2ad36",
+    "locationID": "7e182190-3afe-471d-a97d-de62753e5174"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "9ac060c2-463b-4a3f-98c2-3f6cbeb2ad36",
+    "locationID": "c6692890-9dfa-4de3-a04f-c275d542b2c8"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "a1fd5986-b000-4347-9f00-b1ae6cdbdbaa",
+    "locationID": "3327d734-4fa9-492d-90fb-b9002cbcb6ab"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "a1fd5986-b000-4347-9f00-b1ae6cdbdbaa",
+    "locationID": "6729b498-744c-4817-890f-8f5153827e3a"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "a1fd5986-b000-4347-9f00-b1ae6cdbdbaa",
+    "locationID": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "a1fd5986-b000-4347-9f00-b1ae6cdbdbaa",
+    "locationID": "f212e576-4246-409a-8705-5abf0d05f296"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "a3759352-31e8-426e-9889-bf3374886382",
+    "locationID": "094144ef-c360-4583-a4d6-fe46be746e54"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "a3759352-31e8-426e-9889-bf3374886382",
+    "locationID": "4994285b-db0f-4e35-81f1-96fd424b2c22"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "a3759352-31e8-426e-9889-bf3374886382",
+    "locationID": "5a7e2659-78ef-4530-898b-999fd34e9514"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "a3759352-31e8-426e-9889-bf3374886382",
+    "locationID": "c6692890-9dfa-4de3-a04f-c275d542b2c8"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "a76ab6e8-b211-4f0c-abd4-e81b90c4ce8a",
+    "locationID": "0fbb4646-f523-45cf-bb35-43b09d40a490"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "a76ab6e8-b211-4f0c-abd4-e81b90c4ce8a",
+    "locationID": "1c76f4eb-8786-4c14-b63c-74fa9b344b5a"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "a76ab6e8-b211-4f0c-abd4-e81b90c4ce8a",
+    "locationID": "22b23cf1-5938-4b75-a7c7-bbe9f63f30bd"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "a76ab6e8-b211-4f0c-abd4-e81b90c4ce8a",
+    "locationID": "8306fb1c-dde0-424a-9352-8c4bb729215b"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "afc38a38-e1ce-439f-b198-477009bdd505",
+    "locationID": "7e182190-3afe-471d-a97d-de62753e5174"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "afc38a38-e1ce-439f-b198-477009bdd505",
+    "locationID": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "afc38a38-e1ce-439f-b198-477009bdd505",
+    "locationID": "f416cd5e-8f54-4cec-9ac2-c463331e83f1"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "b4cf56b3-8067-46b5-97dc-19f5e9ece1ed",
+    "locationID": "19b1eba3-cba2-45f8-ae81-04cd19b1bffb"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "b4cf56b3-8067-46b5-97dc-19f5e9ece1ed",
+    "locationID": "7e182190-3afe-471d-a97d-de62753e5174"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "b4cf56b3-8067-46b5-97dc-19f5e9ece1ed",
+    "locationID": "a8e7ae07-3031-485c-bf9a-e4dbab0a93a3"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "b992a005-8743-4f7b-95be-51d1ae2bbfce",
+    "locationID": "1873db81-b1b0-4610-9cb0-97e909d22589"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "b992a005-8743-4f7b-95be-51d1ae2bbfce",
+    "locationID": "5a7e2659-78ef-4530-898b-999fd34e9514"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "b992a005-8743-4f7b-95be-51d1ae2bbfce",
+    "locationID": "5ed931f8-5e86-459c-81f6-b6567c3d31fc"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "b992a005-8743-4f7b-95be-51d1ae2bbfce",
+    "locationID": "77607cee-45c3-4682-9674-a482a54d22fd"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "b992a005-8743-4f7b-95be-51d1ae2bbfce",
+    "locationID": "bd3955b6-f367-45f1-bc60-8763240fd1e5"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "bd35fae7-a977-4c6e-8e9b-7f6dd7a1189c",
+    "locationID": "5a7e2659-78ef-4530-898b-999fd34e9514"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "bd35fae7-a977-4c6e-8e9b-7f6dd7a1189c",
+    "locationID": "5ed931f8-5e86-459c-81f6-b6567c3d31fc"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "bd35fae7-a977-4c6e-8e9b-7f6dd7a1189c",
+    "locationID": "f78b85db-131b-4f2b-b42d-c5722990fe3d"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "be96f978-cbe1-4db7-a980-0757a1dcb3c9",
+    "locationID": "19f87f4e-8a77-401e-a1a4-95ee0be64013"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "be96f978-cbe1-4db7-a980-0757a1dcb3c9",
+    "locationID": "48cb3ffa-44e3-43ed-8665-859f0b53ea34"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "be96f978-cbe1-4db7-a980-0757a1dcb3c9",
+    "locationID": "5ac751a7-c5d7-411e-b04f-4c4fad57dc14"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "be96f978-cbe1-4db7-a980-0757a1dcb3c9",
+    "locationID": "b21bd77e-a638-4b54-a642-cbbb84d6b101"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "c768d0d1-2690-4bbf-ace9-42aa8404516f",
+    "locationID": "09918fa1-027b-407a-b1c6-000a74fbb3e3"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "c768d0d1-2690-4bbf-ace9-42aa8404516f",
+    "locationID": "1873db81-b1b0-4610-9cb0-97e909d22589"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "c768d0d1-2690-4bbf-ace9-42aa8404516f",
+    "locationID": "46efcbb2-2e58-4920-aa18-c1775f15a258"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "c768d0d1-2690-4bbf-ace9-42aa8404516f",
+    "locationID": "48cb3ffa-44e3-43ed-8665-859f0b53ea34"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "c768d0d1-2690-4bbf-ace9-42aa8404516f",
+    "locationID": "bc92a1ce-ea65-48ef-9a2e-05eaf5044013"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "c768d0d1-2690-4bbf-ace9-42aa8404516f",
+    "locationID": "de0fcd01-5fac-41c4-8335-3eece26fd14e"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "df9dc7e7-0550-4a7f-b1f2-8ecfca86fdf4",
+    "locationID": "50846e37-c8be-4553-9be3-931760a37734"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "df9dc7e7-0550-4a7f-b1f2-8ecfca86fdf4",
+    "locationID": "5ed931f8-5e86-459c-81f6-b6567c3d31fc"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "df9dc7e7-0550-4a7f-b1f2-8ecfca86fdf4",
+    "locationID": "c6692890-9dfa-4de3-a04f-c275d542b2c8"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "e3e312a3-17a7-442e-aa91-8121fedf6f5e",
+    "locationID": "2002ab7c-f83c-4ada-afc4-fbe70fb544cb"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "e3e312a3-17a7-442e-aa91-8121fedf6f5e",
+    "locationID": "50400466-af24-41a8-bf3a-7f5f9b35b087"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "e3e312a3-17a7-442e-aa91-8121fedf6f5e",
+    "locationID": "51cf6291-b8fe-473f-b2da-4cfd2a465d8f"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "e3e312a3-17a7-442e-aa91-8121fedf6f5e",
+    "locationID": "6919dbfd-5dd2-4286-b4fb-01861494d6c2"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "e3e312a3-17a7-442e-aa91-8121fedf6f5e",
+    "locationID": "8fef6bcd-4852-40ab-bd47-b81a255e1500"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "e3e312a3-17a7-442e-aa91-8121fedf6f5e",
+    "locationID": "c3bac27c-5040-4764-a1ef-79ff96202062"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "e3e312a3-17a7-442e-aa91-8121fedf6f5e",
+    "locationID": "f0c6cf76-f658-432a-8b26-908ba81d4cac"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "e3e312a3-17a7-442e-aa91-8121fedf6f5e",
+    "locationID": "f2ad33c4-e0d0-4350-be73-2e97f3bb6289"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "eb91280c-2671-437c-9b3b-730595a84336",
+    "locationID": "22b23cf1-5938-4b75-a7c7-bbe9f63f30bd"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "eb91280c-2671-437c-9b3b-730595a84336",
+    "locationID": "644ca8a3-304d-407c-a8a5-b2cbaa9384db"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "eb91280c-2671-437c-9b3b-730595a84336",
+    "locationID": "9d54634f-2a3f-4430-bace-4e9f9d5ec04e"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "ed919a35-84b1-490c-8087-301f67e9c23e",
+    "locationID": "289431b5-9f09-40f1-afa7-676f5a46c810"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "ed919a35-84b1-490c-8087-301f67e9c23e",
+    "locationID": "6b62e2c3-5736-4063-a1ee-f43322457c71"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "ed919a35-84b1-490c-8087-301f67e9c23e",
+    "locationID": "e24600ca-27fa-47ce-900f-617f2aa97de8"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "f68a6053-0a43-4213-9cf5-3b8cee46d274",
+    "locationID": "4175c376-4321-4e47-8e5e-11f7ce1e8c1a"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "f68a6053-0a43-4213-9cf5-3b8cee46d274",
+    "locationID": "b3d5d7a6-df28-4dd7-9b71-42a6ea926e2c"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": null,
+    "lineID": "f68a6053-0a43-4213-9cf5-3b8cee46d274",
+    "locationID": "bac8a705-19bb-498f-a105-373bdf89cca5"
+  },
+  {
+    "day": "2024-10-09T22:00:00.000Z",
+    "direction": true,
+    "lineID": "f68a6053-0a43-4213-9cf5-3b8cee46d274",
+    "locationID": "bd3955b6-f367-45f1-bc60-8763240fd1e5"
+  }
+]
