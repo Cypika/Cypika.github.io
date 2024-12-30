@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="gsid()">GET SID</button>
+
+    <button onclick="zapytanie()">ZAPYTANIE</button>
+
+    <input type="text" id="input">
+    <button onclick="send()">Wyślij</button>
+
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+    <script>
+        var sid;
+        var socket;
+
+        function gsid(){
+            // Adres URL do połączenia z WebSocket
+            const url = "wss://live.mpk.czest.pl/socket.io/?EIO=3&transport=websocket";
+
+            // Tworzenie połączenia WebSocket
+            socket = new WebSocket(url);
+
+            // Obsługa zdarzenia połączenia otwartego
+            socket.addEventListener('open', (event) => {
+                console.log("Połączono z serwerem");
+
+                // Wysłanie wiadomości po nawiązaniu połączenia
+                socket.send("2probe"); // Otwórz komunikację
+            });
+
+            // Obsługa zdarzenia odbierania wiadomości
+            socket.addEventListener('message', (event) => {
+                console.log("Otrzymano: ", event.data);
+
+                let cleanedData = event.data;
+
+                if (cleanedData.startsWith("0")) {
+                    cleanedData = cleanedData.substring(1); // Usuwa pierwszy znak
+                }
+
+                // Parsowanie stringa JSON do obiektu
+                var jsonObject = JSON.parse(cleanedData);
+
+                // Zapisywanie wartości sid do zmiennej
+
+                if (jsonObject.sid != undefined){
+                    sid = jsonObject.sid;
+                    console.log(sid);
+                }
+
+                
+                // Możesz dodać logikę do obsługi konkretnej odpowiedzi
+                /*if (event.data === '3') {
+                    console.log("Oczekiwane dane do pobrania!");
+                    // Możesz tu wysłać kolejną wiadomość, aby uzyskać dane
+                    // Na przykład:
+                    socket.send("2probe"); // Dostosuj to do wymagań serwera
+                }*/
+            });
+
+            var input = document.getElementById('input');
+
+            // Obsługa błędów
+            socket.addEventListener('error', (event) => {
+                console.error("Błąd: ", event);
+            });
+
+            // Obsługa zamknięcia połączenia
+            socket.addEventListener('close', (event) => {
+                console.log("Połączenie zamknięte");
+            });
+
+        }
+
+        function send(){
+            socket.send(input.value);
+        }
+
+        var socketio = io("https://live.mpk.czest.pl/socket.io/?EIO=3&transport=polling");
+
+        // Obsługa połączenia
+        socketio.on('connect', () => {
+            console.log('Połączono z serwerem');
+
+            // Wysłanie wiadomości po nawiązaniu połączenia
+            socketio.emit('probe', '2probe'); // Użyj odpowiedniego zdarzenia i danych
+        });
+
+        socketio.on('message', (data) => {
+            console.log('Otrzymano wiadomość:', data);
+        });
+
+        socketio.on('disconnect', () => {
+            console.log('Rozłączono z serwerem');
+        });
+
+        socketio.on("data", () => {
+            console.log("Dane");
+        });
+
+        /*socketio.addEventListener('message', (event) => {
+            console.log("Otrzymano: ", event.data);
+
+            let cleanedData1 = event.data;
+
+            if (cleanedData1.startsWith("0")) {
+                cleanedData1 = cleanedData1.substring(1); // Usuwa pierwszy znak
+            }
+
+            // Parsowanie stringa JSON do obiektu
+            var jsonObject = JSON.parse(cleanedData1);
+
+            // Zapisywanie wartości sid do zmiennej
+
+            if (jsonObject.sid != undefined){
+                sid = jsonObject.sid;
+                console.log(sid);
+            }
+
+        });*/
+
+        function zapytanie(){
+            // Zmień ten adres URL, aby używał konkretnego SID
+            const url = `wws://live.mpk.czest.pl/socket.io/?EIO=3&transport=polling&sid=${sid}`;
+
+            // Funkcja do pobierania danych
+            async function fetchData() {
+                try {
+                    // Użycie fetch do pobrania danych
+                    const response = await fetch(url);
+                    
+                    // Sprawdź, czy odpowiedź jest w porządku
+                    if (!response.ok) {
+                        throw new Error(`Błąd HTTP: ${response.status}`);
+                    }
+
+                    // Odczytanie odpowiedzi jako tekst
+                    const data = await response.text();
+                    console.log("Otrzymano dane: ", data);
+                } catch (error) {
+                    console.error("Wystąpił błąd: ", error);
+                }
+            }
+
+            // Wywołanie funkcji
+            fetchData();
+
+        }
+
+        function testq(){
+            fetch('./serwer.php?sid='+sid, {
+            method: 'GET',
+            credentials: 'include', // To zapewni, że ciasteczka zostaną wysłane automatycznie, jeśli są dostępne.
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => response.text())
+        .then(data => {
+            console.log('Odpowiedź:', data);
+        })
+        .catch(error => {
+            console.error('Błąd:', error);
+        });
+
+        }
+    </script>
+</body>
+</html>

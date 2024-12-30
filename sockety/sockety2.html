@@ -1,0 +1,1674 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MPK Częstochowa</title>
+    <link rel="stylesheet" href="sockety-style.css">
+</head>
+<body>
+    <div id="black-viniette"></div>
+
+    <button id="fetchSid">Pobierz SID</button>
+    <button id="sendRequest">Wyślij żądanie 1 vehicles</button>
+    <button id="sendRequest2">Wyślij żądanie 2 vehicles numery</button>
+    <button id="sendRequest3">Wyślij żądanie 3 Puste</button>
+
+    <button onclick="gsid()">gsid()</button>
+
+    <input type="text" id="input">
+    <button onclick="send()">Wyślij</button><br>
+
+    <button onclick="wshandshake('exec', '')">WS handshake</button>
+    <button onclick="processVData()">processVData()</button><br><br>
+
+    <button onclick="loadWozy()">Załaduj wozy</button>
+    <div id="suma-select-dsp"></div>
+    <div id="wozy-data-kontener">
+        <div id="marki-kontener"></div>
+        <div id="wozy-right-kontener">
+            <div id="data-wozy-dsp"></div>
+            <div id="wozy-selected-kontener"></div>
+        </div>
+    </div>
+
+    <br>
+    <button onclick="createRequest()" id="check-vehicles-button">Sprawdź wozy</button>
+
+    <h2 style="clear: both;">Sprawdzanie wozów:</h2><br>
+    <button onclick="autoQ('porecz')">Wszystkie poręczaki</button><br>
+    <button onclick="autoQ('105')">Wszystkie 105Na</button><br>
+    <button onclick="autoQ('krakus')">Wszystkie szynki krakowskie</button><br>
+    <button onclick="autoQ('218')">218</button><br>
+    <button onclick="autoQ('219')">219</button><br>
+    <button onclick="autoQ('128')">128</button><br>
+
+    <br><br>
+    <button onclick="openConsole()">Konsoleta</button>
+    <br><br>
+
+    <div id="konsola-obszar" style="display: none;">
+        <div id="konsola-pole"></div>
+        <div id="konsola-input-kontener">
+            <span id="konsola-symbol">&gt;</span>
+            <input type="text" id="input-console">
+        </div>
+    </div>
+
+
+    <div id="live-data-dsp"></div>
+    <div id="data-dsp"></div>
+
+    <div id="alert-box">
+        <div id="alert-box-header">
+            <span id="alert-wariant"></span>
+            <div id="alert-title"></div> <!-- Pomysły na alerta. Może kropke koloru jak w apple, i kolor tekst -->
+            <button id="alert-close-button" onclick="closeAlertF()">[X]</button>
+        </div>
+        <div id="alert-content"></div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+    <script>
+        //Pobieranie SID
+        let sid = null;
+
+        async function getSid(){
+            try {
+                var response = await fetch("https://live.mpk.czest.pl/socket.io/?EIO=3&transport=polling");
+                var text = await response.text();
+                var sidMatch = text.match(/"sid":"([^"]+)"/);
+                if (sidMatch) {
+                    sid = sidMatch[1];
+                    document.cookie = `io=${sid}; path=/;`;
+                    console.log("Uzyskano SID:", sid);
+                } else {
+                    throw new Error("Nie udało się uzyskać SID.");
+                }
+            } catch (error) {
+                console.error("Błąd podczas pobierania SID:", error);
+            }
+        }
+
+        document.getElementById("fetchSid").addEventListener("click", () => {
+            getSid();
+        });
+
+
+        var konsolaObszar = document.getElementById('konsola-obszar');
+        var konsolaPole = document.getElementById('konsola-pole');
+        var konsolaInput = document.getElementById('input-console');
+
+        function openConsole(){
+            if (konsolaObszar.style.display == "none"){
+                konsolaObszar.style.display = "flex";
+                konsolaInput.focus();
+            }else if (konsolaObszar.style.display == "flex"){
+                konsolaObszar.style.display = "none";
+            }
+        }
+
+        async function hashText(text){
+            const encoder = new TextEncoder();
+            const data = encoder.encode(text);
+            
+            // Algorytm hashujący SHA-256
+            const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+            
+            // Konwersja wyniku do ciągu hex
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray.map(byte => byte.toString(16).padStart(2, '0')).join('');
+            
+            console.log(hashHex);
+            return hashHex;
+        }
+
+        //hashText("switchpanel");
+
+        // &lt;    <
+        // &gt;    >
+
+        var komendy = {
+            cmd0: [ //version
+                "5ca4f3850ccc331aaf8a257d6086e526a3b42a63e18cb11d020847985b31d188",
+                "U2FsdGVkX1/nQHBP5QXaySdf7xMRXim3RVSsvW+WQfM=",
+                "Wyświetla informacje o wersji",
+                ""
+            ],
+            cmd1: [ //leonard
+                "b76aefa8fe4304f650962fb4af77b4db4b13d34ac9615391126027232ec16822",
+                "U2FsdGVkX180tEAcXiHWceJAn/rt7WOwTBMyVC4+oO4=",
+                "Pokazuje informacje o komendach",
+                " &lt;hasło&gt"
+            ],
+            cmd2: [ //maxselect
+                "18059f7c0344c3e16e510afa762954cd17dc697917a45c6bdb9207e951c2dfdb",
+                "U2FsdGVkX1/4sdQOor27UEUDfmSikirLGqtbRJmkk+A=",
+                "Zmienia maksymalną ilość znaznaczeń wozów (domyślnie 12)",
+                " &lt;ilość&gt"
+            ],
+            cmd3: [ //color
+                "74284d9dcbcc09928ca5d7d6187270a62ac1b58ccdc4a44b81e47257ffa53b9e",
+                "U2FsdGVkX1/PZdyqDeiuwkUyFLjV1tLIm9HvzJPcvC4=",
+                "Ustawianie koloru konsoli. X - kolor tła, Y - kolor tekstu. Kody kolorów 0-9, A-F. Parametr codes wypisuje wszystkie dostępne kody kolorów. Brak żadnego parametru skutkuje przywrócenie barw domyślnych.",
+                " &lt;XY/codes&gt"
+            ],
+            cmd4: [ //exit
+                "e596899f114b5162402325dfb31fdaa792fabed718628336cc7a35a24f38eaa9",
+                "U2FsdGVkX18i9aq/N9B/LNtatBQ5Qzp2GGOKlYbBcv4=",
+                "Zamyka konsole",
+                ""
+            ],
+            cmd5: [ //cls
+                "84cdb981037648c41f06dea25de7dcb2f26c5b965a47e8e2cc44b33e0412ad66",
+                "U2FsdGVkX1/WCc5UoIrGS/Ky+hL0Srxtcs6b/borq9k=",
+                "Czyści konsole",
+                ""
+            ]
+        };
+
+        function encryptData(data, password) {
+            return CryptoJS.AES.encrypt(data, password).toString();
+        }
+
+        function decryptData(encryptedData, password) {
+            const bytes = CryptoJS.AES.decrypt(encryptedData, password);
+            return bytes.toString(CryptoJS.enc.Utf8);
+        }
+
+        /*  Funkcja deweloperska do tworzenia nowych komend  */
+
+        async function newCommand(commandTag, hasloDoSzyfru){
+            if (commandTag && hasloDoSzyfru){
+                console.log("##########");
+                console.log("Komenda: " + commandTag);
+                console.log("Hash: " + await hashText(commandTag));
+                console.log("Szyfr: " + encryptData(commandTag, hasloDoSzyfru));
+                console.log("##########");
+            }
+        }
+
+        newCommand("cls", "szczecinski105N");
+
+        //console.log(encryptData("leonard", "szczecinski105N"));
+        //console.log(decryptData(komendy.cmd2[1], "szczecinski105Nb"))
+
+        const colorCodes = {
+            "0": ["#000000", "Black"], // Czarny
+            "1": ["#000080", "Blue"], // Niebieski
+            "2": ["#008000", "Green"], // Zielony
+            "3": ["#008080", "Aqua"], // Turkusowy
+            "4": ["#800000", "Red"], // Czerwony
+            "5": ["#800080", "Purple"], // Purpurowy
+            "6": ["#808000", "Yellow"], // Żółty
+            "7": ["#C0C0C0", "White"], // Biały
+            "8": ["#808080", "Gray"], // Szary
+            "9": ["#0000FF", "Light Blue"], // Jasnoniebieski
+            "a": ["#00FF00", "Light Green"], // Jasnozielony
+            "b": ["#00FFFF", "Light Aqua"], // Jasnoturkusowy
+            "c": ["#FF0000", "Light Red"], // Jasnoczerwony
+            "d": ["#FF00FF", "Light Purple"], // Jasnopurpurowy
+            "e": ["#FFFF00", "Light Yellow"], // Jasnożółty
+            "f": ["#FFFFFF", "Bright White"]  // Jasna biel
+        };
+
+        var version = "0.1";
+
+        var logColor = "white"; //#C0C0C0
+
+        function setConsoleColor(backgroundKolor, fontKolor){
+            if (backgroundKolor && fontKolor){
+                konsolaPole.style.backgroundColor = backgroundKolor;
+                konsolaObszar.style.backgroundColor = backgroundKolor;
+                konsolaInput.style.backgroundColor = backgroundKolor;
+                konsolaInput.style.color = fontKolor;
+                logColor = fontKolor;
+
+                const wpisyKonsoli = document.querySelectorAll('.konsola-wpis');
+                wpisyKonsoli.forEach(wpis => {
+                    wpis.style.color = fontKolor;
+                    const spans = wpis.querySelectorAll('span');
+                    spans.forEach(span => {
+                        if (span.style.color) {
+                            span.style.color = span.style.color;
+                        }
+                    });
+                });
+            }
+        }
+
+
+        function komenda(command){
+            if (command){
+                if (command[0] === "/"){
+                    command = command.slice(1);
+                }
+                var znaleziono = false;
+                var jakiCmd = "";
+
+                var parts = command.split(' ');
+                var commandKey = parts[0].toLowerCase();
+                var parameter = parts.slice(1).join(' ');
+
+                hashText(commandKey).then(commandHash =>{
+                    for (var cmd in komendy) {
+                        if (Array.isArray(komendy[cmd]) && komendy[cmd][0] === commandHash) {
+                            console.log(cmd);
+                            znaleziono = true;
+                            jakiCmd = cmd;
+                            break;
+                        }
+                    }
+
+                    if (znaleziono && jakiCmd){
+                        if(jakiCmd == "cmd0"){
+                            konsola("info", "-------------  <span style='color: orange;'>VERSION CONTROL</span>  -------------");
+                            konsola("info", "MPKCHEATS Shell");
+                            konsola("info", "LATEST RELEASED VERSION:");
+                            konsola("info", `SIGMA <span style="color: orange;">${version}</span>`);
+                        }else if(jakiCmd == "cmd1"){
+                            if (parameter){
+                                var okPassword = false;
+                                try{
+                                    var testPassw = decryptData(komendy[cmd][1], parameter);
+                                    if (testPassw && testPassw != ""){
+                                        okPassword = true;
+                                    }
+                                } catch(e){
+                                    konsola("info", "Bad password to the command list.");
+                                    konsolaPole.scrollTop = konsolaPole.scrollHeight;
+                                }
+                                if (okPassword){
+                                    //console.log("tutaj1234");
+
+                                    konsola("info", "-------------  <span style='color: orange;'>HELP MENU</span>  -------------");
+                                    konsola("info", "")
+
+                                    for (var cmd in komendy) {
+                                        var tablicaSzyfru = komendy[cmd];
+                                        var mozliweParametry = tablicaSzyfru[3];
+                                        try{
+                                            var decryptedSzyfr = decryptData(tablicaSzyfru[1], parameter);
+                                            console.log(decryptedSzyfr);
+                                            konsola("info", `<span style='color: orange'>/${decryptedSzyfr}${tablicaSzyfru[3]}</span> - ${tablicaSzyfru[2]}`);
+                                        } catch(e){
+                                            konsola("warn", "Caught an error while displaying help");
+                                            konsolaPole.scrollTop = konsolaPole.scrollHeight;
+                                            break;
+                                        }
+                                    }
+                                }else{
+                                    konsola("info", "Bad password to the command list.");
+                                    konsolaPole.scrollTop = konsolaPole.scrollHeight;
+                                }
+                            }else{
+                                konsola("info", "Missing or incorrect parameter. Use the help command to see the correct usage and required parameters.");
+                                konsolaPole.scrollTop = konsolaPole.scrollHeight;
+                            }
+                        }else if (jakiCmd == "cmd2"){
+                            if (parameter && parameter.length < 3){
+                                var paramNumber = Number(parameter);
+                                if ((typeof paramNumber === "number") && paramNumber > 0 && paramNumber <= 32){
+                                    maxSelectNumber = paramNumber;
+                                    sumaSelectDsp.innerHTML = `<p id="suma-p"><span id="suma-bold">SUMA: </span>${selectedVehiclesTab.length} / ${maxSelectNumber}</p>`;
+                                    maxChecker();
+                                    konsola("info", "Succesfull set max select number to " + paramNumber);
+                                }else{
+                                    konsola("info", "Max select number must be in the range 1-32");
+                                }
+                            }else{
+                                konsola("info", "Missing or incorrect parameter. Use the help command to see the correct usage and required parameters.");
+                                konsolaPole.scrollTop = konsolaPole.scrollHeight;
+                            }
+                        }else if (jakiCmd == "cmd3"){
+                            if (parameter){
+                                if (parameter.length === 2){
+                                    parameter = parameter.toLowerCase();
+                                    console.log(parameter);
+                                    var backgroundCode = parameter[0];
+                                    var fontCode = parameter[1];
+
+                                    var backgroundKolor = colorCodes[backgroundCode][0];
+                                    var fontKolor = colorCodes[fontCode][0];
+                                    if (backgroundKolor && fontKolor && backgroundKolor != fontKolor){
+
+                                        setConsoleColor(backgroundKolor, fontKolor);
+
+                                    }else{
+                                        konsola("info", "Missing or incorrect parameter. Use the help command to see the correct usage and required parameters.");
+                                        konsolaPole.scrollTop = konsolaPole.scrollHeight;
+                                        console.log();
+                                        
+                                    }
+
+                                }else if (parameter == "codes"){
+                                    //Wyświetlanie kodów
+                                    konsola("info", "-------------  <span style='color: orange;'>COLOR CODES</span>  -------------");
+                                    konsola("info", "CODE    |    COLOR");
+
+                                    for (var kod in colorCodes){
+                                        var kolor = colorCodes[kod][1];
+                                        konsola("info", `${kod}       =    <span style="color: ${colorCodes[kod][0]};">${kolor}</span>`);
+                                    }
+                                }else{
+                                    konsola("info", "Missing or incorrect parameter. Use the help command to see the correct usage and required parameters.");
+                                    konsolaPole.scrollTop = konsolaPole.scrollHeight;
+                                }
+                            }else{
+                                //Przywracanie domyślnego koloru
+                                setConsoleColor("#000000", "#FFFFFF");
+                            }
+                        }else if (jakiCmd == "cmd4"){
+                            konsolaObszar.style.display = "none";
+                        }else if (jakiCmd == "cmd5"){
+                            konsolaPole.innerHTML = "";
+                        }
+                    }else{
+                        konsola("info", "Unknown command. Type the help command for help.");
+                        konsolaPole.scrollTop = konsolaPole.scrollHeight;
+                    }
+                });
+
+            }else{
+                console.log("Niezdefiniowano komendy do wywołania");
+            }
+        }
+
+        var insertStamp = "&gt; ";
+        //var insertStamp = "C:&#92;Users&#92;Marcin>";
+
+        konsolaInput.addEventListener('keydown', function(e){
+            if (e.key === "Enter"){
+                if (konsolaInput.value){
+                    console.log("Komenda: " +  konsolaInput.value);
+                    konsolaPole.innerHTML += `<p class='konsola-wpis' style="color: ${logColor}">${insertStamp}${konsolaInput.value}</p>`;
+                    komenda(konsolaInput.value);
+                    konsolaInput.value = "";
+                    konsolaPole.scrollTop = konsolaPole.scrollHeight;
+                }
+            }
+        })
+
+        var konsolaLoaded = false;
+
+        function loadKonsola(){
+            if (!konsolaLoaded){
+                var v = " " + version;
+
+                konsolaPole.innerHTML += `<p class="konsola-wpis" style="line-height: 1.5">   ╔══════════════════════════════╗</p>`;
+                konsolaPole.innerHTML += `<p class="konsola-wpis" style="line-height: 1.5">   │  WELCOME TO MPKCHEATS Shell  │</p>`;
+                konsolaPole.innerHTML += `<p class="konsola-wpis" style="line-height: 1.5">   │         VERSION ${v}         │</p>`;
+                konsolaPole.innerHTML += `<p class="konsola-wpis" style="line-height: 1.5">   ╚══════════════════════════════╝</p>`;
+
+                konsolaPole.innerHTML += `<p class="konsola-wpis" style="line-height: 1.5"><br>        <a id="lm-page" href="https://live.mpk.czest.pl/" target="_blank">Official liveMpk page</a></p>`;
+                konsolaPole.innerHTML += `<p class="konsola-wpis" style="line-height: 1.5">     <a id="lm-page" href="https://live.mpk.czest.pl/api/vehicles" target="_blank">Check all current vehicles ID</a></p>`;
+                konsolaPole.innerHTML += `<p class="konsola-wpis" style="line-height: 1.5"> ──────────────────────────────────</p>`;
+
+                konsolaLoaded = true;
+            }
+        }
+
+        loadKonsola();
+
+        function konsola(logType, txtToPrint){
+            if (logType && txtToPrint){
+                var terazCzas = convertTime(new Date()).time;
+                var logTypeMsg = "";
+                var logTypeColor = "gray";
+                var logArrow = "";
+
+                if (logType == "request"){
+                    logTypeMsg = "REQUEST ";
+                    logTypeColor = "green";
+                    logArrow = " → ";
+                }else if (logType == "response"){
+                    logTypeMsg = "RESPONSE";
+                    logTypeColor = "blue";
+                    logArrow = " ← ";
+                }else if (logType == "info"){
+                    logTypeMsg = "INFO";
+                    logArrow = ": ";
+                }else if (logType == "warn"){
+                    logTypeMsg = "WARN";
+                    logColor = "yellow";
+                    logTypeColor = "yellow";
+                    logArrow = ": ";
+                }else{
+                    console.log("Nieoczekiwany typ logu");
+                    return;
+                }
+
+                konsolaPole.innerHTML += `<p class="konsola-wpis" style="color: ${logColor}">[${terazCzas}] [<span style="color: ${logTypeColor}">${logTypeMsg}</span>]${logArrow}${txtToPrint} </p>`;
+                //console.log("Odpowiedź serwera:", txtToPrint);
+            }
+        }
+
+        konsola("info", "Loading JSON files...");
+
+
+        //AUTO TESTY
+        /*for (i = 0; i<3; i++){
+
+            konsola("request", "17:40/vehicles_exec,");
+            konsola("response", "ok");
+
+            konsola("request", "Without body");
+            konsola("response", "17:40/vehicles_exec,");
+
+            konsola("request", "421:42/vehicles_exec,[\"vehicles\",[\"7da4b67c-6349-468e-a708-91c61d854fde\",\"3cbae894-732f-4ee8-a587-ca6862281b54\",\"cc5c908d-52a0-4054-ab70-e9c6d9927b0c\",\"c4aac308-8f98-4ab1-85e6-ff16a02cf430\",\"68bcf4d1-7feb-4f73-8413-aa73814f22de\",\"b5631268-8c6b-4ff2-b9ad-06c450a93d8a\",\"47e83eb6-d67c-45cc-8d18-0b22277b1f51\",\"96fd61d8-9b2e-4bcd-a931-617ed7e5c8ed\",\"c29cd2b3-7307-4deb-b323-048fadaa4a6f\",\"39da3aab-9713-41ca-a28a-c706a909714a\"]]");
+            konsola("response", "ok");
+
+            konsola("request", "Without body");
+            konsola("response", "Sukces! Odebrano prawidłowe dane JSON");
+
+            konsola("request", "17:40/vehicles_exec,");
+            konsola("response", "{\"code\":1,\"message\":\"Session ID unknown\"}");
+
+            konsola("request", "17:40/vehicles_exec,");
+            konsola("response", "ok");
+
+            konsola("request", "Without body");
+            konsola("response", "17:40/vehicles_exec,");
+
+            konsola("request", "109:42/vehicles_exec,[\"vehicles\",[\"386591df-c783-473c-af9f-0aa03752dbda\",\"7f75fb31-4a50-4c28-8576-7028a99ab80b\"]]");
+            konsola("response", "ok");
+
+            konsola("request", "Without body");
+            konsola("response", "Sukces! Odebrano prawidłowe dane JSON");
+
+            konsola("request", "17:40/vehicles_exec,");
+            konsola("response", "{\"code\":1,\"message\":\"Session ID unknown\"}");
+
+            konsola("request", "17:40/vehicles_exec,");
+            konsola("response", "ok");
+
+            konsola("request", "Without body");
+            konsola("response", "17:40/vehicles_exec,");
+
+            konsola("request", "70:42/vehicles_exec,[\"vehicles\",[\"a8c4ceff-3ac5-4ba3-b101-9abd4f922fae\"]]");
+            konsola("response", "ok");
+
+            konsola("request", "Without body");
+            konsola("response", "Sukces! Odebrano prawidłowe dane JSON");
+
+        }*/
+
+
+
+
+
+
+
+        // Funkcja do wysyłania żądania
+        async function sendRequest(tValue, payload) {
+            if (!sid) {
+                await getSid();
+            }
+            const url = `https://live.mpk.czest.pl/socket.io/?EIO=3&transport=polling&t=${tValue}&sid=${sid}`;
+            try {
+                if (payload != null){
+                    var startMs = performance.now();
+                    response = await fetch(url, {
+                        method: "POST",
+                        credentials: 'include',
+                        headers: {
+                            "Content-Type": "text/plain"
+                        },
+                        body: payload
+                    });
+                    var stopMs = performance.now();
+                }else{
+                    var startMs = performance.now();
+                    response = await fetch(url, {
+                        method: "GET",
+                        credentials: 'include',
+                        headers: {
+                            "Content-Type": "text/plain"
+                        }
+                    }); 
+                    var stopMs = performance.now();
+                }
+                var reqTime = Math.round(stopMs - startMs);
+                if (payload){
+                    if (payload.length < 430){
+                        konsola("request", payload);
+                    }else{
+                        konsola("request", "Wysłano długie zapytanie");
+                    }
+                }else{
+                    konsola("request", "Request without set body");
+
+                }
+
+                const resultText = await response.text();
+
+                var statusColor = "white";
+
+                if (response.status == 200){
+                    statusColor = "green";
+                }
+
+                if (resultText.length < 200){
+                    konsola("response", `[${reqTime}ms, <span style="color: ${statusColor}">${response.status}</span>] ` + resultText);
+                }else if(resultText[0] == "["){
+                    return [resultText, reqTime, response.status]; 
+                }
+
+                return resultText;
+            } catch (error) {
+                console.error("Błąd podczas wysyłania żądania:", error);
+                return "Błąd podczas wysyłania żądania:", error;
+            }
+        }
+
+        // Przyciski do wysyłania zapytań
+        document.getElementById("sendRequest").addEventListener("click", () => {
+            sendRequest("fsj5m33j6n48", "17:40/vehicles_exec,");
+        });
+
+
+        document.getElementById("sendRequest2").addEventListener("click", () => {
+            var tempSR = `109:42/vehicles_exec,["vehicles",["b84e6ec0-8b0a-498f-a7c2-4aeabe296cae","9c1f6e28-dd83-4f4a-8317-8c891ca17fe8"]]`;
+
+
+            //sendRequest("fsj5m33j6n49", "109:42/vehicles_exec,['vehicles',['c29cd2b3-7307-4deb-b323-048fadaa4a6f','c29cd2b3-7307-4deb-b323-048fadaa4a6f']]");
+            sendRequest("fsj5m33j6n49", tempSR);
+        });
+
+        document.getElementById("sendRequest3").addEventListener("click", () => {
+            sendRequest("fsj5m33j6n50");
+        });
+
+
+
+
+
+        //  41/vehicles_exec,
+
+
+        /*function gsid(){
+            const url = "wss://live.mpk.czest.pl/socket.io/?EIO=3&transport=websocket&sid="+sid;
+
+            socket = new WebSocket(url);
+
+            socket.addEventListener('open', (event) => {
+                console.log("Połączono z serwerem");
+
+                socket.send("2probe");
+            });
+
+            socket.addEventListener('message', (event) => {
+                console.log("Otrzymano: ", event.data);
+                var prefix = "42/vehicles_exec,";
+                if (event.data == "3probe"){
+                    //Tutaj, dalej zrobić automatyczne przypominanie 2, i koniec sesji
+                    socket.send("5");
+
+                }else if (event.data.startsWith(prefix)){
+                    var cleanData = event.data.replace(prefix, "");
+
+                    // Parsujemy dane JSON
+                    try {
+                        const getData = JSON.parse(cleanData);
+                        console.log(JSON.stringify(getData, null, 2)); // Ładne formatowanie JSON
+                    } catch (error) {
+                        console.error("Błąd parsowania JSON:", error);
+                    }
+
+
+                    console.log(JSON.stringify(getData, null, 2)); // Ładne formatowanie JSON
+                }
+
+            });
+
+            // Obsługa błędów
+            socket.addEventListener('error', (event) => {
+                console.error("Błąd: ", event);
+            });
+
+            // Obsługa zamknięcia połączenia
+            socket.addEventListener('close', (event) => {
+                console.log("Połączenie zamknięte");
+            });
+
+        }*/
+
+        var input = document.getElementById('input');
+
+        function send(){
+            socket.send(input.value);
+        }
+
+
+        var getData;
+
+
+        fetch('jsonmirek.txt')
+            .then((response) => response.json())
+            .then(json => {
+                getData = json;
+            })
+            .catch(error => console.error('Błąd:', error));
+
+
+        function vehicleId(tabor){
+            if (vehiclesJson != undefined){
+                var find = vehiclesJson.slice().reverse().find(item => item.sideNo == tabor);
+                if (find){
+                    return(find.vehicleID);
+                } else{
+                    console.log('Nie zalneziono elementu ' + tabor);
+                }
+            }
+        }
+
+        var qBook = {
+            "porecz": [
+                "177", "178", "179", "180", "181", "182", "183", "184"
+            ],
+            "105":[
+                "611/612", "613/614", "615/616", "644/645", "648/649", "684/688", "695/697"
+            ],
+            "krakus":[
+                "220", "222", "223", "224", "225", "226", "227", "228", "229", "231"
+            ],
+            "128":[
+                "128"
+            ],
+            "219":[
+                "219"
+            ],
+            "218":[
+                "218"
+            ]
+            
+        }
+
+
+        var RLoad;
+
+        function autoQ(set){
+            if (qBook.hasOwnProperty(set)){
+                var constructQuery = `42/vehicles_exec,["vehicles",[`;
+                qBook[set].forEach((taborWoz, index) =>{
+                    //dalej kwerenda
+                    constructQuery += `"${vehicleId(taborWoz)}"`;
+                    if (index < qBook[set].length - 1) {
+                        constructQuery += ",";
+                    }
+                })
+                constructQuery += "]]"
+                var qTag = constructQuery.length + ":";
+                constructQuery = qTag + constructQuery;
+
+                console.log(constructQuery);
+                RLoad = constructQuery;
+            }
+        }
+
+
+        async function wshandshake(type, values){
+            if (RLoad != undefined){
+                if (/*type != undefined && values != undefined*/2+2 == 4){
+                    if (type == "exec"){
+                        var request1 = await sendRequest("fsj5m33j6n48", "17:40/vehicles_exec,");
+                        if (request1 == "ok"){
+                            var request2 = await sendRequest("fsj5m33j6n50");
+                            if (request2 == "17:40/vehicles_exec,"){
+                                //var RLoad = `109:42/vehicles_exec,["vehicles",["90bec8e0-96da-4677-a7ba-d86ce58e4cd9","dabbd6d4-e56e-4d76-addc-de11367578f9"]]`;
+
+                                var request3 = await sendRequest("fsj5m33j6n49", RLoad);
+                                if (request3 == "ok"){
+                                    var request4 = await sendRequest("fsj5m33j6n53");
+                                    var prefix = "42/vehicles_exec,";
+                                    if (request4[0].includes(prefix)){
+                                        console.log("%c All ok", "color: green");
+                                        var cleanData = request4[0].replace(/^\d+:\d+\/vehicles_exec,/, "");
+
+
+
+                                        // Parsujemy dane JSON
+                                        try {
+                                            getData = JSON.parse(cleanData);
+                                            console.log(JSON.stringify(getData, null, 2)); // Ładne formatowanie JSON
+
+                                            if (Array.isArray(request4)){
+                                                //separowanie tablicy i osobny wpis
+                                            }
+
+                                            konsola("response", "<span style='color: LimeGreen'>Sukces!</span> Odebrano prawidłowe dane JSON");
+                                            processVData();
+                                        } catch (error) {
+                                            console.error("Błąd parsowania JSON:", error);
+                                        }
+
+
+                                        //console.log(JSON.stringify(getData, null, 2)); // Ładne formatowanie JSON
+                                    }else{
+                                        console.log("Błąd żądania 4: "+request4);
+                                        console.log("TUTAJ: " + request4[0]);
+                                    } //starts with
+                                }else{
+                                    console.log("Błąd żądania 3: "+request3);
+                                }
+                            }else{
+                                console.log("Błąd żądania 2: "+request2);
+                            }
+                        }else{
+                            console.log("Błąd żądania 1: "+request1);
+                        }
+                    }
+                }
+            }else{
+                console.log("Niezdefiniowane Rload");
+            }
+        }
+
+        var vehiclesJson;
+
+        fetch('../data/vehicles.json')
+            .then((response) => response.json())
+            .then(json => {
+                vehiclesJson = json;
+                console.log('Pobrano vehicles.json '+ vehiclesJson.length);
+                konsola("info", `<span class="loaded-span">Loaded vehicles.json:   ${vehiclesJson.length} vehicles</span>`);
+
+            })
+            .catch(error => console.error('Błąd:', error));
+
+        function vehicles(vehicleID){
+            if (vehiclesJson != undefined){
+                var find = vehiclesJson.find(item => item.vehicleID == vehicleID)
+                if (find){
+                    return(find.sideNo);
+                } else{
+                    console.log('Nie zalneziono elementu ' + vehicleID);
+                }
+            }
+        }
+
+        var driversJson;
+
+        fetch('../data/drivers.json')
+            .then((response) => response.json())
+            .then(json => {
+                driversJson = json;
+                console.log('Pobrano drivers.json '+ driversJson.drivers.length);
+                console.log(driversJson);
+                konsola("info", `<span class="loaded-span">Loaded drivers.json:      ${driversJson.drivers.length} drivers</span>`);
+
+            })
+            .catch(error => console.error('Błąd:', error));
+
+        function drivers(driverID){
+            if (driverID != undefined){
+                var driver = driversJson.drivers.find(driver => driver.driverID === driverID);
+                
+                if (driver) {
+                    return driver;
+                }
+            }
+        }
+
+        var locJson;
+
+        fetch('../data/locations.json')
+            .then((response) => response.json())
+            .then(json => {
+                locJson = json;
+                console.log('Pobrano locations.json '+ locJson.length);
+                konsola("info", `<span class="loaded-span">Loaded locations.json: ${locJson.length} locations</span>`);
+
+            })
+            .catch(error => console.error('Błąd:', error));
+
+        function locations(locationID){
+            if (locJson != undefined){
+                var find = locJson.find(item => item.locationID == locationID)
+                if (find){
+                    return(find.name);
+                } else{
+                    console.log('Nie zalneziono elementu ' + locationID);
+                }
+            }
+        }
+
+        var linesJson;
+
+        fetch('../data/lines.json')
+            .then((response) => response.json())
+            .then(json => {
+                linesJson = json;
+                console.log('Pobrano lines.json '+ linesJson.length);
+                konsola("info", `<span class="loaded-span">Loaded lines.json:       ${linesJson.length} lines</span>`);
+
+            })
+            .catch(error => console.error('Błąd:', error));
+
+        function lines(lineID){
+            if (linesJson != undefined){
+                var find = linesJson.find(item => item.lineID == lineID)
+                if (find){
+                    return(find.name);
+                } else{
+                    console.log('Nie zalneziono elementu ' + lineID);
+                }
+            }
+        }
+
+        function convertTime(isoDate) {
+            var date = new Date(isoDate);
+
+            var optionsDate = { year: 'numeric', month: '2-digit', day: '2-digit' };
+            var optionsTime = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+
+            var formattedDate = date.toLocaleDateString('pl-PL', optionsDate);
+            var formattedTime = date.toLocaleTimeString('pl-PL', optionsTime);
+            var formattedDateTime = `${formattedDate}, ${formattedTime}`;
+
+            return {
+                date: formattedDate,
+                time: formattedTime,
+                dateTime: formattedDateTime
+            };
+        }
+        function isToday(dateToCheck) {
+            // Jeśli data jest stringiem, próbujemy ją sparsować
+            if (typeof dateToCheck === "string") {
+                const [day, month, year] = dateToCheck.split('.').map(Number);
+                dateToCheck = new Date(year, month - 1, day); // Tworzymy obiekt Date
+            }
+            
+            // Walidacja: Sprawdzamy, czy data jest poprawnym obiektem Date
+            if (!(dateToCheck instanceof Date) || isNaN(dateToCheck.getTime())) {
+                console.error("Nieprawidłowa data:", dateToCheck);
+                return false;
+            }
+
+            // Pobieramy dzisiejszą datę
+            const today = new Date();
+            return dateToCheck.getFullYear() === today.getFullYear() &&
+                dateToCheck.getMonth() === today.getMonth() &&
+                dateToCheck.getDate() === today.getDate();
+        }
+
+        var dataDsp = document.getElementById('data-dsp');
+        var liveDataDsp = document.getElementById('live-data-dsp');
+
+        function processVData(){
+            if (getData != undefined){
+                console.log("getData ok");
+                dataDsp.innerHTML = "";
+                liveDataDsp.innerHTML = "";
+
+                getData[1].forEach(vehicle =>{
+                    console.log("Pojazd " + vehicles(vehicle.vehicleID));
+                    console.log(vehicle);
+
+                    var run = vehicle.currentRun;
+
+                    console.log(run.driver);
+
+                    var actDriver = drivers(run.driver)
+
+
+                    if (actDriver != undefined){
+                        console.log(actDriver.nick)
+                    }else{
+                        console.log("Nieznany kierowca");
+                    }
+                    console.log("");
+
+
+
+                    let startDateTime = run.start ? convertTime(run.start).dateTime : "Nie rozpoczęto kursu";
+                    let endDateTime = run.end ? convertTime(run.end).dateTime : "Kurs nie zakończył się";
+
+                    var dataDspPrepare = "";
+
+                    var dataBlock = document.createElement('div');
+                    dataBlock.classList.add('data-block');
+
+
+
+                    dataDspPrepare += `
+                        <h2><span id='woz-${vehicles(vehicle.vehicleID)}'>Pojazd ${vehicles(vehicle.vehicleID)}</span></h2>
+                        Początek kursu: ${startDateTime}<br>
+                        Koniec kursu: ${endDateTime}<br>
+                    `;
+                    console.log(convertTime(run.start).date);
+                    if (isToday(convertTime(run.start).date)){
+                        dataDspPrepare += `
+                            Dzisiaj<br>
+                        `
+                    }
+                    dataDspPrepare += "<br>";
+                    if (vehicle.lastPosition != null){
+                        var lp = vehicle.lastPosition;
+                        dataDspPrepare += `
+                            Linia: ${lp.lineNo}<br>
+                            Kierunek: ${lp.direction}<br><br>
+                        `;
+                    }else{
+                        //var liniaCut = run.name.split("-")[0];
+                        var kierCut = run.runStops[run.runStops.length-1].locationID;
+                        dataDspPrepare += `
+                            Linia: ${lines(run.lineID)}<br>
+                            Kierunek: ${locations(kierCut)}<br><br>
+                        `;
+                    }
+                    if (actDriver != undefined){
+                        if (actDriver.ocena != undefined){
+                            var gwiazdkiHTML = '';
+                            for (var i = 1; i <= 5; i++) {
+                                var style = (i <= actDriver.ocena) ? 'fill: orange; stroke: orange;' : 'fill: none; stroke: black;';
+                                gwiazdkiHTML += `<span class="ikonaOcena">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="7mm" height="7mm" viewBox="0 0 189.29488 180.95416" version="1.1" style="${style}" class="gwiazdyDriver">
+                                        <g id="layer1" transform="translate(-10.352562,-58.022917)">
+                                            <path style="stroke-width:10;paint-order:markers fill stroke" id="gwiazda" d="m 66.562734,53.901334 c 0.402143,-1.258656 64.995336,-0.13721 66.060496,-0.91911 1.06516,-0.7819 19.35168,-62.7427105 20.67301,-62.7491957 1.32132,-0.00649 20.21516,61.7718407 21.28794,62.5432477 1.07278,0.771407 65.65186,-0.984022 66.06634,0.270626 0.41448,1.254648 -52.50168,38.314308 -52.90383,39.572963 -0.40214,1.258656 21.2234,62.134555 20.15824,62.916455 -1.06516,0.7819 -52.66298,-38.0923 -53.9843,-38.08581 -1.32132,0.006 -52.53508,39.38528 -53.60787,38.61388 -1.072779,-0.77141 19.95418,-61.856646 19.5397,-63.111294 C 119.43798,91.698448 66.160591,55.15999 66.562734,53.901334 Z" transform="translate(-48.608371,75.289946)"/>
+                                        </g>
+                                    </svg>
+                                </span>`;
+                            }
+                        }
+                        dataDspPrepare += `<h3>Kierowca</h3>`;
+                        if (actDriver.nick) dataDspPrepare += `Ksywa: ${actDriver.nick}<br>`;
+                        if (actDriver.imie) dataDspPrepare += `Imię: ${actDriver.imie}<br>`;
+                        if (actDriver.nazwisko) dataDspPrepare += `Nazwisko: ${actDriver.nazwisko}<br>`;
+                        if (gwiazdkiHTML != undefined) dataDspPrepare += `Ocena:<br> ${gwiazdkiHTML}<br><br>`;
+                    }else{
+                        dataDspPrepare += `<h3>Nieznany kierowca</h3>`;
+                    }
+
+                    //Prawdopodobnie sprawdzanie czy dojechał na końcowy, jak nie to gdzie jest
+                    if (run.runStops[0].arrivalTime != null && run.runStops[run.runStops.length-1].arrivalTime == null){
+
+                        //Tu pętla sprawdzająca kiedy dopiero jest puste arrivalTime
+                        console.log("start");
+                        var lastPos;
+                        for (var i = 0; i < run.runStops.length; i++){
+                            var tenStop = run.runStops[i];
+                            if (tenStop.arrivalTime != null){
+                                lastPos = tenStop;
+                            }else{
+                                console.log("Zatrzymano pętle");
+                                break;
+                            }
+                        }
+
+                        var [data, czas] = convertTime(lastPos.arrivalTime).dateTime.split(", ");
+                        var [dzien, miesiac, rok] = data.split(".");
+                        var [godzina, minuta, sekunda] = czas.split(":");
+
+                        var czasObiekt = new Date(
+                            parseInt(rok, 10),         // Rok
+                            parseInt(miesiac, 10) - 1, // Miesiące są indeksowane od 0
+                            parseInt(dzien, 10),       // Dzień
+                            parseInt(godzina, 10),     // Godzina
+                            parseInt(minuta, 10),      // Minuta
+                            parseInt(sekunda, 10)      // Sekunda
+                        );
+
+                        var teraz = new Date();
+
+                        var roznicaCzasu = teraz - czasObiekt;
+                        console.log(roznicaCzasu + "  |  " + 60 * 60 * 1000)
+
+                        if (roznicaCzasu <= 60 * 60 * 1000){
+                            console.log("Znaleziono")
+
+                            var zmiennaId = "woz-"+ vehicles(vehicle.vehicleID);
+                            var tempSpanPodstawnik = `<span id='woz-${vehicles(vehicle.vehicleID)}'>`
+                            dataDspPrepare = dataDspPrepare.replace(
+                                tempSpanPodstawnik,
+                                '<span id="my-span" class="vehicle-span-highlight">'
+                            );
+
+                            dataDspPrepare += `Ostatnia odnotowana lokalizacja: ${locations(lastPos.locationID)}, ${convertTime(lastPos.arrivalTime).time}<br>`;
+                            var spoznienie = vehicle.delaySeconds;
+                            var dlMinuty, dlSekundy;
+
+                            if (spoznienie < 0){
+                                spoznienie = Math.abs(spoznienie);
+                                var dlMinuty = Math.floor(spoznienie / 60);
+                                var dlSekundy = spoznienie % 60;
+                                dataDspPrepare += `Aktualne opóźnienie: ${dlMinuty}min ${dlSekundy}s`
+                            }else{
+                                dlMinuty = Math.floor(spoznienie / 60);
+                                dlSekundy = spoznienie % 60;
+                                dataDspPrepare += `Kurs przyśpieszony o: ${dlMinuty}min ${dlSekundy}s`
+                            }
+                            dataBlock.innerHTML = dataDspPrepare;
+                            liveDataDsp.appendChild(dataBlock);
+                        }else{
+                            var lastStopT = run.runStops[run.runStops.length-1].locationID;
+                            dataDspPrepare += `Zakończono kurs na ${locations(lastStopT)}`;
+                            console.log('buger');
+                        }
+                    }else{
+                        console.log(convertTime(run.end).dateTime)
+                        var [data, czas] = convertTime(run.end).dateTime.split(", ");
+                        var [dzien, miesiac, rok] = data.split(".");
+                        var [godzina, minuta, sekunda] = czas.split(":");
+
+                        var czasObiekt2 = new Date(
+                            parseInt(rok, 10),         // Rok
+                            parseInt(miesiac, 10) - 1, // Miesiące są indeksowane od 0
+                            parseInt(dzien, 10),       // Dzień
+                            parseInt(godzina, 10),     // Godzina
+                            parseInt(minuta, 10),      // Minuta
+                            parseInt(sekunda, 10)      // Sekunda
+                        );
+
+                        var teraz = new Date();
+
+                        var roznicaCzasu2 = teraz - czasObiekt2;
+                        console.log(roznicaCzasu2 + "  |  " + 60 * 60 * 1000)
+
+                        var lastStopT = run.runStops[run.runStops.length-1].locationID;
+                        if (roznicaCzasu2 <= 60 * 60 * 1000){
+                            console.log("%cCziluje", "color: red");
+                            var zmiennaId = "woz-"+ vehicles(vehicle.vehicleID);
+
+                            var tempSpanPodstawnik = `<span id='woz-${vehicles(vehicle.vehicleID)}'>`
+                            dataDspPrepare = dataDspPrepare.replace(
+                                tempSpanPodstawnik,
+                                '<span id="my-span" class="vehicle-span-highlight">'
+                            );
+
+                            dataDspPrepare += `<span class="red">Niedawno zakończył kurs na ${locations(lastStopT)}<span>`;
+
+                            dataBlock.innerHTML = dataDspPrepare;
+                            liveDataDsp.appendChild(dataBlock);
+                        }else{
+                            dataDspPrepare += `Zakończono kurs na ${locations(lastStopT)}`;
+
+                            dataBlock.innerHTML = dataDspPrepare;
+                            dataDsp.appendChild(dataBlock);
+                        }
+                    }
+                    if (dataBlock.innerHTML == ''){
+                        dataBlock.innerHTML = dataDspPrepare;
+                        dataDsp.appendChild(dataBlock);
+                    }
+
+
+                    console.log('dataDsp:', dataDsp);
+                    console.log('dataBlock:', dataBlock);
+
+                    console.log("");
+                    console.log("-----------------------------");
+                    console.log("");
+                });
+            }
+            
+        }
+
+        var dbJson;
+
+        fetch('../data/database.json')
+            .then((response) => response.json())
+            .then(json => {
+                dbJson = json;
+                console.log('Pobrano database.json '+ dbJson.length);
+                konsola("info", `<span class="loaded-span"><span>Loaded database.json:   </span>${dbJson.length} vehicles</span>`);
+
+            })
+            .catch(error => console.error('Błąd:', error));
+
+
+        var modelPriority = [
+            "SOLARIS  URBINO 18",
+            "MERCEDES CONECTO",
+            "Konstal 105Na",
+            "MAN Lion's City G",
+            "MERCEDES CITARO",
+            "MERCEDES CITARO  CNG",
+            "MAN Lion's City CNG",
+            "MAN NG323 Lion`s City GL",
+            "SOLBUS SM18HL  Hybryda",
+            "SOLBUS SM12HL  Hybryda",
+            "SOLBUS SM12DC23.05-61",
+            "MAN Lion's City  A37",
+            "SOLARIS URBINO 12",
+            "Pesa 129Nb / 2010N",
+            "Pesa 2010N-10"
+
+        ]
+
+
+
+        var markiKontener = document.getElementById('marki-kontener');
+        var dataWozyDsp = document.getElementById('data-wozy-dsp');
+
+        var grupowanieWozow = {};
+        var zakladkiWozyNumery = {};
+
+        function loadWozy(){
+            if (dbJson != ''){
+                grupowanieWozow = {};
+
+                for (let i = 0; i < dbJson.length; i++) {
+                    const vehicle = dbJson[i];
+                    const model = vehicle.model;
+
+                    if (!grupowanieWozow[model]) {
+                        grupowanieWozow[model] = [];
+                    }
+
+                    grupowanieWozow[model].push(vehicle);
+                }
+                console.log(grupowanieWozow);
+
+                markiKontener.innerHTML = '';
+                dataWozyDsp.innerHTML = '';
+                dataWozyDspCreate = '';
+
+                var indexB = 0;
+
+                var modele = Object.keys(grupowanieWozow);
+
+                // Tworzenie zakładek dla modeli w priorytetowej kolejności
+                modelPriority.forEach((model, index) => {
+                    if (grupowanieWozow[model]) {
+                        var indexModelu = modele.indexOf(model);
+
+                        zakladkiWozyNumery[model] = index;
+
+                        var newZakladka = document.createElement('div');
+                        newZakladka.classList.add('new-zakladka');
+                        newZakladka.innerHTML = `
+                            <button id="btnN${index}" class="zakladka-div" onclick="pokazWozy(${index})">
+                                <span class="zakladka-model">${model}</span>
+                                <div class="ilosc-wozy-center"><span class="zakladka-ilosc-wozow">Wozy: ${grupowanieWozow[model].length}</span></div>
+                            </button>
+                        `;
+                        markiKontener.appendChild(newZakladka);
+                        dataWozyDspCreate += `
+                            <div id="WI${index}" class="wozy-zakladka-kontener">
+                                <button class="select-button-all" onclick="quickAll('select', ${indexModelu})">[Zaznacz wszystkie]</button>
+                                <button class="select-button-all" onclick="quickAll('unselect', ${indexModelu})">[Odznacz wszystkie]</button>
+                        `;
+                        grupowanieWozow[model].forEach(wozIt =>{
+                            dataWozyDspCreate += `
+                                <div class="wozy-zakladka-woz-line"><input type="checkbox" class="checkbox-wybor-wozow" id="chbSelect${wozIt.sideNo}" onclick="selectedVehicle('${wozIt.sideNo}', this);"><label for="chbSelect${wozIt.sideNo}">${wozIt.model} #${wozIt.sideNo}</label></div>
+                            `;
+                        })
+                        dataWozyDspCreate += `</div>`;
+                        dataWozyDsp.innerHTML = dataWozyDspCreate;
+                    }
+                    indexB++;
+                });
+                markiKontener.innerHTML += `<div id="linia-wozy-nieride"><hr class="wozy-nieride-hr">Modele zutylizowane / niejeżdżące liniowo<hr class="wozy-nieride-hr"></div>`;
+
+                // Dodawanie pozostałych modeli, które nie są w priorytetowej kolejności
+                for (const model in grupowanieWozow) {
+                    if (!modelPriority.includes(model)) {
+                        var indexModelu = modele.indexOf(model);
+
+                        zakladkiWozyNumery[model] = indexB;
+
+                        var newZakladka = document.createElement('div');
+                        newZakladka.classList.add('new-zakladka');
+                        newZakladka.innerHTML = `
+                            <button id="btnN${indexB}" class="zakladka-div" onclick="pokazWozy(${indexB})"> 
+                                <span class="zakladka-model">${model}</span>
+                                <div class="ilosc-wozy-center"><span class="zakladka-ilosc-wozow">Wozy: ${grupowanieWozow[model].length}</span></div>
+                            </button>
+                        `;
+                        markiKontener.appendChild(newZakladka);
+                        dataWozyDspCreate += `
+                            <div id="WI${indexB}" class="wozy-zakladka-kontener">
+                                <button class="select-button-all" onclick="quickAll('select', ${indexModelu})">[Zaznacz wszystkie]</button>
+                                <button class="select-button-all" onclick="quickAll('unselect', ${indexModelu})">[Odznacz wszystkie]</button>
+                        `;
+                        grupowanieWozow[model].forEach(wozIt =>{
+                            dataWozyDspCreate += `
+                                <div class="wozy-zakladka-woz-line"><input type="checkbox" class="checkbox-wybor-wozow" id="chbSelect${wozIt.sideNo}" onclick="selectedVehicle('${wozIt.sideNo}', this);"><label for="chbSelect${wozIt.sideNo}">${wozIt.model} #${wozIt.sideNo}</label></div>
+                            `;
+                        })
+                        dataWozyDspCreate += `</div>`;
+                        dataWozyDsp.innerHTML = dataWozyDspCreate;
+                        indexB++;
+                    }
+                }
+            }
+        }
+
+
+        function modelFinder(getNo){
+            return dbJson.find(vehicle => vehicle.sideNo == getNo);
+        }
+
+        var blackViniette = document.getElementById('black-viniette');
+        var alertBox = document.getElementById('alert-box');
+        var alertWariant = document.getElementById('alert-wariant');
+        var alertTitle = document.getElementById('alert-title');
+        var alertContent= document.getElementById('alert-content');
+
+        var warianty = {
+            error: {
+                icon: "error_icon.svg",
+                color: "red"
+            },
+            warning: {
+                icon: "warning_icon.svg",
+                color: "orange"
+            },
+            info: {
+                icon: "info_icon.svg",
+                color: "#1f69ff"
+            },
+            success: {
+                icon: "success_icon.svg",
+                color: "#75FB4C"
+            }
+        }
+
+        function komunikat(tresc){
+            if (tresc != undefined){
+                if (typeof tresc === "object"){
+                    if (tresc.wariant && tresc.title){
+                        if (warianty[tresc.wariant] != undefined){
+                            alertWariant.innerHTML = `<img src="images/${warianty[tresc.wariant].icon}">`;
+                            alertTitle.style.color = warianty[tresc.wariant].color;
+                            
+                            alertTitle.innerHTML = tresc.title;
+                            alertContent.innerHTML = tresc.content;
+
+                            alertBox.style.display = "block";
+                            blackViniette.style.display = "block";
+                            setTimeout(() => {
+                                alertBox.classList.add('show');
+                                blackViniette.classList.add('zakryte');
+                            }, 100);
+                        }
+                    }
+                }
+            }
+        }
+
+        function quickKomunikat(wiadomosc){
+            if (wiadomosc != undefined){
+                if (wiadomosc == "maxwozy"){
+                    komunikat({
+                        wariant: "warning",
+                        title: "Ostrzeżenie!",
+                        content: `Nie możesz zaznaczyć więcej wozów niż ${maxSelectNumber}!`
+                    });
+                }else{
+                    console.log(`%c${tresc}`, "background-color: yellow;");
+                }
+            }
+        }
+
+        /*function komunikat(tresc){ //Stworzenie obiektu lub ogarnięcie tablicy
+            if (tresc != undefined){
+                if (typeof tresc === "object"){
+                    if (warianty[tresc.wariant] != undefined){
+                        alertWariant.innerHTML = `<img src="images/${warianty[tresc.wariant].icon}">`;
+                        alertTitle.style.color = warianty[tresc.wariant].color;
+                    }else{
+                        alertWariant.innerHTML = "";  
+                    }
+                    alertTitle.innerHTML = tresc.title;
+                    alertContent.innerHTML = tresc.content;
+
+                    alertBox.style.display = "block";
+                }else{
+                    if (tresc == "maxwozy"){
+                        console.log("%c PRZERWANO SET", "background-color: green;");
+                    }else{
+                        console.log(`%c${tresc}`, "background-color: yellow;");
+                    }
+                }
+            }
+        }*/
+
+        /*function komunikat(tresc){ //Stworzenie obiektu lub ogarnięcie tablicy
+            if (tresc != undefined){
+                if (typeof tresc === "object"){
+
+                }else{
+                    if (tresc == "maxwozy"){
+                        console.log("%c PRZERWANO SET", "background-color: green;");
+                    }else{
+                        console.log(`%c${tresc}`, "background-color: yellow;");
+                    }
+                }
+            }
+        }*/
+
+        /*function dispKomunikat(wariant, tytul, tresc){
+            if (warianty[wariant] != undefined){
+                alertWariant.innerHTML = `<img src="images/${warianty[wariant].icon}">`;
+                alertTitle.style.color = warianty[wariant].color;
+            }else{
+                alertWariant.innerHTML = "";  
+            }
+            alertTitle.innerHTML = tytul;
+            alertContent.innerHTML = tresc;
+
+            alertBox.style.display = "block";
+        }*/
+
+        function closeAlertF(){
+            if (alertBox.style.display != "none"){
+                alertBox.classList.remove('show');
+                blackViniette.classList.remove('zakryte');
+                setTimeout(() => {
+                    alertBox.style.display = 'none';
+                    blackViniette.style.display = "none";
+                }, 300);
+            }
+        }
+
+
+
+
+        /*komunikat({
+            wariant: "success",
+            title: "Ostrzeżenie!",
+            content: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita nam explicabo nisi. Corrupti porro dolores tenetur cum ut nam deserunt alias obcaecati recusandae praesentium, iusto fuga consequuntur eum ducimus assumenda?"
+        });*/
+
+        var actSelector;
+
+        //SETTING
+        var selectDelayTime = 25;
+        var maxSelectNumber = 12;
+
+
+        function quickAll(type, target){
+            if (target != undefined && !actSelector){
+                var wozNameModel = Object.keys(grupowanieWozow)[target];
+                console.log(wozNameModel);
+
+                var tablicaWozy = grupowanieWozow[wozNameModel];
+                if (tablicaWozy != undefined){
+                    var index2 = 0;
+                    var pendingOperations = 0;
+
+                    var stackerVar = stackerGroup[modelFinder(tablicaWozy[0].sideNo).model];
+
+                    if (type == "select"){
+                        if (selectedVehiclesTab.length <= maxSelectNumber){
+                            var dlugoscStackera = (stackerVar ?? []).length;
+                            console.log("------------");
+                            console.log(dlugoscStackera);
+                            console.log(" < ");
+                            console.log(tablicaWozy.length);
+                            console.log("------------");
+
+
+                            var roznica = (tablicaWozy.length - dlugoscStackera) + selectedVehiclesTab.length;
+                            console.log(`Różnica: ${roznica} <= ${maxSelectNumber}`);
+                            if ((roznica <= maxSelectNumber)){
+                                if ((dlugoscStackera < tablicaWozy.length)){
+                                    actSelector = true;
+                                    tablicaWozy.forEach((e, index) => {
+                                        const idCr = "chbSelect" + e.sideNo;
+                                        const operationElement = document.getElementById(idCr);
+                                        if (!operationElement.checked){
+                                            pendingOperations++;
+                                            setTimeout(() => {
+                                                operationElement.checked = true;
+                                                selectedVehicle(e.sideNo, operationElement);
+                                                pendingOperations--;
+
+                                                if (pendingOperations === 0) {
+                                                    actSelector = false;
+                                                    console.log("%c ZAKOŃCZONO", "background-color: red;");
+                                                }
+                                            }, index2 * selectDelayTime);
+                                            index2++;
+                                        }
+                                    });
+                                }
+                            }else{
+                               quickKomunikat("maxwozy");
+
+                            }
+                        }
+                        //console.log("%c ZAKOŃCZONO", "background-color: red;");
+                    }else if (type == "unselect"){
+                        if (stackerVar != undefined){
+                            actSelector = true;
+                            tablicaWozy.forEach((e, index) => {
+                                var idCr = "chbSelect"+e.sideNo;
+                                var operationElement = document.getElementById(idCr);
+                                if (operationElement.checked){
+                                    pendingOperations++;
+                                    setTimeout(() => {
+                                        operationElement.checked = false;                              
+                                        selectedVehicle(e.sideNo, operationElement);
+                                        pendingOperations--;
+
+                                        if (pendingOperations === 0) {
+                                            actSelector = false;
+                                            console.log("%c ZAKOŃCZONO", "background-color: red;");
+                                        }
+                                    }, index2 * selectDelayTime);
+                                    index2++;
+                                }else{
+                                    console.log("SKIP"); 
+                                }
+                            });
+                        }
+                    }
+
+                    //console.log("%c PRZERWANO", "background-color: green;");
+    
+                }
+            }
+        }
+
+        /*function pokazWozy(numerZakladki, thisElement){
+            console.log(numerZakladki);
+            if (numerZakladki != undefined){
+                var zakladkaCrId = document.getElementById("WI"+numerZakladki);
+                if (zakladkaCrId !== null){
+                    const elements = document.querySelectorAll('.wozy-zakladka-kontener');
+                    elements.forEach(element => {
+                        element.style.display = 'none';
+                    });
+
+                    const zakladki = document.querySelectorAll('.zakladka-div');
+                    zakladki.forEach(zakladka => {
+                        zakladka.style.backgroundColor = '#efefef';
+                    });
+                    thisElement.style.backgroundColor = "gray";
+                    zakladkaCrId.style.display = "inline-block";
+                }
+            }
+        }*/
+
+        function pokazWozy(numerZakladki){
+            console.log(numerZakladki);
+            if (numerZakladki != undefined){
+                var zakladkaCrId = document.getElementById("WI"+numerZakladki);
+                var zakladkaButtonEl = document.getElementById("btnN"+numerZakladki);
+                if (zakladkaCrId !== null && zakladkaButtonEl){
+                    const elements = document.querySelectorAll('.wozy-zakladka-kontener');
+                    elements.forEach(element => {
+                        element.style.display = 'none';
+                    });
+
+                    const zakladki = document.querySelectorAll('.zakladka-div');
+                    zakladki.forEach(zakladka => {
+                        zakladka.style.backgroundColor = '#efefef';
+                    });
+                    zakladkaButtonEl.style.backgroundColor = "gray";
+                    zakladkaCrId.style.display = "inline-block";
+                }
+            }
+        }
+
+        var selectedVehiclesTab = [];
+
+        function selectedVehicle(nrThisVeh, thisEl){
+            if (selectedVehiclesTab.length <= maxSelectNumber){
+                console.log("%c SELECTED VEHICLE", "background-color: blue;");
+                //nrThisVeh = parseInt(nrThisVeh);
+                console.log(nrThisVeh, thisEl);
+                if (nrThisVeh != '' && nrThisVeh != undefined){
+                    if (thisEl.checked){
+                        console.log('chkd');
+                        if (!selectedVehiclesTab.includes(nrThisVeh)){
+                            selectedVehiclesTab.push(nrThisVeh);
+                        }
+                    }else{
+                        console.log('nie chkd');
+                        if (selectedVehiclesTab.includes(nrThisVeh)){
+                            selectedVehiclesTab = selectedVehiclesTab.filter(value => value !== nrThisVeh);
+                        }
+                    }
+                    console.log(selectedVehiclesTab);
+                    updateSelectedVeh();
+                    maxChecker();
+                }
+            }
+        }
+
+        var disabledAllCheckbox = false;
+
+        function maxChecker(){
+            if (selectedVehiclesTab.length >= maxSelectNumber){
+                console.log("trueOKOK");
+                document.querySelectorAll('.checkbox-wybor-wozow').forEach(checkbox => {
+                    if (!checkbox.checked) {
+                        checkbox.disabled = true;
+                    }
+                });
+                disabledAllCheckbox = true;
+            }else if (disabledAllCheckbox){
+                document.querySelectorAll('.checkbox-wybor-wozow').forEach(checkbox => {
+                    checkbox.disabled = false;
+                });
+                console.log("falsowanie" + disabledAllCheckbox);
+                disabledAllCheckbox = false;
+            }
+        }
+
+        //testy czy nie potrzeba maxcheckera w quick
+
+        /*function modelClick(tenModel){
+            if (zakladkiWozyNumery[tenModel] != undefined){
+                var numerek = zakladkiWozyNumery[tenModel];
+                pokazWozy(numerek);
+            }
+        }*/
+
+        function modelClick(tenModelId){
+            if (tenModelId != undefined){
+                /*var modelWozu = Object.keys(zakladkiWozyNumery).find(key => zakladkiWozyNumery[key] === tenModelId);
+                if (modelWozu != undefined){*/
+                    pokazWozy(tenModelId);
+                //}
+            }
+        }
+
+
+        var wozySelectedKontener = document.getElementById('wozy-selected-kontener');
+        var sumaSelectDsp = document.getElementById('suma-select-dsp');
+        sumaSelectDsp.innerHTML = `<p id="suma-p"><span id="suma-bold">SUMA: </span>0 / ${maxSelectNumber}</p>`;
+        var stackerGroup = {};
+
+        function updateSelectedVeh(){
+            if (selectedVehiclesTab != ''){
+                selectedVehiclesTab.forEach(savedNo => {
+                    vehicleDane = dbJson.find(vehicle => vehicle.sideNo == savedNo);
+                    if (!stackerGroup[vehicleDane.model]){
+                        stackerGroup[vehicleDane.model] = [];
+                    }
+                    if (!stackerGroup[vehicleDane.model].includes(savedNo)){
+                        stackerGroup[vehicleDane.model].push(savedNo); 
+                    }
+                })
+                for (const model in stackerGroup) {
+                    stackerGroup[model] = stackerGroup[model].filter(vehicle => 
+                        selectedVehiclesTab.includes(vehicle)
+                    );
+
+                    if (stackerGroup[model].length === 0) {
+                        delete stackerGroup[model];
+                    }
+                }
+                // Sortowanie numerów w każdej tablicy powiązanej z modelem
+                for (const model in stackerGroup) {
+                    stackerGroup[model].sort((a, b) => a - b); // sortowanie rosnące
+                }
+
+                console.log(stackerGroup);
+
+                var createSelectVeh = "<ul id='lista-selected-wozy'>";
+                for (const model in stackerGroup) {
+                    const markaGr = stackerGroup[model];
+                    var createWoz = "";
+
+                    markaGr.forEach((wozSzt, index) => {
+                        createWoz += wozSzt;
+                        if (index < markaGr.length - 1){
+                            createWoz += ", ";
+                        }
+                    });
+
+                    var modelIdVar = zakladkiWozyNumery[model];
+                    createSelectVeh += `<li><span onclick="modelClick('${modelIdVar}');">${model} (${markaGr.length})</span>:<br> ${createWoz}</li>`;  
+                }
+                createSelectVeh += `</ul>`;  
+                sumaSelectDsp.innerHTML = `<p id="suma-p"><span id="suma-bold">SUMA: </span>${selectedVehiclesTab.length} / ${maxSelectNumber}</p>`;
+                wozySelectedKontener.innerHTML = createSelectVeh;      
+
+            }else{
+                stackerGroup = {};
+                wozySelectedKontener.innerHTML = '';
+            }
+        }
+
+        /*var readyQuery;
+
+        function createQuery(){
+            if (qBook.hasOwnProperty(set)){
+                var constructQuery = `42/vehicles_exec,["vehicles",[`;
+                qBook[set].forEach((taborWoz, index) =>{
+                    //dalej kwerenda
+                    constructQuery += `"${vehicleId(taborWoz)}"`;
+                    if (index < qBook[set].length - 1) {
+                        constructQuery += ",";
+                    }
+                })
+                constructQuery += "]]"
+                var qTag = constructQuery.length + ":";
+                constructQuery = qTag + constructQuery;
+
+                console.log(constructQuery);
+                RLoad = constructQuery;
+            }
+        }*/
+
+        function createRequest(){
+            var tablicaLength = selectedVehiclesTab.length;
+            if (tablicaLength > 0 && tablicaLength <= maxSelectNumber){
+                var tablicaSort = selectedVehiclesTab.sort((a, b) => a - b);
+
+                var queryPayload = `42/vehicles_exec,["vehicles",[`;
+                tablicaSort.forEach((wozElement, index) =>{
+                    queryPayload += `"${vehicleId(wozElement)}"`;
+                    if (index < tablicaLength - 1){
+                        queryPayload += ",";
+                    }
+
+                });
+                queryPayload += "]]";
+                queryTag = queryPayload.length + ":";
+                queryPayload = queryTag + queryPayload;
+
+                console.log(queryPayload);
+                RLoad = queryPayload;
+            }
+        }
+    </script>
+</body>
+</html>
