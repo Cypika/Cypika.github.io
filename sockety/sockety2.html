@@ -722,9 +722,9 @@
                                 if (request3 == "ok"){
                                     var request4 = await sendRequest("fsj5m33j6n53");
                                     var prefix = "42/vehicles_exec,";
-                                    if (request4[0].includes(prefix)){
+                                    if (request4.includes(prefix)){
                                         console.log("%c All ok", "color: green");
-                                        var cleanData = request4[0].replace(/^\d+:\d+\/vehicles_exec,/, "");
+                                        var cleanData = request4.replace(/^\d+:\d+\/vehicles_exec,/, "");
 
 
 
@@ -747,7 +747,7 @@
                                         //console.log(JSON.stringify(getData, null, 2)); // Ładne formatowanie JSON
                                     }else{
                                         console.log("Błąd żądania 4: "+request4);
-                                        console.log("TUTAJ: " + request4[0]);
+                                        console.log("TUTAJ: " + request4);
                                     } //starts with
                                 }else{
                                     console.log("Błąd żądania 3: "+request3);
