@@ -4,13 +4,13 @@
         {
             "driverID": "21a98d56-ad8c-49f5-b97a-cc6506f49bd4",
             "nick": "Wujek",
-            "imie": "?",
-            "nazwisko": "?",
+            "imie": "",
+            "nazwisko": "",
             "ocena": "5"
         },
         {
             "driverID": "85b80971-09b0-40c0-8ce2-6a2e9107cef0",
-            "nick": "Mirek",
+            "nick": "Mirek (??)",
             "imie": "Mirosław",
             "nazwisko": "?",
             "ocena": "5" 
@@ -24,14 +24,35 @@
         },
         {
             "driverID": "ed882b4f-754d-4530-8286-786aafc3a006",
-            "nick": "Roszczochraniec",
+            "nick": "Roszczochraniec (?Siwy?)",
             "imie": "Marek",
             "nazwisko": "Zbrojkiewicz",
             "ocena": "5" 
         },
         {
             "driverID": "ab04f355-3c18-432c-b43a-c150f4106618",
-            "nick": "Tomek?",
+            "nick": "Tomek",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5" 
+        },
+        {
+            "driverID": "6f78da6c-6087-48bf-8891-1ba7b014ac72",
+            "nick": "Mohamed / Moczachet / Czeczeńczyk",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5" 
+        },
+        {
+            "driverID": "9450d66d-7f65-4734-b909-5b48b151252d",
+            "nick": "138 busfaher",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5" 
+        },
+        {
+            "driverID": "e6c4ef4e-e9cc-4c49-9402-4164af6955ad",
+            "nick": "Krajzega man / ten z czapeczką",
             "imie": "",
             "nazwisko": "",
             "ocena": "5" 
