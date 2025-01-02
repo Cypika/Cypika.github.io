@@ -973,13 +973,13 @@
                             }
                         }
                         dataDspPrepare += `<h3>Kierowca</h3>`;
-                        if (run.driver) dataDspPrepare += run.driver + "<br>";
                         if (actDriver.nick) dataDspPrepare += `Ksywa: ${actDriver.nick}<br>`;
                         if (actDriver.imie) dataDspPrepare += `Imię: ${actDriver.imie}<br>`;
                         if (actDriver.nazwisko) dataDspPrepare += `Nazwisko: ${actDriver.nazwisko}<br>`;
                         if (gwiazdkiHTML != undefined) dataDspPrepare += `Ocena:<br> ${gwiazdkiHTML}<br><br>`;
                     }else{
                         dataDspPrepare += `<h3>Nieznany kierowca</h3>`;
+                        if (run.driver) dataDspPrepare += run.driver + "<br>";
                     }
 
                     //Prawdopodobnie sprawdzanie czy dojechał na końcowy, jak nie to gdzie jest
