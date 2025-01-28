@@ -3,14 +3,14 @@
     [
         {
             "driverID": "21a98d56-ad8c-49f5-b97a-cc6506f49bd4",
-            "nick": "Wujek",
-            "imie": "",
-            "nazwisko": "",
+            "nick": "Wujek / Wujo",
+            "imie": "?",
+            "nazwisko": "?",
             "ocena": "5"
         },
         {
             "driverID": "85b80971-09b0-40c0-8ce2-6a2e9107cef0",
-            "nick": "Mirek (??)",
+            "nick": "Mirek?",
             "imie": "Mirosław",
             "nazwisko": "?",
             "ocena": "5" 
@@ -24,15 +24,15 @@
         },
         {
             "driverID": "ed882b4f-754d-4530-8286-786aafc3a006",
-            "nick": "Roszczochraniec (?Siwy?)",
-            "imie": "Marek",
-            "nazwisko": "Zbrojkiewicz",
+            "nick": "Siwy / Chyba nie wychamuje",
+            "imie": "",
+            "nazwisko": "",
             "ocena": "5" 
         },
         {
             "driverID": "ab04f355-3c18-432c-b43a-c150f4106618",
             "nick": "Tomek",
-            "imie": "",
+            "imie": "Tomasz",
             "nazwisko": "",
             "ocena": "5" 
         },
@@ -104,6 +104,76 @@
             "nick": "Adi / teren pentli / pentlasz",
             "imie": "Adrian",
             "nazwisko": "Golis",
+            "ocena": "5" 
+        },
+        {
+            "driverID": "40e2832c-7570-47f8-8535-eba1e4321620",
+            "nick": "Agressive",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5" 
+        },
+        {
+            "driverID": "24e725ff-ab30-401a-8b55-b3ac6e853c1d",
+            "nick": "Siwy z okularami / Wypadkowiec",
+            "imie": "Krzysztof",
+            "nazwisko": "",
+            "ocena": "5" 
+        },
+        {
+            "driverID": "1d52490f-1569-4b48-86df-5e99800f17c0",
+            "nick": "Groß man / No 90-siąt (2)",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5" 
+        },
+        {
+            "driverID": "f4b6163b-ced8-4436-8e14-337becb73448",
+            "nick": "Roberto / Robi",
+            "imie": "Robert",
+            "nazwisko": "Szelka",
+            "ocena": "5" 
+        },
+        {
+            "driverID": "f4b6163b-ced8-4436-8e14-337becb73448",
+            "nick": "Prime woman",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "3" 
+        },
+        {
+            "driverID": "8efa883c-3d20-4931-99aa-5858c368f2f8",
+            "nick": "195 prime",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5" 
+        },
+        {
+            "driverID": "abda1a28-7fcd-45ea-8b2e-f299bcdc0758",
+            "nick": "Ksepel / Młody",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5" 
+        },
+        {
+            "driverID": "4b9a9456-f339-450d-9d70-7bbdc2222390",
+            "nick": "Dres",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5" 
+        },
+        {
+            "driverID": "8812050e-1705-4d69-bcd2-99de216df249",
+            "nick": "Jakaś prime woman",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "3" 
+        },
+        {
+            "driverID": "81c6a0d5-bdfc-47cc-8b59-2a22d7f06a4b",
+            "nick": "Żmuda",
+            "imie": "",
+            "nazwisko": "",
             "ocena": "5" 
         }
 
