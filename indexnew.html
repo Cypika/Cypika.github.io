@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Autobusy</title>
+</head>
+<body>
+    
+    <button onclick="count()">Pracuj</button>
+
+    Linie tramwajowe: <input type="date" id="date-picker" onchange="dateF()">
+    <button id="date-today-quick" class="date-button-quick" onclick="dateF('today')">Dzisiaj</button>
+    <button id="date-forecast-quick" class="date-button-quick" onclick="dateF('forecast')">Prognoza na jutro</button>
+    <div id="kontener-linie-t">
+
+    </div>
+    Linie autobusowe:
+    <div id="kontener-linie-a">
+
+    </div>
+    <div id="div-span-kierunki-lini">Kierunki dla linii <span id="span-kierunki-lini"></span>: </div>
+    <br>
+    <div id="kontener-kierunki">
+
+    </div>
+    <br><br><br>
+    <div id="kontener-warianty-przyciski">
+
+    </div>
+    <div id="kontener-warianty">
+
+    </div>
+    <div id="kontener-all-wozy">
+        Wozy na linii <span id="span-wozy-linia"></span>
+        jadące przez <span id="span-wozy-przystanek"></span> <!-- tu -->
+        <div id="kontener-wozy">
+
+        </div>
+    </div>
+    <div id="kontener-select-woz">
+
+    </div>
+    <div id="kontener-gen-text">
+        <button id="gen-text-button" onclick="genTextF()">Generuj text</button>
+        <textarea id="txt-rozklad" readonly>
+
+        </textarea>
+    </div>
+    <div id="kontener-czasy">
+        <span id="span-czasy"></span>
+
+
+    </div>
+
+    <script>
+        var today = new Date();
+
+        var minDate = new Date();
+        minDate.setDate(today.getDate() - 31);
+
+        var maxDate = new Date();
+        maxDate.setDate(today.getDate() + 1);
+
+        var formatDate = (date) => date.toISOString().split('T')[0];
+
+        var datePicker = document.getElementById('date-picker');
+        datePicker.min = formatDate(minDate);
+        datePicker.max = formatDate(maxDate);
+        datePicker.value = formatDate(today); 
+
+        var proxyTime = formatDate(today).replaceAll('-', '/');
+
+        var yesterday;
+
+        function dateF(reset){
+            var dataFormat;
+            if (reset == "today"){
+                dataFormat = formatDate(today);
+            }else if (reset == "forecast"){
+                yesterday = new Date(today);
+                yesterday.setDate(today.getDate() + 1);
+
+                dataFormat = yesterday.toISOString().split('T')[0];
+            }else{
+                dataFormat = datePicker.value;  
+            }
+
+            if (dataFormat.replaceAll('-', '/') != proxyTime){
+                console.log(dataFormat.replaceAll('-', '/') + "  ||  " + proxyTime);
+                if (datePicker.value != dataFormat){
+                    datePicker.value = dataFormat;
+                }
+                dataFormat = dataFormat.replaceAll('-', '/');
+                console.log(dataFormat);
+                proxyTime = dataFormat;
+
+                directionsLoad();
+            }
+        }
+
+        var iloscFetch = 0;
+
+        function fetche(){
+            iloscFetch++;
+            if (iloscFetch == 4){
+                buttons();
+            }
+        }
+
+        var linesJson;
+
+        fetch('./data/lines.json')
+            .then((response) => response.json())
+            .then(json => {
+                linesJson = json;
+                console.log('Pobrano '+ linesJson.length);
+                console.log(linesJson);
+                fetche();
+
+            })
+            .catch(error => console.error('Błąd:', error));
+
+        function lines(lineID){
+            if (linesJson != undefined){
+                var find = linesJson.find(item => item.lineID == lineID)
+                if (find){
+                    return(find.name);
+                } else{
+                    console.log('Nie zalneziono elementu ' + lineID);
+                }
+            }
+        }
+
+        var locJson;
+
+        fetch('./data/locations.json')
+            .then((response) => response.json())
+            .then(json => {
+                locJson = json;
+                console.log('Pobrano '+ locJson.length);
+                console.log(locJson);
+                fetche();
+
+            })
+            .catch(error => console.error('Błąd:', error));
+
+        function locations(locationID){
+            if (locJson != undefined){
+                var find = locJson.find(item => item.locationID == locationID)
+                if (find){
+                    return(find.name);
+                } else{
+                    console.log('Nie zalneziono elementu ' + locationID);
+                }
+            }
+        }
+
+        var vehiclesJson;
+
+        fetch('./data/vehicles.json')
+            .then((response) => response.json())
+            .then(json => {
+                vehiclesJson = json;
+                console.log('Pobrano '+ vehiclesJson.length);
+                console.log(vehiclesJson);
+                fetche();
+
+            })
+            .catch(error => console.error('Błąd:', error));
+
+        function vehicles(vehicleID){
+            if (vehiclesJson != undefined){
+                var find = vehiclesJson.find(item => item.vehicleID == vehicleID)
+                if (find){
+                    return(find.sideNo);
+                } else{
+                    console.log('Nie zalneziono elementu ' + vehicleID);
+                }
+            }
+        }
+
+        function time(rawTime){
+            const dateObj = new Date(rawTime);
+
+            const data = dateObj.toISOString().split('T')[0];
+
+            const godzina = dateObj.toISOString().split('T')[1].split('.')[0];
+
+            const [hour, minute, second] = godzina.split(':');
+
+            return {
+                data: data,
+                godzina: godzina,
+                hour: parseInt(hour),
+                minute: parseInt(minute),
+                second: parseInt(second)
+            };
+        }
+
+
+        /*function count(){
+            dataJson.forEach(line => {
+                console.log(line.lineID + " => " + lines(line.lineID));
+
+                var tempTab = [];
+
+                line.timetable.forEach(entry => {
+                    if (entry.vehicleID != undefined){
+                        if (!tempTab.includes(entry.vehicleID)){
+                            console.log(time(entry.dateTime).godzina + "  " + vehicles(entry.vehicleID));
+                            tempTab.push(entry.vehicleID);
+                        }
+                    }
+                });
+            });
+
+        }*/
+
+
+
+        var dirJson;
+
+        function directionsLoad(){
+            if (dirJson != null){
+                iloscFetch = iloscFetch - 1;
+                console.log('cuda na kiju');
+            }
+            dirJson = '';
+            fetch("https://thingproxy.freeboard.io/fetch/https://live.mpk.czest.pl/api/directions/"+proxyTime)
+                .then((response) => response.json())
+                .then(json => {
+                    dirJson = json;
+                    console.log('Pobrano '+ dirJson.length);
+                    console.log(dirJson);
+                    fetche();
+
+                })
+                .catch(error => console.error('Błąd:', error));
+        }
+
+        directionsLoad();
+
+        var kontenerLinieT = document.getElementById('kontener-linie-t');
+        var kontenerLinieA = document.getElementById('kontener-linie-a');
+        var usedLinesTab = [];
+
+        function buttons(){
+            kontenerKierunki.innerHTML = '';
+            kontenerWarianty.innerHTML = '';
+            kontenerCzasy.innerHTML = '';
+            kontenerAllWozy.style.display = "none";
+            spanWozyLinia.innerHTML = '';
+            spanWozyPrzystanek.innerHTML = '';
+            kontenerSelectWoz.style.display = "none";
+            kontenerWariantyPrzyciski.innerHTML = "";
+            divSpanKierunkiLini.innerHTML = "";
+            kontenerLinieT.innerHTML = "";
+            kontenerLinieA.innerHTML = "";
+            txtRozklad.style.display = "none";
+            genTextButton.style.display = "none";
+
+            usedLinesTab = [];
+
+            dirJson.sort((a, b) => {
+                const lineA = Number(lines(a.lineID));
+                const lineB = Number(lines(b.lineID));
+                return lineA - lineB;
+            });
+            dirJson.forEach(dir => {
+                /*if (!dir.direction == true){*/
+                    var linia = lines(dir.lineID);
+                    console.log(linia + " => " + locations(dir.locationID) + " | " + dir.direction);
+                    if (!usedLinesTab.includes(linia)){
+                        var button = document.createElement('button');
+                        button.textContent = linia;
+                        button.className = "lines-button";
+                        button.setAttribute("onClick", "buttonClF('"+dir.lineID+"', '"+linia+"')");
+
+                        usedLinesTab.push(linia);
+                        if (linia === "1" || linia === "2" || linia === "3"){
+                            kontenerLinieT.appendChild(button);
+                        }else{
+                            kontenerLinieA.appendChild(button);
+                        }
+                    }
+                /*}*/
+            })
+        }
+
+        var spanKierunkiLini = document.getElementById('span-kierunki-lini');
+        var divSpanKierunkiLini = document.getElementById('div-span-kierunki-lini');
+        var kontenerKierunki = document.getElementById('kontener-kierunki');
+
+        function buttonClF(liniaID, linia){
+            console.log("wybrano linię " + linia);
+            divSpanKierunkiLini.style.display = 'block';
+            spanKierunkiLini.innerHTML = linia;
+
+            /*const filteredData = dirJson.filter(item => lines(item.lineID) == linia);*/aktualnyKier
+
+            const filteredData = dirJson
+                .filter(item => lines(item.lineID) == linia)
+                .sort((a, b) => {
+                    // Najpierw sortujemy według `direction`, tak aby `null` było pierwsze
+                    if (a.direction === null && b.direction !== null) return -1;
+                    if (a.direction !== null && b.direction === null) return 1;
+
+                    // Jeśli `direction` jest takie samo, sortujemy alfabetycznie po nazwie lokalizacji
+                    return locations(a.locationID).localeCompare(locations(b.locationID));
+                });
+
+            kontenerKierunki.innerHTML = '';
+            kontenerWarianty.innerHTML = '';
+            kontenerCzasy.innerHTML = '';
+            kontenerAllWozy.style.display = "none";
+            spanWozyLinia.innerHTML = '';
+            spanWozyPrzystanek.innerHTML = '';
+            kontenerSelectWoz.style.display = "none";
+            kontenerWariantyPrzyciski.innerHTML = "";
+            txtRozklad.style.display = "none";
+            genTextButton.style.display = "none";
+
+            aktualnyKier = '';
+
+            filteredData.forEach(item => {
+                console.log(item);
+
+                if (item.direction){
+                    var tempArrow = "<=";
+                }else if (item.direction == null){
+                    var tempArrow = "=>";
+                }
+
+                var a = document.createElement('a');
+                a.className = 'a-lines-dir';
+                a.textContent = tempArrow + locations(item.locationID);
+                a.setAttribute("onClick", "lineDirF('"+liniaID+"', '"+linia+"', '"+item.locationID+"', '"+locations(item.locationID)+"')");
+                kontenerKierunki.appendChild(a);
+            });
+
+        }
+
+        var kontenerWarianty = document.getElementById('kontener-warianty');
+        var kontenerWariantyPrzyciski = document.getElementById('kontener-warianty-przyciski');
+        var aktualnyKier;
+
+        function lineDirF(liniaID, linia, locationID, location){
+            if (aktualnyKier != linia + location){
+                kontenerWarianty.innerHTML = '';
+                kontenerCzasy.innerHTML = '';
+                kontenerAllWozy.style.display = "none";
+                spanWozyLinia.innerHTML = '';
+                spanWozyPrzystanek.innerHTML = '';
+                kontenerSelectWoz.style.display = "none";
+                txtRozklad.style.display = "none";
+                genTextButton.style.display = "none";
+                var stopsJson;
+                aktualnyKier = linia + location;
+
+                fetch("https://thingproxy.freeboard.io/fetch/https://live.mpk.czest.pl/api/directions/full/"+proxyTime+"/"+liniaID+"/"+locationID)
+                    .then((response) => response.json())
+                    .then(json => {
+
+                        stopsJson = json;
+                        console.log('Pobrano '+ stopsJson.length);
+                        console.log(stopsJson);
+
+                        kontenerWariantyPrzyciski.innerHTML = "";
+
+                        stopsJson.runStopsVariants.sort((a, b) => b.qtyOfRuns - a.qtyOfRuns);
+
+                        stopsJson.runStopsVariants.forEach((item, index) => { //losowanie wariantów trasy
+                            console.log("abecadło");
+
+                            var firstStop = locations(item.runStops[0].locationID);
+                            var lastStop = locations(item.runStops[item.runStops.length - 1].locationID);
+
+                            var div = document.createElement('div');
+
+                            if (stopsJson.runStopsVariants.length > 1){
+                                var selektor = document.createElement('button');
+                                selektor.className = 'war-przyciski';
+                                selektor.textContent = firstStop + " => " + lastStop;
+                                selektor.setAttribute("onClick", "przelaczKarteW('"+index+"')");
+                                kontenerWariantyPrzyciski.appendChild(selektor);
+
+                                div.style.display = 'none';
+
+                                if (stopsJson.runStopsVariants.length > 0) {
+                                    przelaczKarteW(0);
+                                }
+                            }
+
+
+                            div.className = 'div-lines-variants';
+                            div.id = `variant-${index}`; // unikalne ID dla wariantu
+                            kontenerWarianty.appendChild(div);
+
+                            var p = document.createElement('p');
+                            p.className = 'p-lines-variants';
+                            p.textContent = firstStop + " => " + lastStop;
+                            div.appendChild(p);
+                            
+                            item.runStops.forEach(stop => {
+                                /*document.write(locations(stop.locationID) + "<br>");*/
+
+                                var a = document.createElement('a');
+                                a.className = 'a-lines-variants';
+                                a.textContent = locations(stop.locationID);
+                                a.setAttribute("onClick", "stopTimesF('"+liniaID+"', '"+stop.locationID+"', '"+firstStop+"', '"+lastStop+"')");
+                                div.appendChild(a);
+
+                            })
+                            /*document.write("<br><br><br>");*/
+                        })
+
+                    })
+                    .catch(error => console.error('Błąd:', error));
+            }
+        }
+
+        function przelaczKarteW(index){
+            /*kontenerWarianty.innerHTML = '';*/
+            kontenerCzasy.innerHTML = '';
+            kontenerAllWozy.style.display = "none";
+            spanWozyLinia.innerHTML = '';
+            spanWozyPrzystanek.innerHTML = '';
+            kontenerSelectWoz.style.display = "none";
+            txtRozklad.style.display = "none";
+            genTextButton.style.display = "none";
+
+            // Ukryj wszystkie warianty trasy
+            document.querySelectorAll('.div-lines-variants').forEach(div => {
+                div.style.display = 'none';
+            });
+
+            // Pokaż tylko wybrany wariant
+            const selectedDiv = document.getElementById(`variant-${index}`);
+            if (selectedDiv) {
+                selectedDiv.style.display = 'block';
+            }
+        }
+
+        var wozyJson;
+        var wozyDownlOk;
+
+        fetch('./data/database.json')
+            .then((response) => response.json())
+            .then(json => {
+                wozyJson = json;
+                console.log('Pobrano '+ wozyJson.length);
+                console.log(wozyJson);
+                wozyDownlOk = true;
+            })
+            .catch(error => console.error('Błąd:', error));
+
+        function wozInfo(id){
+            if (wozyDownlOk && id != undefined){
+                /*if (id.length === 7 && id[0] === '6'){
+                    id = id.split('/')[0]
+                }*/
+                return wozyJson.find(vehicle => vehicle.sideNo == id);
+            } else if(id == undefined){
+                return "Undefined";
+            }
+        }
+
+        var kontenerCzasy = document.getElementById('kontener-czasy');
+        var spanCzasy = document.getElementById('span-czasy');
+        var kontenerWozy = document.getElementById('kontener-wozy');
+        var kontenerAllWozy = document.getElementById('kontener-all-wozy');
+        var spanWozyLinia = document.getElementById('span-wozy-linia');
+        var spanWozyPrzystanek = document.getElementById('span-wozy-przystanek');
+        var wozyNaLini = [];
+        var vehiclesByMinute = {};
+
+        var dataJson;
+
+        var textRozklad = {};
+
+        function stopTimesF(liniaID, locationID, firstStop, lastStop){
+            textRozklad = {
+                info: `Linia: ${lines(liniaID)} Przystanek: ${locations(locationID)} Z: ${firstStop} Do: ${lastStop}`,
+                rozklad: []
+            }
+
+            console.log("Linia: "+lines(liniaID) + " Przystanek: " + locations(locationID) + " Z: " + firstStop + " Do: " + lastStop);
+            
+            fetch("https://thingproxy.freeboard.io/fetch/https://live.mpk.czest.pl/api/locations/"+locationID+"/timetables/"+proxyTime)
+            .then((response) => response.json())
+            .then(json => {
+                dataJson = json;
+                console.log('Pobrano '+ dataJson.length);
+                console.log(dataJson);
+
+
+                var actHour;
+                var lastTime;
+                var minHTable = [];
+                wozyNaLini = [];
+                var lastVehicle;
+                spanWozyLinia.innerHTML = '';
+                spanWozyPrzystanek.innerHTML = '';
+                kontenerSelectWoz.style.display = "none";
+                txtRozklad.style.display = "none";
+                genTextButton.style.display = "block";
+                dataJson.forEach(item =>{
+                    if (item.lineID == liniaID){
+                        var tabela = "<table id='tabela-czasy'>";
+
+                        tabela += `
+                            <tr id="tabela-czasy-tr-heder" class="tabela-czasy-tr">
+                                <th>${lines(liniaID)}</th>
+                                <th>Kier: ${lastStop}</th>
+                            </tr>`;
+
+                        vehiclesByMinute = {};
+
+                        item.timetable.forEach(run =>{
+                            if (!wozyNaLini.includes(run.vehicleID)){
+                                wozyNaLini.push(run.vehicleID);
+                            }
+                            if (locations(run.direction) == lastStop){
+                                spanCzasy.innerHTML = locations(locationID);
+
+                                var tempHour = (time(run.dateTime).hour + 1) % 24;
+                                if (tempHour < 10){
+                                    tempHour = "0" + tempHour;
+                                }
+
+                                var tempMin = time(run.dateTime).minute;
+                                if (tempMin < 10){
+                                    tempMin = "0" + tempMin;
+                                }
+
+                                var okCzas = tempHour + ":" + tempMin;
+
+                                //tutaj zrobić sprawdzanie ifem minuty i wozu na cały kod w dół, zrobić zmienną lasttime, chyba że już jest
+
+                                //okCzas != lastTime && run.vehicleID != lastVehicle
+                                //(okCzas != lastTime) || ((okCzas == lastTime) && (run.vehicleID != lastVehicle))
+                                if (okCzas != lastTime){
+                                    //console.log("%cokCzas: " + okCzas + " lastTime: " + lastTime + " run.vehicleID: " + run.vehicleID + " lastVehicle: " + lastVehicle, "color: red");
+
+
+                                    console.log(locations(locationID) + " | " + okCzas + " | " + vehicles(run.vehicleID));
+                                    var tempVehicleC = vehicles(run.vehicleID);
+                                    textRozklad.rozklad.push({okCzas, tempVehicleC});
+
+
+                                    if (actHour == ''){
+                                        actHour = tempHour;
+                                    }
+
+                                    var roznicaHour;
+
+                                    if (tempHour !== actHour) {
+                                        let timeKey = `${tempHour}:${tempMin}`;
+                                        vehiclesByMinute[timeKey] = run.vehicleID;
+
+                                        if (actHour) {
+                                            tabela += `
+                                                <tr>
+                                                    <td class="hour-td">${actHour}</td>
+                                                    <td>${minHTable.map(minute => {
+                                                        let timeKey = `${actHour}:${minute}`;
+                                                        return `<a onclick="vehicleInfoF('${vehiclesByMinute[timeKey]}', '${timeKey}')">${minute}</a>`;
+                                                    }).join(", ")}</td>
+                                                </tr>`;
+                                        }
+
+                                        roznicaHour = Number(tempHour) - Number(actHour);
+
+                                        for (var i = 1; i < roznicaHour; i++) {
+                                            let hourToAdd = Number(actHour) + i;
+                                            tabela += `
+                                                <tr>
+                                                    <td class="hour-td">${hourToAdd < 10 ? "0" + hourToAdd : hourToAdd}</td>
+                                                    <td></td> <!-- Pusta kolumna dla minut -->
+                                                </tr>`;
+                                        }
+
+                                        minHTable = [tempMin];
+                                        actHour = tempHour;
+                                        lastVehicle = run.vehicleID;
+                                        
+                                    } else {
+                                        minHTable.push(tempMin);
+
+                                        let timeKey = `${tempHour}:${tempMin}`;
+                                        vehiclesByMinute[timeKey] = run.vehicleID;
+
+                                    }
+                                
+                                    lastTime = okCzas;
+                                    console.log("%cLast time " + lastTime, "color: pink");
+                                }else{
+                                    console.log("Powtórka");
+                                    
+                                }
+                            }
+                        })
+                        console.log(vehiclesByMinute);
+                        if (actHour !== '') {
+                            tabela += `
+                                <tr>
+                                    <td class="hour-td">${actHour}</td>
+                                    <td>${minHTable.map(minute => {
+                                        let timeKey = `${actHour}:${minute}`;
+                                        return `<a onclick="vehicleInfoF('${lastVehicle}', '${timeKey}')">${minute}</a>`;
+                                    }).join(", ")}</td>
+                                </tr>`;
+                            }
+                        tabela += "</table>";
+                        kontenerCzasy.innerHTML = tabela;
+                    }
+                    
+                })
+                kontenerAllWozy.style.display = "block";
+                spanWozyLinia.innerHTML = lines(liniaID);
+                console.log('Aktualizacja spanWozyLinia na:', spanWozyLinia);
+                spanWozyPrzystanek.innerHTML = locations(locationID);
+                console.log('Aktualizacja spanWozyPrzystanek na:', spanWozyPrzystanek);
+                        
+                console.log('tenteges');
+                vehiclesOnLine();
+
+            })
+            .catch(error => console.error('Błąd:', error));
+
+        }
+
+        function vehiclesOnLine(){
+            kontenerSelectWoz.style.display = "none";
+            kontenerWozy.innerHTML = '';
+            var grupowanie = {};
+
+            wozyNaLini.forEach(wozItem =>{
+                if (wozItem){
+                    // Sprawdzanie, czy długość jest mniejsza niż 20 znaków
+                    if (wozItem.length < 20) { // ZMIENIONO: dodano sprawdzenie długości
+                        console.log(`%cConverting vehicle number to ID: ${wozItem}`, 'color: orange');
+                        wozItem = vehicles(wozItem); // ZMIENIONO: zawsze konwertujemy na ID
+                    }
+
+                    var tempModel = wozInfo(vehicles(wozItem));
+
+                    if (tempModel != undefined){
+                        tempModel = tempModel.model;
+                    }
+                    if (!grupowanie[tempModel]){
+                        grupowanie[tempModel] = []
+                    }
+
+                    grupowanie[tempModel].push(wozItem);
+                    }
+            })
+
+            var listaWozy = document.getElementById('lista-wozy');
+            if (listaWozy){
+                listaWozy.remove();
+            }
+            var lista = "<ul id='lista-wozy'>";
+
+            if (Object.keys(grupowanie).length == 0){
+                lista = "<span id='red-wozy-none'>Brak danych o wozach</span>";
+            }
+
+            for (const model in grupowanie) {
+                const ids = grupowanie[model];
+                lista += `<li>${model} (${ids.length}): `;
+
+                ids.forEach((id, index) => {
+                    lista += `<a onclick="vehicleInfoF('${id}')">${vehicles(id)}</a>`;
+                    if (index < ids.length - 1) {
+                        lista += ", "; // Dodanie przecinka, jeśli to nie jest ostatni element
+                    }
+                });
+
+                lista += "</li>";
+            }
+            lista += "</ul>";
+            kontenerWozy.innerHTML += lista;
+        }
+
+
+        function vehicleInfoF(pojazd, wczas){
+            if (pojazd && pojazd !== 'null'){
+                console.log(pojazd);
+                console.log("Wóz: " + vehicles(pojazd));
+                var vehicleInfoGodziny = Object.keys(vehiclesByMinute).filter(godzina => vehiclesByMinute[godzina] === pojazd);
+                console.log(wczas + " ALSO ->" + vehicleInfoGodziny);
+                kontenerSelectWoz.style.display = "none";
+
+                vehicleInfoFClearC();
+                var tabelaCz = document.getElementById('tabela-czasy');
+
+                if (tabelaCz) {
+                    var linki = tabelaCz.querySelectorAll('a');
+                    linki.forEach(link => {
+                        var onclickValue = link.getAttribute('onclick');
+                        if (onclickValue && onclickValue.includes("vehicleInfoF('"+pojazd+"'")) {
+                            link.style.color = 'orange';
+                        }
+                    });
+                }
+                showWozInfo(pojazd);
+            }
+        }
+
+        function vehicleInfoFClearC(){
+            var tabelaCz = document.getElementById('tabela-czasy');
+
+            if (tabelaCz) {
+                kontenerSelectWoz.style.display = "none";
+                const linki = tabelaCz.querySelectorAll('a');
+                linki.forEach(link => {
+                        link.style.color = '';
+                });
+            }
+        }
+
+        var kontenerSelectWoz = document.getElementById('kontener-select-woz');
+
+        function showWozInfo(wozId){
+            if (wozId != ''){
+                var woz = wozInfo(vehicles(wozId));
+                if (woz){
+                    kontenerSelectWoz.style.display = "block";
+                    kontenerSelectWoz.innerHTML = '';
+                    var selectWoz = `
+                        <div id="show-woz-model">Model ${woz.model}</div>
+                        <div id="show-woz-woz">Wóz ${vehicles(wozId)}</div>
+                        <div id="show-woz-reg">Nr Rejestracyjny ${woz.regNo}</div>
+
+                    `;
+                    if (!woz.loudVoith){
+                        selectWoz += `<div id="show-woz-model">Głośny silnik lub skrzynia</div>`;
+                    }
+                    kontenerSelectWoz.innerHTML = selectWoz;
+                } else{
+                    console.log("Nie znaleziono obiektu wozInfo("+vehicles(wozId)+")");
+                }
+            }
+        }
+
+        var txtRozklad = document.getElementById('txt-rozklad');
+        var genTextButton = document.getElementById('gen-text-button');
+
+        function genTextF(){
+            txtRozklad.style.display = "block";
+        }
+
+    </script>
+
+</body>
+</html>
