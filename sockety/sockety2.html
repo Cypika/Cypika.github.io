@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MPK Częstochowa</title>
     <link rel="stylesheet" href="sockety-style.css">
-</head>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+    
 <body>
     <div id="black-viniette"></div>
 
     <button id="fetchSid">Pobierz SID</button>
+    <button onclick="renewSid()">Ping SID</button>
     <button id="sendRequest">Wyślij żądanie 1 vehicles</button>
     <button id="sendRequest2">Wyślij żądanie 2 vehicles numery</button>
     <button id="sendRequest3">Wyślij żądanie 3 Puste</button>
@@ -19,10 +21,22 @@
     <input type="text" id="input">
     <button onclick="send()">Wyślij</button><br>
 
-    <button onclick="wshandshake('exec', '')">WS handshake</button>
-    <button onclick="processVData()">processVData()</button><br><br>
+    <!--button onclick="wshandshake('exec', '')">WS handshake</button-->
+    <button onclick="handshakeSelector('exec')">WS handshake</button>
+    <button onclick="handshakeSelector('gps')">WS handshake GPS</button>
+    <button onclick="loadVehicleMap()">LoadVehicleMap</button>
+    <button onclick="processVData()">processVData()</button>
+    <button onclick="gpsTester()">gpsTester()</button>
+    <br><br>
+
+    <button onclick="sendRequest(`15:40/vehicle_gps,`);">vehicle gps</button>
+    <button onclick='sendRequest(`67:42/vehicle_gps,["vehicleID","e6c0a250-f18e-470f-b1cf-eda724cf1ea3"]`);'>gps dane</button>
+    <button onclick='sendRequest(`67:42/vehicle_gps,["vehicleID","daaad901-94e8-4950-92a7-b0a46dc77677"]`);'>gps dane2</button>
+
+    <br><br>
 
     <button onclick="loadWozy()">Załaduj wozy</button>
+    Ważność SID <span id="waznosc-sid-span">0</span>s
     <div id="suma-select-dsp"></div>
     <div id="wozy-data-kontener">
         <div id="marki-kontener"></div>
@@ -44,7 +58,15 @@
     <button onclick="autoQ('128')">128</button><br>
 
     <br><br>
+    <div id="map" style="display: none;">
+        <div id="tracking-vmax"></div>
+        <div id="tracking-info"></div>
+    </div>
+    <br><br>
+
     <button onclick="openConsole()">Konsoleta</button>
+    <button onclick="switchMap()">Mapa</button>
+
     <br><br>
 
     <div id="konsola-obszar" style="display: none;">
@@ -70,31 +92,535 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-hotline@0.4.0/dist/leaflet.hotline.min.js"></script>
     <script>
-        //Pobieranie SID
-        let sid = null;
+        /*/-----  D E V   T O O L S  -----/*/
 
-        async function getSid(){
-            try {
-                var response = await fetch("https://live.mpk.czest.pl/socket.io/?EIO=3&transport=polling");
-                var text = await response.text();
-                var sidMatch = text.match(/"sid":"([^"]+)"/);
-                if (sidMatch) {
-                    sid = sidMatch[1];
-                    document.cookie = `io=${sid}; path=/;`;
-                    console.log("Uzyskano SID:", sid);
-                } else {
-                    throw new Error("Nie udało się uzyskać SID.");
-                }
-            } catch (error) {
-                console.error("Błąd podczas pobierania SID:", error);
+
+        //Network filter:
+        //tile.openstreetmap.org kaspersky
+        //tile.openstreetmap.org kaspersky leaflet
+
+        //Console filter:
+        //-violation
+
+        /*/-----  M A P A  -----/*/
+
+        var mapOptions = {
+            center: [50.8116,19.1148],
+            zoom: 13, //13
+            maxZoom: 19
+        }
+
+        var map = new L.map('map', mapOptions);
+
+        var googleHybrid = new L.tileLayer('https://{s}.google.com/vt?lyrs=s,h&x={x}&y={y}&z={z}', {
+            maxZoom: 22,
+            subdomains: ['mt0','mt1','mt2','mt3']
+        });
+        var googleSatelite = new L.tileLayer('https://{s}.google.com/vt?lyrs=s&x={x}&y={y}&z={z}', {
+            maxZoom: 22,
+            subdomains: ['mt0','mt1','mt2','mt3']
+        });
+        var osm = new L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxNativeZoom: 19, // OSM max available zoom is at 19.
+            maxZoom: 22, // Match the map maxZoom, or leave map.options.maxZoom undefined.
+            opacity: 0.7
+
+        });
+
+        map.addLayer(osm);
+
+        var vehiclesMapObject = {};
+        var markers = [];
+
+        function cleanMapMarkers(){
+            markers.forEach(markerItem => {
+                markerItem.remove();
+            });
+            markers = [];
+        }
+
+        //vehiclesMapObject[lp.taborNo] = [lp.latitude, lp.longitude, lp.lineNo, lp.direction, lp.dateTime, actDriver];
+
+        //#FFD700
+
+        L.marker([50.786739349365234, 19.132789611816406]).addTo(map).bindPopup(`
+            <div class="popup-div">
+                <span style="color: red; font-weight: 600;">Pojazd: 680</span> &nbsp;&nbsp;&nbsp; 
+                <span style="color: blue;">Linia: <span style="font-weight: 600;">2</span> </span><br>
+                <span style="color: #e67e22;">Kierunek: Fieldorfa Nila ZAJEZDNIA TRAMW</span><br> 
+                <span style="color: green;">26.01.2025, 23:06:14</span><br> 
+                <span style="color: #852a2a;">Prędkość: [km/h]</span><br><br>
+                <div style="text-align: right;">
+                    <button onclick="refreshVehicle(680);" class="button-odswiez">Odśwież</button>
+                </div>
+            </div>
+        `);
+
+
+        // Tworzymy nowy div z napisem
+        const labelDiv = L.DomUtil.create('div', 'custom-label');
+        labelDiv.innerHTML = "Mój napis w rogu mapy";
+        labelDiv.style.position = 'absolute';
+        labelDiv.style.bottom = '10px';
+        labelDiv.style.right = '10px';
+        labelDiv.style.background = 'rgba(255,255,255,0.8)';
+        labelDiv.style.padding = '5px';
+        labelDiv.style.borderRadius = '5px';
+
+        // Dodajemy do mapy
+        map.getContainer().appendChild(labelDiv);
+
+
+
+        function driverTooltip(imgElement, text){
+            var driverInfo = imgElement.closest('.popup-div').querySelector('.driver-info');
+
+            // Sprawdź aktualną widoczność tooltipa
+            if (driverInfo.style.display === 'none' || driverInfo.style.display === '') {
+                driverInfo.innerHTML = `<hr>Kierowca: ${text}<hr>`;
+                driverInfo.style.display = 'block';
+            } else {
+                driverInfo.style.display = 'none';
             }
         }
 
-        document.getElementById("fetchSid").addEventListener("click", () => {
-            getSid();
-        });
+        /*var popupTemplate = `
+            <div class="popup-div">
+                <span style="color: red; font-weight: 600;">Pojazd: ${vehicleItem}</span> &nbsp;&nbsp;&nbsp; 
+                <span style="color: blue;">Linia: <span style="font-weight: 600;">${lineNo}</span> </span><br>
+                <span style="color: #e67e22;">Kierunek: ${direction}</span><br> 
+                <span style="color: green;">${convertTime(dateTime).dateTime}</span><br> 
+                <span style="color: #852a2a;">Prędkość: [km/h]</span><br>
+                <div class="driver-info"></div>
+                <div class="driver-icon-roz">
+                    <div class="d-icon-box">
+                        ${imgToDsp}
+                    </div>
+                    <div class='d-prowadnica-b'>
+                        <button onclick="refreshVehicle(${vehicleItem}, ${markers.length});" class="button-odswiez">Odśwież</button>
+                    </div>
+                </div>
+            </div>
+        `;*/
 
+        //popupTemplate(vehicleItem, lineNo, direction, convertTime(dateTime).dateTime, 0, imgToDsp, markers.length);
+
+        function popupTemplate(taborNo, lineNo, direction, dateTime, velocity = "", markersLen){
+            var imageIcon = imgObject[taborNo] || "";
+            return `
+                <div class="popup-div">
+                    <span style="color: red; font-weight: 600;">Pojazd: ${taborNo}</span> &nbsp;&nbsp;&nbsp; 
+                    <span style="color: blue;">Linia: <span style="font-weight: 600;">${lineNo}</span> </span><br>
+                    <span style="color: #e67e22;">Kierunek: ${direction}</span><br> 
+                    <span style="color: green;">${dateTime}</span><br> 
+                    <span style="color: #852a2a;">Prędkość: ${velocity} [km/h]</span><br>
+                    <div class="driver-info"></div>
+                    <div class="driver-icon-roz">
+                        <div class="d-icon-box">
+                            ${imageIcon}
+                        </div>
+                        <div class='d-prowadnica-b'>
+                            <button onclick="refreshVehicle(${taborNo}, ${markersLen});" class="button-odswiez">Odśwież</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        var imgObject = {};
+        var rideLine;
+
+        function loadVehicleMap(){
+            cleanMapMarkers()
+            for (var vehicleItem in vehiclesMapObject){
+                if (vehiclesMapObject.hasOwnProperty(vehicleItem)){
+                    var vehicleData = vehiclesMapObject[vehicleItem];
+                    console.log(vehicleData);
+
+                    var latitude = vehicleData[0];
+                    var longitude = vehicleData[1];
+                    var lineNo = vehicleData[2];
+                    var direction = vehicleData[3];
+                    var dateTime = vehicleData[4];
+                    var driver = vehicleData[5];
+
+                    /*var markerAdd = L.marker([latitude, longitude]).addTo(map).bindPopup(`
+                        <span style="color: red;">Pojazd: ${vehicleItem}</span> &nbsp;&nbsp;&nbsp; 
+                        <span style="color: blue;">Linia: ${lineNo} </span><br> 
+                        <span style="color: #FFD700;">Kierunek: <br> ${direction}</span><br> 
+                        <span style="color: green;">${convertTime(dateTime).dateTime}</span><br> 
+                        Prędkość  [km/h]<br><br>
+                        <a style="float: right; color: blue;">Odśwież</a>
+                    `);*/
+
+                    var imgToDsp = "";
+
+                    if (driver != undefined){
+                        var driverText = [
+                            driver.imie && driver.nazwisko ? driver.imie + " " + driver.nazwisko : driver.imie || driver.nazwisko, 
+                            driver.nick
+                        ].filter(Boolean).join(", ");
+
+                        imgToDsp = `<img src="images/icon_good.png" class="d-icon" title="Zidentyfikowany kierowca" onclick="driverTooltip(this, '${driverText}')">`;
+                        imgObject[vehicleItem] = imgToDsp;
+                    }
+
+                    var markerAdd = L.marker([latitude, longitude]).addTo(map)
+                        .bindPopup(popupTemplate(vehicleItem, lineNo, direction, convertTime(dateTime).dateTime, "", markers.length));
+                    markers.push(markerAdd);
+                    
+                }
+            }
+        }
+
+        var mapa = document.getElementById('map');
+
+        function switchMap(){
+            if (mapa.style.display == "none"){
+                mapa.style.display = "block";
+                setTimeout(() => {
+                    map.invalidateSize();
+                }, 100);
+            }else{
+                mapa.style.display = "none";
+            }
+        }
+
+        function toRadians(degrees) {
+            return degrees * (Math.PI / 180);
+        }
+
+        function haversine(lat1, lon1, lat2, lon2) {
+            const R = 6371; // Promień Ziemi w km
+            const dLat = toRadians(lat2 - lat1);
+            const dLon = toRadians(lon2 - lon1);
+            const a = Math.sin(dLat / 2) ** 2 +
+                    Math.cos(toRadians(lat1)) * Math.cos(toRadians(lat2)) *
+                    Math.sin(dLon / 2) ** 2;
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            return R * c; // Dystans w km
+        }
+
+        function calculateSpeed(lat1, lon1, lat2, lon2, timeInSeconds) {
+            const distance = haversine(lat1, lon1, lat2, lon2); // Odległość w km
+            const timeInHours = timeInSeconds / 3600; // Konwersja czasu na godziny
+            return distance / timeInHours; // Prędkość w km/h
+        }
+
+        /*function getColorForSpeed(speed) {
+            // Mapowanie prędkości na kolor
+            if (speed <= 0) return "yellow"; // 0 km/h → Żółty
+            if (speed >= 80) return "red";    // 80 km/h → Czerwony
+
+            // Przejście kolorystyczne (żółty → czerwony)
+            var r = 255; // Czerwony zawsze 255
+            var g = Math.floor(255 * (1 - speed / 80)); // Zielony maleje od 255 (żółty) do 0 (czerwony)
+
+            return `rgb(${r}, ${g}, 0)`;
+        }*/
+
+
+        function getColorForSpeed(speed) {
+            if (speed <= 0) return "rgb(70, 255, 0)"; // 0 km/h → Zielony z lekkim odcieniem niebieskiego
+            if (speed >= 80) return "red";  // 80 km/h → Czerwony
+
+            let r, g, b;
+            let ratio = speed / 80; // Normalizacja do zakresu 0-1
+
+            if (ratio < 0.3) {
+                // Zielony → Żółty (0 - 24 km/h)
+                r = Math.floor(255 * (ratio / 0.3));
+                g = 255;
+                b = 0;
+            } else {
+                // Żółty → Czerwony (24 - 80 km/h)
+                r = 255;
+                g = Math.floor(255 * (1 - (ratio - 0.3) / 0.7));
+                b = 0;
+            }
+
+            return `rgb(${r}, ${g}, ${b})`;
+        }
+
+
+
+
+
+
+        //Zapamiętywanie ikon
+        //Pętla inna karta
+        //Schematy kolorystyczne lini
+
+
+
+
+        var oneVehicleTab = [];
+        var trackingState = false; //Zmienić na true w razie potrzeby
+
+        //SETTINGS
+        var travelTime = 10;
+
+        var rideLineArray = [];
+        var lastLatLng;
+        var lastVelocity;
+        var polylineArray = [];
+
+        var vMax = 0;
+
+        function updateVehiclePopup(idVehicle, markerPole, dataObj){
+            var image = imgObject[idVehicle];
+            console.log(image);
+
+            tenMarker = markers[markerPole];
+
+            var odczyt0 = dataObj[1][0];
+            var odczyt1 = dataObj[1][1];
+            console.log(odczyt0);
+
+            var velocity = calculateSpeed(odczyt1.latitude, odczyt1.longitude, odczyt0.latitude, odczyt0.longitude, travelTime);
+            velocity = Math.round(velocity);
+            console.log(velocity);
+
+            var latLng = [odczyt0.latitude, odczyt0.longitude];
+
+            tenMarker.setLatLng(latLng); 
+            tenMarker.getPopup() //Problem z img
+                .setContent(popupTemplate(odczyt0.taborNo, odczyt0.lineNo, odczyt0.direction, convertTime(odczyt0.dateTime).dateTime, velocity, markerPole));
+
+
+            /*tenMarker.getPopup().update({
+                content: popupTemplate(odczyt0.taborNo, odczyt0.lineNo, odczyt0.direction, convertTime(odczyt0.dateTime).dateTime, velocity, markerPole)
+            });*/
+
+
+
+               
+            /*if (!rideLineArray.includes(latLng)){
+                L.marker(latLng).addTo(map)
+                rideLine.addLatLng(latLng);
+
+                rideLineArray.push(latLng);
+            }*/
+            if (trackingState == true){
+                if ((lastLatLng && lastLatLng.length != 0) && lastLatLng != latLng && (velocity > 0 || lastVelocity > 0)){
+                    //L.marker(latLng).addTo(map)
+                    //var polyline = L.polyline([lastLatLng, latLng], { color: 'red' }).addTo(map);
+
+                    //var polyline = L.polyline([lastLatLng, latLng]).addTo(map);
+
+                    var color1 = getColorForSpeed(lastVelocity);
+                    var color2 = getColorForSpeed(velocity);
+
+                    var polyline = L.hotline([
+                        [lastLatLng[0], lastLatLng[1], 0],  // Dodana wartość numeryczna dla gradientu (np. 0)
+                        [latLng[0], latLng[1], 1]           // Drugi punkt z wartością 1
+                    ], {
+                        weight: 8,                 // Grubość linii
+                        opacity: 1,                // Przezroczystość linii
+                        palette: {                 // Definiowanie gradientu kolorów
+                            0.0: color1,           // Kolor początkowy dla wartości 0
+                            1.0: color2            // Kolor końcowy dla wartości 1
+                        },
+                        min: 0,                    // Minimalna wartość dla gradientu
+                        max: 1,                    // Maksymalna wartość dla gradientu
+                        steps: 256,                // Ilość kroków przejścia kolorów
+                        outlineWidth: 0  
+                    }).addTo(map).bindTooltip("Prędkość: " + lastVelocity + " [km/h]");
+
+                    polylineArray.push(polyline);
+
+                    rideLineArray.push([lastLatLng, latLng, velocity]);
+
+                    if (vMax < velocity){
+                        vMax = velocity;
+                        trackingVmax.innerHTML = `Vmax: ${vMax}km/h`
+                    }
+                }
+
+                lastLatLng = latLng;
+                lastVelocity = velocity;
+            }
+
+        }
+
+        var terazTracking = "";
+        var razPytane = false;
+        var razPytaneWoz;
+
+        function refreshVehicle(idVehicle, markerPole){
+            if (trackingVNow == false){
+                oneVehicleTab = [];
+                oneVehicleTab.push(idVehicle);
+
+                if (createRequest("partOne") == "ok"){
+                    /*handshakeSelector("gps").then(odpow => {
+                        alert(odpow);
+                    });*/
+
+                    /*var odpow = handshakeSelector("gps");
+                    console.log("ODPOWIEDŹ: ");
+                    console.log(odpow);*/
+
+
+                    handshakeSelector("gps").then(odpow => {
+                        console.log("ODPOWIEDŹ: ");
+                        console.log(odpow);
+                        
+                        if (odpow == "ok_gps"){
+                            console.log(getGpsData);
+                            
+                            updateVehiclePopup(idVehicle, markerPole, getGpsData);
+
+                            if (trackingState){
+                                trackingVNow = true;
+                                aktualizacjaLoopOn(idVehicle, markerPole);   
+                                trackingInfo.innerHTML = "Tracking: wóz #"+idVehicle+" <a onclick='cancelTracking()' id='calcel-a'>anuluj</a>";
+                                terazTracking = idVehicle;
+                            }
+                        
+                        }
+                    });
+                    
+                    /*if (handshakeSelector("gps") == "ok_gps"){
+                        alert("oki");
+                        alert(getGpsData);
+                    }*/
+                }
+            }
+            razPytane = true;
+            razPytaneWoz = RLoad;
+        }
+
+        var trackingInfo = document.getElementById("tracking-info");
+        var trackingVmax = document.getElementById("tracking-vmax");
+        var trackingVNow = false;
+
+        function trackingSwitch(stan){
+            if(stan == "on"){
+                trackingState = true;
+                konsola("info", "Successfully <span style='color: LimeGreen;'>enabled</span> tracking");
+                trackingInfo.innerHTML = "Tracking: ON";
+            }else if(stan == "off"){
+                trackingState = false;
+                cancelTracking("normal");
+                konsola("info", "Successfully <span style='color: red;'>disabled</span> tracking");
+                trackingInfo.innerHTML = "";
+                trackingVmax.innerHTML = "";
+                vMax = 0;
+                //trackingVNow = false;
+            }else if(stan == "offstop"){
+                trackingState = false;
+                cancelTracking("stop");
+                konsola("info", "Successfully <span style='color: red;'>disabled</span> tracking");
+                //trackingVNow = false;
+            }
+        }
+
+        async function cancelTracking(wariant = "normal"){
+            if (trackingVNow == true){
+                if (wariant == "stop"){
+                    trackingInfo.innerHTML = "Tracking: OFF";
+                }else if (wariant == "normal"){
+                    //trwa anulowanie komunikat
+                    trackingInfo.innerHTML = "Tracking: wóz #"+terazTracking+" anulowanie...";
+                    trackingVmax.innerHTML = "";
+                    vMax = 0;
+                    if (isFetching == true){
+                        while (isFetching) {
+                            await new Promise(resolve => setTimeout(resolve, 400)); // Sprawdzanie co 100ms
+                            console.log("ten: " + isFetching);
+                        }
+                        
+                    }
+                    setTimeout(() =>{
+                        polylineArray.forEach(polyline =>{
+                            polyline.remove();
+                        });
+                        polylineArray = [];
+                        /*rideLineArray.forEach(rline =>{
+                            rline.remove();
+                        });*/
+                        rideLineArray = [];
+
+
+                        trackingVNow = false;
+                        trackingInfo.innerHTML = "Tracking: ON";
+                        trackingVmax.innerHTML = "";
+                        vMax = 0;
+                    }, 200)
+                }
+
+                lastLatLng = [];
+                lastVelocity = 0;
+
+                //await sendRequest("15:41/vehicle_gps,");
+                
+            }
+        }
+
+        /*
+
+        sendRequest(`67:42/vehicle_gps,["vehicleID","daaad901-94e8-4950-92a7-b0a46dc77677"]`);
+
+        sendRequest(`67:42/vehicle_gps,["vehicleID","e6c0a250-f18e-470f-b1cf-eda724cf1ea3"]`);
+
+
+
+
+
+
+
+        */
+
+        async function aktualizacjaLoopOn(idVehicle, markerPole){
+            /*var tmOut;
+            while(trackingState){
+                tmOut = setTimeout(() =>{
+                    var odpLoop = await sendRequest(); 
+                    console.log(odpLoop);
+                }, 2000);
+                
+            }*/
+
+            if ((Date.now() - lastSidRenew) <= (waznoscSid - 1) * 1000 || lastSidRenew == 0){
+                if (trackingState && waznoscSid > 1 && trackingVNow){
+                    if (!renewingSigNow){
+                        try {
+                            var odpLoop = await sendRequest(); // ✅ await działa poprawnie
+
+                            console.log(odpLoop);
+
+                            if (odpLoop != "1:3" && odpLoop != "1:1" && odpLoop != "code500"){
+                                var cleanOdp = odpLoop.replace(/^\d+:\d+\/vehicle_gps,/, "");
+
+                                odpLoopPrs = JSON.parse(cleanOdp/* + "150:42/vehicle_gps,"*/);
+                                console.log(JSON.stringify(odpLoopPrs, null, 2)); // Ładne formatowanie JSON
+
+                                updateVehiclePopup(idVehicle, markerPole, odpLoopPrs);
+                            }else if(odpLoop == "1:1"){ //skasowane ponieważ już się powtarza
+                                /*konsola("error", "Serwer zamknął połączenie");
+                                trackingSwitch("offstop");*/
+                                console.log("zreturniło BBBBBBBBBBBBBB");
+                                return;
+                            }
+                        } catch (error) {
+                            console.error("Błąd w trackingu:", error);
+                        
+                            trackingSwitch("offstop");
+                            konsola("error", `Tracking error: ${error}`);
+                            return;
+                        }
+                    }
+                    setTimeout(() => aktualizacjaLoopOn(idVehicle, markerPole), 4000);
+                    
+                }
+            }
+        }
+
+        /*/-----  K O N S O L A  -----/*/
 
         var konsolaObszar = document.getElementById('konsola-obszar');
         var konsolaPole = document.getElementById('konsola-pole');
@@ -165,6 +691,18 @@
                 "U2FsdGVkX1/WCc5UoIrGS/Ky+hL0Srxtcs6b/borq9k=",
                 "Czyści konsole",
                 ""
+            ],
+            cmd6: [ //tracking
+                "5a95db2aa8e5d0883be7b8968983b8ea67d91f1e7ae5463b97258986a93de1be",
+                "U2FsdGVkX18QQaz+YtjDNgAI1YEhEesvpNTm6xfdQG0=",
+                "Automatyczne śledzenie wybranego wozu",
+                ""
+            ],
+            cmd7: [ //sidloop
+                "e42913ec1db5f0672f564ffa4f82588f063b42cb05d5183518d929a1c3e17aea",
+                "U2FsdGVkX18rLJC8Jok+3vPA/MH5FUqTGWXxW8k61oM=",
+                "Nieskończony SID",
+                ""
             ]
         };
 
@@ -178,7 +716,6 @@
         }
 
         /*  Funkcja deweloperska do tworzenia nowych komend  */
-
         async function newCommand(commandTag, hasloDoSzyfru){
             if (commandTag && hasloDoSzyfru){
                 console.log("##########");
@@ -189,7 +726,7 @@
             }
         }
 
-        newCommand("cls", "szczecinski105N");
+        newCommand("sidloop", "szczecinski105N");
 
         //console.log(encryptData("leonard", "szczecinski105N"));
         //console.log(decryptData(komendy.cmd2[1], "szczecinski105Nb"))
@@ -213,7 +750,7 @@
             "f": ["#FFFFFF", "Bright White"]  // Jasna biel
         };
 
-        var version = "0.1";
+        var version = "0.2";
 
         var logColor = "white"; //#C0C0C0
 
@@ -227,13 +764,15 @@
 
                 const wpisyKonsoli = document.querySelectorAll('.konsola-wpis');
                 wpisyKonsoli.forEach(wpis => {
-                    wpis.style.color = fontKolor;
-                    const spans = wpis.querySelectorAll('span');
-                    spans.forEach(span => {
-                        if (span.style.color) {
-                            span.style.color = span.style.color;
-                        }
-                    });
+                    if (wpis.getAttribute("logType") != "error"){
+                        wpis.style.color = fontKolor;
+                        const spans = wpis.querySelectorAll('span');
+                        spans.forEach(span => {
+                            if (span.style.color) {
+                                span.style.color = span.style.color;
+                            }
+                        });
+                    }
                 });
             }
         }
@@ -266,7 +805,7 @@
                             konsola("info", "-------------  <span style='color: orange;'>VERSION CONTROL</span>  -------------");
                             konsola("info", "MPKCHEATS Shell");
                             konsola("info", "LATEST RELEASED VERSION:");
-                            konsola("info", `SIGMA <span style="color: orange;">${version}</span>`);
+                            konsola("info", `UNSTABLE <span style="color: orange;">${version}</span>`);
                         }else if(jakiCmd == "cmd1"){
                             if (parameter){
                                 var okPassword = false;
@@ -328,20 +867,24 @@
                                     console.log(parameter);
                                     var backgroundCode = parameter[0];
                                     var fontCode = parameter[1];
+                                    if (colorCodes[backgroundCode]?.[0] && colorCodes[fontCode]?.[0]) {
+                                        var backgroundKolor = colorCodes[backgroundCode][0];
+                                        var fontKolor = colorCodes[fontCode][0];
+                                        if (backgroundKolor && fontKolor && backgroundKolor != fontKolor){
 
-                                    var backgroundKolor = colorCodes[backgroundCode][0];
-                                    var fontKolor = colorCodes[fontCode][0];
-                                    if (backgroundKolor && fontKolor && backgroundKolor != fontKolor){
+                                            setConsoleColor(backgroundKolor, fontKolor);
 
-                                        setConsoleColor(backgroundKolor, fontKolor);
 
+                                        }else{
+                                            konsola("info", "Missing or incorrect parameter. Use the help command to see the correct usage and required parameters.");
+                                            konsolaPole.scrollTop = konsolaPole.scrollHeight;
+                                            console.log();
+                                            
+                                        }
                                     }else{
                                         konsola("info", "Missing or incorrect parameter. Use the help command to see the correct usage and required parameters.");
                                         konsolaPole.scrollTop = konsolaPole.scrollHeight;
-                                        console.log();
-                                        
                                     }
-
                                 }else if (parameter == "codes"){
                                     //Wyświetlanie kodów
                                     konsola("info", "-------------  <span style='color: orange;'>COLOR CODES</span>  -------------");
@@ -363,6 +906,20 @@
                             konsolaObszar.style.display = "none";
                         }else if (jakiCmd == "cmd5"){
                             konsolaPole.innerHTML = "";
+                        }else if (jakiCmd == "cmd6"){
+                            if (trackingState){
+                                trackingSwitch("off");
+                            }else if (!trackingState){
+                                trackingSwitch("on");
+                            }
+                        }else if (jakiCmd == "cmd7"){
+                            if (sidLoop){
+                                sidLoop = false;
+                                konsola("info", "Successfully <span style='color: red;'>disabled</span> SID loop");
+                            }else if (!sidLoop){
+                                sidLoop = true;
+                                konsola("info", "Successfully <span style='color: LimeGreen;'>enabled</span> SID loop");
+                            }
                         }
                     }else{
                         konsola("info", "Unknown command. Type the help command for help.");
@@ -417,6 +974,7 @@
                 var logTypeMsg = "";
                 var logTypeColor = "gray";
                 var logArrow = "";
+                var logColor = "white"; //added
 
                 if (logType == "request"){
                     logTypeMsg = "REQUEST ";
@@ -434,12 +992,17 @@
                     logColor = "yellow";
                     logTypeColor = "yellow";
                     logArrow = ": ";
+                }else if (logType == "error"){
+                    logTypeMsg = "ERROR";
+                    logColor = "red";
+                    logTypeColor = "red";
+                    logArrow = ": ";
                 }else{
                     console.log("Nieoczekiwany typ logu");
                     return;
                 }
 
-                konsolaPole.innerHTML += `<p class="konsola-wpis" style="color: ${logColor}">[${terazCzas}] [<span style="color: ${logTypeColor}">${logTypeMsg}</span>]${logArrow}${txtToPrint} </p>`;
+                konsolaPole.innerHTML += `<p class="konsola-wpis" style="color: ${logColor}" logType="${logType}">[${terazCzas}] [<span style="color: ${logTypeColor}">${logTypeMsg}</span>]${logArrow}${txtToPrint} </p>`;
                 //console.log("Odpowiedź serwera:", txtToPrint);
             }
         }
@@ -500,36 +1063,236 @@
 
 
 
+
+        //Pobieranie i obsługa SID
+        let sid = null;
+        var odliczanieWaznosci;
+        const waznoscSid = 25;
+        var aktualnaWaznosc = 0;
+        var spanWaznosciSid = document.getElementById("waznosc-sid-span");
+
+        var sidStreak = 0;
+        var lastSidRenew = 0;
+
+        var sidLoop = false;
+
+        function startCountingSid(action){
+            if (action == "start"){
+                clearInterval(odliczanieWaznosci);
+                aktualnaWaznosc = waznoscSid;
+                spanWaznosciSid.innerHTML = aktualnaWaznosc;
+
+                sidStreak = 0;
+                lastSidRenew = 0;
+                odliczanieWaznosci = setInterval(() =>{
+                    let temporState;
+                    if ((Date.now() - lastSidRenew) <= (waznoscSid - 1) * 1000 || lastSidRenew == 0){
+                        temporState = true; //zgoda
+                        console.log(temporState);
+
+                        
+                        //dane dump
+
+
+                    }else{
+                        temporState = false; //brak zgody
+                        console.log(temporState);
+                    }
+                    konsola("warn", temporState);
+                    if (temporState === true){
+                        aktualnaWaznosc--;
+                        spanWaznosciSid.innerHTML = aktualnaWaznosc;
+                        document.title = "SID " + aktualnaWaznosc;
+                        if (aktualnaWaznosc <= 4 && (trackingState || sidLoop)){
+                            renewSid();
+                        }
+                    }
+                    if (aktualnaWaznosc <= 0 || temporState === false){
+                        clearInterval(odliczanieWaznosci);
+
+                        sid = null;
+                        aktualnaWaznosc = 0;
+                        spanWaznosciSid.innerHTML = aktualnaWaznosc;
+
+                        if(trackingState == true){
+                            trackingSwitch("offstop");
+                        }
+
+                        razPytane = false;
+
+                        console.log("WAŻNOŚĆ SID SIĘ SKOŃCZYŁA");
+                        document.title = "KONIEC SID";
+
+                    }
+                }, 1000)
+            }
+        }
+
+        var renewingSigNow = false;
+
+
+        async function renewSid(){
+            renewingSigNow = true;
+            var response = await sendRequest("1:2");
+            if (response == "ok"){
+                try{
+                    await sendRequest();  
+
+                    startCountingSid("start");
+                    setTimeout(() =>{
+                        renewingSigNow = false;  
+                    }, 400);
+
+                    sidStreak++;
+                    lastSidRenew = Date.now();
+                }catch(error){
+                    console.log("ERROR SID");
+                }
+            
+                
+            }
+        }
+
+
+        /*let renewingSigNow = false;
+
+        function startCountingSid(action) {
+            if (action === "start") {
+                clearTimeout(odliczanieWaznosci); // Usunięcie poprzedniego odliczania
+                aktualnaWaznosc = waznoscSid;
+                spanWaznosciSid.innerHTML = aktualnaWaznosc;
+
+                function countdown() {
+                    if (aktualnaWaznosc <= 0) {
+                        sid = null;
+                        console.log("WAŻNOŚĆ SID SIĘ SKOŃCZYŁA");
+                        return; // Zakończ funkcję
+                    }
+
+                    aktualnaWaznosc--;
+                    spanWaznosciSid.innerHTML = aktualnaWaznosc;
+
+                    if (aktualnaWaznosc <= 4 && trackingState && !renewingSigNow) {
+                        renewSid();
+                    }
+
+                    odliczanieWaznosci = setTimeout(countdown, 1000); // Ponowne wywołanie po 1s
+                }
+
+                countdown(); // Uruchomienie licznika
+            }
+        }
+        async function renewSid() {
+            if (renewingSigNow) return; // Jeśli już odnawiamy, przerwij
+
+            renewingSigNow = true;
+            try {
+                let response = await sendRequest("1:2");
+                if (response === "ok") {
+                    await sendRequest();
+                    startCountingSid("start");
+                }
+            } catch (error) {
+                console.error("Błąd odnawiania SID:", error);
+            } finally {
+                setTimeout(() => {
+                    renewingSigNow = false;
+                }, 400);
+            }
+        }*/
+
+
+        async function getSid(){
+            try {
+                var startMsSid = performance.now();
+                var response = await fetch("https://live.mpk.czest.pl/socket.io/?EIO=3&transport=polling");
+                var stopMsSid = performance.now();
+                var reqTimeSid = Math.round(stopMsSid - startMsSid);
+                konsola("request", "SID request sended");
+                if (response.status == 200){
+                    var sidColorStatus = "green";
+                }
+
+                var text = await response.text();
+                konsola("response", `[${reqTimeSid}ms, <span style="color: ${sidColorStatus}">${response.status}</span>] ` + text);
+                var sidMatch = text.match(/"sid":"([^"]+)"/);
+                if (sidMatch) {
+                    sid = sidMatch[1];
+                    document.cookie = `io=${sid}; path=/;`;
+                    console.log("Uzyskano SID:", sid);
+                    startCountingSid("start");
+                    konsola("info", "Received matching sid: " + sid);
+                    
+                } else {
+                    throw new Error("Nie udało się uzyskać SID.");
+                }
+            } catch (error) {
+                console.error("Błąd podczas pobierania SID:", error);
+            }
+        }
+
+        document.getElementById("fetchSid").addEventListener("click", () => {
+            getSid();
+        });
+
+        //Funkcja do generowania zmiennej &t
+        function generateRandomT() {
+            /*const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
+            let result = '';
+            for (let i = 0; i < 12; i++) { // Losowa długość ciągu
+                result += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            return result;*/
+
+
+            var tValueGen = Date.now().toString(36); // Konwersja znacznika czasu na zapis base36
+            //console.log(tValue);
+
+            return tValueGen;
+        }
+
+
         // Funkcja do wysyłania żądania
-        async function sendRequest(tValue, payload) {
+        var reqTime = 0;
+        var rStatus;
+        var statusColor = "white";
+        var isFetching = false;
+
+        async function sendRequest(payload) {
             if (!sid) {
                 await getSid();
             }
-            const url = `https://live.mpk.czest.pl/socket.io/?EIO=3&transport=polling&t=${tValue}&sid=${sid}`;
+            const url = `https://live.mpk.czest.pl/socket.io/?EIO=3&transport=polling&t=${generateRandomT()}&sid=${sid}`;
             try {
                 if (payload != null){
+                    isFetching = true;
                     var startMs = performance.now();
                     response = await fetch(url, {
                         method: "POST",
                         credentials: 'include',
                         headers: {
-                            "Content-Type": "text/plain"
+                            "Content-Type": "text/plain",
+                            "Connection": "keep-alive"
                         },
                         body: payload
                     });
                     var stopMs = performance.now();
+                    isFetching = false;
                 }else{
+                    isFetching = true;
                     var startMs = performance.now();
                     response = await fetch(url, {
                         method: "GET",
                         credentials: 'include',
                         headers: {
-                            "Content-Type": "text/plain"
+                            "Content-Type": "text/plain",
+                            "Connection": "keep-alive"
                         }
                     }); 
                     var stopMs = performance.now();
+                    isFetching = false;
                 }
-                var reqTime = Math.round(stopMs - startMs);
+                reqTime = Math.round(stopMs - startMs);
                 if (payload){
                     if (payload.length < 430){
                         konsola("request", payload);
@@ -543,28 +1306,42 @@
 
                 const resultText = await response.text();
 
-                var statusColor = "white";
+                statusColor = "white";
+                rStatus = response.status;
+                var rTextPrep = resultText;
 
-                if (response.status == 200){
+                console.log(rStatus);
+
+                if (rStatus == 200){
                     statusColor = "green";
+                }else if (rStatus == 500){
+                    statusColor = "red";
+                    rTextPrep = "code500";
                 }
 
-                if (resultText.length < 200){
-                    konsola("response", `[${reqTime}ms, <span style="color: ${statusColor}">${response.status}</span>] ` + resultText);
-                }else if(resultText[0] == "["){
-                    return [resultText, reqTime, response.status]; 
+                if (rTextPrep.length < 200){
+                    konsola("response", `[${reqTime}ms, <span style="color: ${statusColor}">${rStatus}</span>] ` + resultText);
                 }
 
-                return resultText;
-            } catch (error) {
+                if (resultText == "1:1"){
+                    konsola("error", "Serwer zamknął połączenie");
+                    trackingSwitch("offstop");
+                    rTextPrep = "1:1";
+                    aktualnaWaznosc = "0";
+                    sid = null;
+                }
+
+                console.log("tenteges00000000: " + rTextPrep);
+                return rTextPrep;
+            } catch (error) { //jednak to coś chyba daje
                 console.error("Błąd podczas wysyłania żądania:", error);
-                return "Błąd podczas wysyłania żądania:", error;
+                return "code500";
             }
         }
 
         // Przyciski do wysyłania zapytań
         document.getElementById("sendRequest").addEventListener("click", () => {
-            sendRequest("fsj5m33j6n48", "17:40/vehicles_exec,");
+            sendRequest("17:40/vehicles_exec,");
         });
 
 
@@ -573,11 +1350,11 @@
 
 
             //sendRequest("fsj5m33j6n49", "109:42/vehicles_exec,['vehicles',['c29cd2b3-7307-4deb-b323-048fadaa4a6f','c29cd2b3-7307-4deb-b323-048fadaa4a6f']]");
-            sendRequest("fsj5m33j6n49", tempSR);
+            sendRequest(tempSR);
         });
 
         document.getElementById("sendRequest3").addEventListener("click", () => {
-            sendRequest("fsj5m33j6n50");
+            sendRequest();
         });
 
 
@@ -636,9 +1413,9 @@
 
         var input = document.getElementById('input');
 
-        function send(){
+        /*function send(){
             socket.send(input.value);
-        }
+        }*/
 
 
         var getData;
@@ -685,83 +1462,242 @@
             
         }
 
+        //Metoda, czyli co chcemy pobrać z autoQ() (exec/gps)
+        var method = "exec";
+
+        //Obiekt z szablonami i wiadomościami do serwera socket
+        var msgLib = {
+            "execBaseStart": `42/vehicles_exec,["vehicles",[`,
+            "execBaseEnd": "]]",
+
+            "execInit": "17:40/vehicles_exec,",
+            "execEvent": "42/vehicles_exec,",
+            "execClose": "17:41/vehicles_exec,",
+
+
+            "gpsBaseStart": `42/vehicle_gps,["vehicleID",`,
+            "gpsBaseEnd": "]",
+
+            "gpsInit": "15:40/vehicle_gps,",
+            "gpsEvent": "42/vehicle_gps,",
+            "gpsClose": "15:41/vehicle_gps,",
+        };
 
         var RLoad;
-
-        function autoQ(set){
+        
+        //Funkcja do tworzenia kwerend, z ustalonych zbiorów wozów
+        function autoQ(set, dataMethod = method){
             if (qBook.hasOwnProperty(set)){
-                var constructQuery = `42/vehicles_exec,["vehicles",[`;
-                qBook[set].forEach((taborWoz, index) =>{
-                    //dalej kwerenda
-                    constructQuery += `"${vehicleId(taborWoz)}"`;
-                    if (index < qBook[set].length - 1) {
-                        constructQuery += ",";
-                    }
-                })
-                constructQuery += "]]"
-                var qTag = constructQuery.length + ":";
-                constructQuery = qTag + constructQuery;
+                if (dataMethod == "exec" || dataMethod == "gps"){
+                    var qStart = msgLib[`${dataMethod}BaseStart`];
+                    var qEnd = msgLib[`${dataMethod}BaseEnd`];
 
-                console.log(constructQuery);
-                RLoad = constructQuery;
+
+                    var constructQuery = qStart;
+                    qBook[set].forEach((taborWoz, index) =>{
+                        //dalej kwerenda
+                        constructQuery += `"${vehicleId(taborWoz)}"`;
+                        if (index < qBook[set].length - 1) {
+                            constructQuery += ",";
+                        }
+                    })
+                    constructQuery += qEnd;
+                    var qTag = constructQuery.length + ":";
+                    constructQuery = qTag + constructQuery;
+
+                    console.log(constructQuery);
+                    RLoad = constructQuery;
+                }else{
+                    konsola("error", `Error in autoQ() function: Unknown data fetching method ${dataMethod}`);
+                }
+            }else{
+                konsola("error", `Error in autoQ() function: Undefined vehicle set ${set}`);
             }
         }
 
 
-        async function wshandshake(type, values){
+        //zasyncować to
+
+
+        //Wybierak rodzaju połączenia i pobrania danych
+        async function handshakeSelector(type){
             if (RLoad != undefined){
-                if (/*type != undefined && values != undefined*/2+2 == 4){
-                    if (type == "exec"){
-                        var request1 = await sendRequest("fsj5m33j6n48", "17:40/vehicles_exec,");
-                        if (request1 == "ok"){
-                            var request2 = await sendRequest("fsj5m33j6n50");
-                            if (request2 == "17:40/vehicles_exec,"){
-                                //var RLoad = `109:42/vehicles_exec,["vehicles",["90bec8e0-96da-4677-a7ba-d86ce58e4cd9","dabbd6d4-e56e-4d76-addc-de11367578f9"]]`;
+                if (sid  && aktualnaWaznosc > 0){
+                    var zwrot = await wshandshake(type, "short");
+                    console.log(zwrot);
+                    return zwrot;
+                    //short
+                }else{
+                    var zwrot = await wshandshake(type, "long");
+                    console.log(zwrot);
+                    return zwrot;
+                    
+                }
+            }
+        }
 
-                                var request3 = await sendRequest("fsj5m33j6n49", RLoad);
-                                if (request3 == "ok"){
-                                    var request4 = await sendRequest("fsj5m33j6n53");
-                                    var prefix = "42/vehicles_exec,";
-                                    if (request4.includes(prefix)){
-                                        console.log("%c All ok", "color: green");
-                                        var cleanData = request4.replace(/^\d+:\d+\/vehicles_exec,/, "");
+        
+        function delay(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        }
 
+        //Funkcja połączenia krótka
+        /*async function wshandshakeShort(type, values){
+            if (2+2 == 4){
+                if (type == "exec"){
+                    await sendRequest("17:40/vehicles_exec,");
+                    await delay(40);
+                    await sendRequest();
+                    await delay(20);
+                    var request3 = await sendRequest(RLoad);
+                    if (request3 == "ok"){
+                        await delay(20);
+                        var request4 = await sendRequest();
+                        var prefix = "42/vehicles_exec,";
+                        if (request4.includes(prefix)){
+                            console.log("%c All ok", "color: green");
+                            var cleanData = request4.replace(/^\d+:\d+\/vehicles_exec,/, "");
+                            // Parsujemy dane JSON
+                            try {
+                                getData = JSON.parse(cleanData);
+                                console.log(JSON.stringify(getData, null, 2)); // Ładne formatowanie JSON
 
+                                //await sendRequest("1:1");
 
-                                        // Parsujemy dane JSON
-                                        try {
-                                            getData = JSON.parse(cleanData);
-                                            console.log(JSON.stringify(getData, null, 2)); // Ładne formatowanie JSON
+                                konsola("response", `[${reqTime}ms, <span style="color: ${statusColor}">${rStatus}</span>] <span style='color: LimeGreen'>Sukces!</span> Odebrano prawidłowe dane JSON`);
+                                processVData();
 
-                                            if (Array.isArray(request4)){
-                                                //separowanie tablicy i osobny wpis
-                                            }
-
-                                            konsola("response", "<span style='color: LimeGreen'>Sukces!</span> Odebrano prawidłowe dane JSON");
-                                            processVData();
-                                        } catch (error) {
-                                            console.error("Błąd parsowania JSON:", error);
-                                        }
-
-
-                                        //console.log(JSON.stringify(getData, null, 2)); // Ładne formatowanie JSON
-                                    }else{
-                                        console.log("Błąd żądania 4: "+request4);
-                                        console.log("TUTAJ: " + request4);
-                                    } //starts with
-                                }else{
-                                    console.log("Błąd żądania 3: "+request3);
-                                }
-                            }else{
-                                console.log("Błąd żądania 2: "+request2);
+                                await sendRequest("17:41/vehicles_exec,");
+                                //await sendRequest();
+                            } catch (error) {
+                                console.error("Błąd parsowania JSON:", error);
                             }
                         }else{
-                            console.log("Błąd żądania 1: "+request1);
+                            console.log("Błąd żądania 4: "+request4);
+                            console.log("TUTAJ: " + request4);
                         }
+                    }else{
+                        console.log("Błąd żądania 3: "+request3);
+                    }
+
+                }
+            }
+        }*/
+
+
+        //Funkcja połączenia i pobrania danych
+        async function wshandshake(type, variant){
+            if (variant){
+                if (type == "exec" || type == "gps"){
+                    var qInit = msgLib[`${type}Init`];
+                    var qEvent = msgLib[`${type}Event`];
+                    var qClose = msgLib[`${type}Close`];
+
+                    if (type == "exec"){ //nietest
+                        razPytane = false;
+                    }
+
+                    if (type == "gps" && razPytane == true && (trackingState == true || razPytaneWoz == RLoad)){
+                        var request1 = "ok";
+                        console.log("SHORT");
+                    }else{
+                        var request1 = await sendRequest(qInit);
+                    }
+                    if (request1 == "ok"){
+                        var request2 = await sendRequest();
+                        if ((variant == "short" && request2) || (request2 == qInit)){
+                            //var RLoad = `109:42/vehicles_exec,["vehicles",["90bec8e0-96da-4677-a7ba-d86ce58e4cd9","dabbd6d4-e56e-4d76-addc-de11367578f9"]]`;
+
+                            var request3 = await sendRequest(RLoad);
+                            if (request3 == "ok"){
+                                var request4 = await sendRequest();
+                                var prefix = qEvent;
+                                if (request4.includes(prefix)){
+                                    console.log("%c All ok", "color: green");
+                                    if(type == "exec"){
+                                        var cleanData = request4.replace(/^\d+:\d+\/vehicles_exec,/, "");
+                                    }else if(type == "gps"){
+                                        var cleanData = request4.replace(/^\d+:\d+\/vehicle_gps,/, "");
+                                    }
+
+                                    konsola("response", `Odebrano dane właściwe. Tryb: ${type}`);
+
+                                    if (type == "exec"){
+                                        // Parsujemy dane JSON
+                                        try {
+                                            getData = JSON.parse(cleanData/* + "150:42/vehicles_exec,"*/);
+                                            console.log(JSON.stringify(getData, null, 2)); // Ładne formatowanie JSON
+
+                                            //await sendRequest("1:1");
+
+                                            konsola("info", `[${reqTime}ms, <span style="color: ${statusColor}">${rStatus}</span>] <span style='color: LimeGreen'>Sukces!</span> Prawidłowo sparsowano dane exec JSON`);
+                                            processVData();
+
+                                            await sendRequest(qClose);
+                                            //await sendRequest();
+                                        } catch (error) {
+                                            //console.error("Błąd parsowania JSON:", error);
+                                            konsola("error", `JSON parsing error: ${error}`);
+                                            komunikat({
+                                                wariant: "error",
+                                                title: "Błąd pobierania danych!",
+                                                content: "Spróbuj ponownie! Skrypt otrzymał niepoprawne dane exec z serwera LIVE MPK."
+                                            });
+                                        }
+                                    }else if (type == "gps"){
+                                        // Parsujemy dane JSON
+                                        try {
+                                            getGpsData = JSON.parse(cleanData/* + "150:42/vehicle_gps,"*/);
+                                            console.log(JSON.stringify(getGpsData, null, 2)); // Ładne formatowanie JSON
+
+                                            //await sendRequest("1:1");
+
+                                            konsola("info", `[${reqTime}ms, <span style="color: ${statusColor}">${rStatus}</span>] <span style='color: LimeGreen'>Sukces!</span> Prawidłowo sparsowano dane gps JSON`);
+                                            
+
+
+                                            /*if (!trackingState){
+                                                await sendRequest(qClose);
+                                            }*/
+                                            //await sendRequest();
+
+                                            return "ok_gps";
+                                        } catch (error) {
+                                            //console.error("Błąd parsowania JSON:", error);
+                                            konsola("error", `JSON parsing error: ${error}`);
+                                            komunikat({
+                                                wariant: "error",
+                                                title: "Błąd pobierania danych!",
+                                                content: "Spróbuj ponownie! Skrypt otrzymał niepoprawne dane gps z serwera LIVE MPK."
+                                            });
+                                        }
+                                    }
+
+
+
+                                    //Tymczas po co
+                                    //await sendRequest(qClose);
+
+
+
+
+                                    //console.log(JSON.stringify(getData, null, 2)); // Ładne formatowanie JSON
+                                }else{
+                                    console.log("Błąd żądania 4: "+request4);
+                                    console.log("TUTAJ: " + request4);
+                                } //starts with
+                            }else{
+                                console.log("Błąd żądania 3: "+request3);
+                            }
+                        }else{
+                            console.log("Błąd żądania 2: "+request2);
+                        }
+                    }else{
+                        console.log("Błąd żądania 1: "+request1);
                     }
                 }
             }else{
-                console.log("Niezdefiniowane Rload");
+                konsola("error", "Variant parameter is not set in wshandshake() function");
             }
         }
 
@@ -796,7 +1732,7 @@
                 driversJson = json;
                 console.log('Pobrano drivers.json '+ driversJson.drivers.length);
                 console.log(driversJson);
-                konsola("info", `<span class="loaded-span">Loaded drivers.json:      ${driversJson.drivers.length} drivers</span>`);
+                konsola("info", `<span class="loaded-span">Loaded drivers.json:     ${driversJson.drivers.length} drivers</span>`);
 
             })
             .catch(error => console.error('Błąd:', error));
@@ -901,6 +1837,7 @@
                 console.log("getData ok");
                 dataDsp.innerHTML = "";
                 liveDataDsp.innerHTML = "";
+                vehiclesMapObject = {};
 
                 getData[1].forEach(vehicle =>{
                     console.log("Pojazd " + vehicles(vehicle.vehicleID));
@@ -950,9 +1887,15 @@
                             Linia: ${lp.lineNo}<br>
                             Kierunek: ${lp.direction}<br><br>
                         `;
+                        if (lp.latitude && lp.longitude){ // Zmienić linie i direction
+                            vehiclesMapObject[lp.taborNo] = [lp.latitude, lp.longitude, lp.lineNo, lp.direction, lp.dateTime, actDriver];
+                        }
+                        
                     }else{
                         //var liniaCut = run.name.split("-")[0];
-                        var kierCut = run.runStops[run.runStops.length-1].locationID;
+                        
+                        //dodano znaki zapytania 
+                        var kierCut = run.runStops[run.runStops.length-1]?.locationID ?? '???';
                         dataDspPrepare += `
                             Linia: ${lines(run.lineID)}<br>
                             Kierunek: ${locations(kierCut)}<br><br>
@@ -1062,7 +2005,11 @@
                             parseInt(sekunda, 10)      // Sekunda
                         );
 
+                        console.log(czasObiekt2);
+
                         var teraz = new Date();
+
+                        console.log(teraz);
 
                         var roznicaCzasu2 = teraz - czasObiekt2;
                         console.log(roznicaCzasu2 + "  |  " + 60 * 60 * 1000)
@@ -1124,15 +2071,20 @@
             "MERCEDES CONECTO",
             "Konstal 105Na",
             "MAN Lion's City G",
-            "MERCEDES CITARO",
-            "MERCEDES CITARO  CNG",
+            "SOLARIS URBINO 18 III",
+            "MERCEDES CITARO I",
+            "MERCEDES CITARO II",
+            "MERCEDES CITARO CNG",
             "MAN Lion's City CNG",
             "MAN NG323 Lion`s City GL",
-            "SOLBUS SM18HL  Hybryda",
-            "SOLBUS SM12HL  Hybryda",
+            "SOLBUS SM18HL Hybryda",
+            "SOLBUS SM12HL Hybryda",
             "SOLBUS SM12DC23.05-61",
-            "MAN Lion's City  A37",
-            "SOLARIS URBINO 12",
+            "Autosan M10LFE",
+            "Autosan M12LFE",
+            "MAN Lion's City A37",
+            "SOLARIS URBINO 12 III",
+            "SOLARIS URBINO 12 IV",
             "Pesa 129Nb / 2010N",
             "Pesa 2010N-10"
 
@@ -1490,6 +2442,7 @@
             if (numerZakladki != undefined){
                 var zakladkaCrId = document.getElementById("WI"+numerZakladki);
                 var zakladkaButtonEl = document.getElementById("btnN"+numerZakladki);
+                var zakladkaWidocznosc = window.getComputedStyle(zakladkaCrId).display;
                 if (zakladkaCrId !== null && zakladkaButtonEl){
                     const elements = document.querySelectorAll('.wozy-zakladka-kontener');
                     elements.forEach(element => {
@@ -1500,8 +2453,10 @@
                     zakladki.forEach(zakladka => {
                         zakladka.style.backgroundColor = '#efefef';
                     });
-                    zakladkaButtonEl.style.backgroundColor = "gray";
-                    zakladkaCrId.style.display = "inline-block";
+                    if (zakladkaWidocznosc == "none"){
+                        zakladkaButtonEl.style.backgroundColor = "gray";
+                        zakladkaCrId.style.display = "inline-block";
+                    }
                 }
             }
         }
@@ -1625,6 +2580,7 @@
             }else{
                 stackerGroup = {};
                 wozySelectedKontener.innerHTML = '';
+                sumaSelectDsp.innerHTML = `<p id="suma-p"><span id="suma-bold">SUMA: </span>${selectedVehiclesTab.length} / ${maxSelectNumber}</p>`;
             }
         }
 
@@ -1649,12 +2605,25 @@
             }
         }*/
 
-        function createRequest(){
-            var tablicaLength = selectedVehiclesTab.length;
-            if (tablicaLength > 0 && tablicaLength <= maxSelectNumber){
-                var tablicaSort = selectedVehiclesTab.sort((a, b) => a - b);
 
-                var queryPayload = `42/vehicles_exec,["vehicles",[`;
+        //Funkcja do tworzenia kwerendy z tablicy selectedVehiclesTab lub oneVehicleTab
+        function createRequest(type = "full"){
+            if (type == "full"){
+                var tablica = selectedVehiclesTab;
+                var metodaReq = "exec";
+            }else if (type == "partOne"){
+                var tablica = oneVehicleTab;
+                var metodaReq = "gps";
+            }
+            
+            var tablicaLength = tablica.length;
+            if (tablicaLength > 0 && tablicaLength <= maxSelectNumber){
+                var tablicaSort = tablica.sort((a, b) => a - b);
+
+                var qStart = msgLib[`${metodaReq}BaseStart`];
+                var qEnd = msgLib[`${metodaReq}BaseEnd`];
+
+                var queryPayload = qStart;
                 tablicaSort.forEach((wozElement, index) =>{
                     queryPayload += `"${vehicleId(wozElement)}"`;
                     if (index < tablicaLength - 1){
@@ -1662,13 +2631,49 @@
                     }
 
                 });
-                queryPayload += "]]";
+                queryPayload += qEnd;
                 queryTag = queryPayload.length + ":";
                 queryPayload = queryTag + queryPayload;
 
                 console.log(queryPayload);
                 RLoad = queryPayload;
+                return "ok";
             }
+        }
+
+        //Funkcja do odpytywania o losowym wozie
+        function zapTester(){
+            var randomIndex = Math.floor(Math.random() * vehiclesJson.length);
+            var wylosowany = vehiclesJson[randomIndex];
+            console.log("Wylosowano: " + wylosowany.sideNo);
+
+            selectedVehiclesTab = [];
+            selectedVehiclesTab.push(wylosowany.sideNo);
+            createRequest();
+            handshakeSelector(method);
+        }
+
+        //
+        function gpsTester(){
+            komenda("tracking");
+            switchMap();
+            autoQ("105");
+            handshakeSelector("exec");
+            setTimeout(() =>{
+                loadVehicleMap();
+            }, 1000)
+        }
+
+
+
+        async function test2(){
+            await sendRequest(`15:40/vehicle_gps,`);
+            await delay(500);
+            await sendRequest(``);
+            await delay(500);
+            await sendRequest(`67:42/vehicle_gps,["vehicleID","e6c0a250-f18e-470f-b1cf-eda724cf1ea3"]`);
+            await delay(500);
+            await sendRequest(``);
         }
     </script>
 </body>

@@ -4,8 +4,8 @@
         {
             "driverID": "21a98d56-ad8c-49f5-b97a-cc6506f49bd4",
             "nick": "Wujek / Wujo",
-            "imie": "?",
-            "nazwisko": "?",
+            "imie": "",
+            "nazwisko": "",
             "ocena": "5"
         },
         {
@@ -59,7 +59,7 @@
         },
         {
             "driverID": "545a3e31-3164-4b9d-93df-23210dec3824",
-            "nick": "",
+            "nick": "FAKE",
             "imie": "Jarosław",
             "nazwisko": "Polaczkiewicz",
             "ocena": "5" 
@@ -87,14 +87,14 @@
         },
         {
             "driverID": "cc7ea312-61cc-430e-9328-ac0c80c08806",
-            "nick": "Miras 2.0",
+            "nick": "Miras 2.0 / łysy",
             "imie": "",
             "nazwisko": "",
             "ocena": "5" 
         },
         {
             "driverID": "040cf2fc-ed1d-45e9-993b-54ee9437dd28",
-            "nick": "Groß man / No 90-siąt",
+            "nick": "Groß man / No 90-siąt FAKE",
             "imie": "",
             "nazwisko": "",
             "ocena": "5" 
@@ -115,14 +115,14 @@
         },
         {
             "driverID": "24e725ff-ab30-401a-8b55-b3ac6e853c1d",
-            "nick": "Siwy z okularami / Wypadkowiec",
+            "nick": "Krzysio / Siwy z okularami / Wypadkowiec",
             "imie": "Krzysztof",
             "nazwisko": "",
             "ocena": "5" 
         },
         {
             "driverID": "1d52490f-1569-4b48-86df-5e99800f17c0",
-            "nick": "Groß man / No 90-siąt (2)",
+            "nick": "Groß man / No 90-siąt / Groszman",
             "imie": "",
             "nazwisko": "",
             "ocena": "5" 
@@ -157,7 +157,7 @@
         },
         {
             "driverID": "4b9a9456-f339-450d-9d70-7bbdc2222390",
-            "nick": "Dres",
+            "nick": "Dres / wysoki, łysy, okulary",
             "imie": "",
             "nazwisko": "",
             "ocena": "5" 
@@ -167,7 +167,7 @@
             "nick": "Jakaś prime woman",
             "imie": "",
             "nazwisko": "",
-            "ocena": "3" 
+            "ocena": "2" 
         },
         {
             "driverID": "81c6a0d5-bdfc-47cc-8b59-2a22d7f06a4b",
@@ -175,6 +175,138 @@
             "imie": "",
             "nazwisko": "",
             "ocena": "5" 
+        },
+        {
+            "driverID": "e2908040-e3ce-4719-89dd-491640cb4624",
+            "nick": "",
+            "imie": "Karol",
+            "nazwisko": "Michalik",
+            "ocena": "4" 
+        },
+        {
+            "driverID": "8ef321d3-24ed-46ff-941b-7ccf9374dc82",
+            "nick": "jaro",
+            "imie": "Jarosław",
+            "nazwisko": "Polaczkiewicz",
+            "ocena": "5" 
+        },
+        {
+            "driverID": "c8f33470-59ad-4437-9034-3d55fcd203cf",
+            "nick": "łysy bus / 118 busfaher",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5" 
+        },
+        {
+            "driverID": "2d9c209b-3d39-48fc-acdc-5ec93b8716f4",
+            "nick": "Polaris busfaher 222 / vmaxer",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5" 
+        },
+        {
+            "driverID": "6a81f3cd-5ba2-4b25-b2f3-f6ccd969ac9a",
+            "nick": "Pali, gada przez telefon i kieruje jednocześnie",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5",
+            "typ": "bus"
+        },
+        {
+            "driverID": "f6a0eb4d-44e1-4a3f-9f54-a1f34ad981e0",
+            "nick": "",
+            "imie": "Iwona",
+            "nazwisko": "Sikorska",
+            "ocena": "3",
+            "typ": "tram"
+        },
+        {
+            "driverID": "7acaa32e-847c-49e5-ac61-6756c689fdc2",
+            "nick": "Młodszy Michael z tiktoka",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5",
+            "typ": "bus"
+        },
+        {
+            "driverID": "9bba3f05-81b1-4273-904a-a0c7b6ef9c98",
+            "nick": "Czarne okulary, łysy",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5",
+            "typ": "tram??"
+        },
+        {
+            "driverID": "76bc62a0-ff59-427d-b201-d7fc3cf4f8bf",
+            "nick": "Z szelkami",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5",
+            "typ": "tram"
+        },
+        {
+            "driverID": "01155078-376a-4ac1-a244-85dd242fe571",
+            "nick": "A'la Karol Okrasa",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5",
+            "typ": "tram"
+        },
+        {
+            "driverID": "7d17e4be-3ed9-4522-bed1-d1abbcc0c447",
+            "nick": "Dziadek, broda, czapka, okulary, poręcz",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5",
+            "typ": "bus"
+        },
+        {
+            "driverID": "912a571c-ec56-48e5-aa94-14048ecc25ca",
+            "nick": "Białe okularki / 193 busfaher",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5",
+            "typ": "bus"
+        },
+        {
+            "driverID": "875a954b-ee86-4a72-8b0b-d3f430e79a01",
+            "nick": "Nagrywa tramwaje na pętli",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5",
+            "typ": "tram"
+        },
+        {
+            "driverID": "e4335943-ca05-41da-bd89-bf898614fc4c",
+            "nick": "Ratownik",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5",
+            "typ": "tram"
+        },
+        {
+            "driverID": "76bc62a0-ff59-427d-b201-d7fc3cf4f8bf",
+            "nick": "New Times Mirosław",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5",
+            "typ": "tram"
+        },
+        {
+            "driverID": "52b1af42-d99d-44ea-bec4-34ecfc3439dd",
+            "nick": "Koszula flanelowa",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5",
+            "typ": "tram"
+        },
+        {
+            "driverID": "9ef8b080-ecf0-4d46-8842-b07bf917ed98",
+            "nick": "A'la Tomasz Muskała",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5",
+            "typ": "tram"
         }
 
     ]
