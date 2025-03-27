@@ -218,3 +218,90 @@
 #lm-page{
     color: red;
 }
+#map{
+    height: 600px;
+    max-width: 1000px;
+    /*filter: brightness(70%);*/
+    background-color: black;
+    display: none;
+ 
+}
+
+.button-odswiez{
+    border: none;
+    background: none;
+    /*color: #3333FF;*/
+    color: #307DF0;
+    text-decoration: underline;
+    cursor: pointer;
+    vertical-align: text-bottom;
+
+}
+.button-odswiez:hover{
+    color: #1B3C6D;
+}
+.popup-div{
+    margin-bottom: 5px;
+    font-size: 16px;
+    width: 200px;
+}
+.driver-icon-roz{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+.d-icon{
+    width: 30px;
+}
+.d-icon-box{
+    width: 31px;
+    height: 31px;
+}
+.d-prowadnica-b{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.driver-info > hr{
+    border: none;
+    height: 1px;
+    background-color: black;
+}
+#tracking-info{
+    color: red;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    z-index: 1000;
+    font-family: monospace;
+    font-size: 18px;
+    user-select: none;
+    text-shadow: #000000 1px 0px 3px;
+}
+#calcel-a{
+    color: red;
+    font-size: 14px;
+    font-family: monospace;
+    text-decoration: underline;
+    cursor: pointer;
+    transition-duration: 0.3s;
+    background-color: transparent;
+    padding: 2px;
+}
+#calcel-a:hover{
+    text-decoration: none;
+    color: rgb(255, 71, 71);
+
+}
+#tracking-vmax{
+    color: red;
+    position: absolute;
+    right: 10px;
+    z-index: 1000;
+    font-family: monospace;
+    font-size: 18px;
+    user-select: none;
+    /*text-shadow: #000000 2px 0 7px;*/
+    text-shadow: #000000 1px 0px 3px;
+}
