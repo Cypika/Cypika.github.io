@@ -501,7 +501,7 @@
     },
     {
       "regNo": "SC 28594",
-      "sideNo": "101",
+      "sideNo": "101-OG",
       "vehicleID": "262240f0-6477-4088-a9c4-5110a97d25b5"
     },
     {
@@ -1426,7 +1426,7 @@
     },
     {
       "regNo": "SC 8733T",
-      "sideNo": "102",
+      "sideNo": "102-OG",
       "vehicleID": "f98a51a7-a34a-4990-a2b4-e942f5e33a26"
     },
     {
@@ -2058,5 +2058,25 @@
       "regNo": "SC 128EW",
       "sideNo": "128",
       "vehicleID": "819a6674-008c-4acc-b2ab-384566236948"
+    },
+    {
+      "regNo": "SC 101FE",
+      "sideNo": "101",
+      "vehicleID": "ff1218a1-6020-415e-a8a9-57345064441d"
+    },
+    {
+      "regNo": "SC 102FE",
+      "sideNo": "102",
+      "vehicleID": "505dcb75-1f86-4764-b62e-eb892c373cdc"
+    },
+    {
+      "regNo": "SC 909EN",
+      "sideNo": "415",
+      "vehicleID": "2154e942-1e5e-4059-a086-b39a6ac3b1c2"
+    },
+    {
+      "regNo": "SC 301FG",
+      "sideNo": "301",
+      "vehicleID": "c9eb0302-1d37-4ba1-afba-34cfa84fe4a2"
     }
   ]

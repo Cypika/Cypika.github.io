@@ -94,7 +94,7 @@
         },
         {
             "driverID": "040cf2fc-ed1d-45e9-993b-54ee9437dd28",
-            "nick": "Groß man / No 90-siąt FAKE",
+            "nick": "Groß man REAL CLONE / Brat Groszmana",
             "imie": "",
             "nazwisko": "",
             "ocena": "5" 
@@ -306,7 +306,111 @@
             "imie": "",
             "nazwisko": "",
             "ocena": "5",
+            "typ": "bus"
+        },
+        {
+            "driverID": "7d21074f-67a6-4f49-8fb5-616cb8960faa",
+            "nick": "Nie widzi wozu technicznego, woman",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "1",
             "typ": "tram"
+        },
+        {
+            "driverID": "05a0c5ac-5db0-436a-800c-71ba2de5667d",
+            "nick": "Pan Zapraszacz do autobusu",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5",
+            "typ": "bus"
+        },
+        {
+            "driverID": "e2972465-c0fa-41a9-85b0-89d575448d07",
+            "nick": "a'la wojciech Cejrowski groß",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5",
+            "typ": "bus"
+        },
+        {
+            "driverID": "e1a66f8c-5c94-4469-ae52-abc069af04c8",
+            "nick": "Ex CKMKM",
+            "imie": "Konrad",
+            "nazwisko": "Machura",
+            "ocena": "5",
+            "typ": "bus"
+        },
+        {
+            "driverID": "e7b9fc85-eae7-440f-a94f-876268a0c110",
+            "nick": "Boxer",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5",
+            "typ": "bus"
+        },
+        {
+            "driverID": "f43d0015-8756-4476-9a99-e821d4e3f9eb",
+            "nick": "Bos CKMKM",
+            "imie": "Tomasz",
+            "nazwisko": "Rorat",
+            "ocena": "5",
+            "typ": "bus"
+        },
+        {
+            "driverID": "23fc2c83-ea3c-48b7-bd59-208ead9e3c0d",
+            "nick": "Facebook Rząsawa / Solarisowiec",
+            "imie": "Marcin",
+            "nazwisko": "Ciura",
+            "ocena": "5",
+            "typ": "bus"
+        },
+        {
+            "driverID": "28d36ecb-e8b8-4a58-976f-8b092b8d50cc",
+            "nick": "Białas Mirek",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5",
+            "typ": "bus"
+        },
+        {
+            "driverID": "890fc9e9-6153-4183-b501-b042b2ea7796",
+            "nick": "Green hat / Czapkowiec",
+            "imie": "Piotr",
+            "nazwisko": "Cała",
+            "ocena": "5",
+            "typ": "bus"
+        },
+        {
+            "driverID": "005a7623-d47b-476e-8dac-aced7ee8971c",
+            "nick": "Turecki strzelec",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5",
+            "typ": "tram"
+        },
+        {
+            "driverID": "5af1362b-bc6a-4f17-8a4d-c6f293a29e86",
+            "nick": "Chyba tiktok 118 faher",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5",
+            "typ": "bus"
+        },
+        {
+            "driverID": "a1d9279a-d291-43cc-9910-d101afd46d3d",
+            "nick": "Adidas / adaś",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5",
+            "typ": "tram"
+        },
+        {
+            "driverID": "0cb355d8-c8c5-4482-b02b-d12db96c2660",
+            "nick": "Wujo bus / 119 faher",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5",
+            "typ": "bus"
         }
 
     ]

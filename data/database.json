@@ -1386,7 +1386,7 @@
         "regNo": "SC 28591"
     },
     {
-        "sideNo": "101",
+        "sideNo": "101-OG",
         "model": "SOLARIS URBINO 12 II",
         "articulated": false,
         "lowFlor": true,
@@ -1400,7 +1400,21 @@
         "regNo": "SC 28594"
     },
     {
-        "sideNo": "102",
+        "sideNo": "101",
+        "model": "MERCEDES CONECTO III",
+        "articulated": false,
+        "lowFlor": true,
+        "airConditioner": true,
+        "ticketMachine": false,
+        "ticketDriver": true,
+        "monitoring": false,
+        "usbCharger": false,
+        "networkWifi": false,
+        "picture": "",
+        "regNo": "SC 101FE"
+    },
+    {
+        "sideNo": "102-OG",
         "model": "MERCEDES CITARO CNG",
         "articulated": false,
         "lowFlor": true,
@@ -1412,6 +1426,20 @@
         "networkWifi": false,
         "picture": "mer_citaro_cng.jpg",
         "regNo": "SC 8733T"
+    },
+    {
+        "sideNo": "102",
+        "model": "MERCEDES CONECTO III",
+        "articulated": false,
+        "lowFlor": true,
+        "airConditioner": true,
+        "ticketMachine": false,
+        "ticketDriver": true,
+        "monitoring": false,
+        "usbCharger": false,
+        "networkWifi": false,
+        "picture": "",
+        "regNo": "SC 102FE"
     },
     {
         "sideNo": "103",
@@ -2549,7 +2577,7 @@
     },
     {
         "sideNo": "185",
-        "model": "MERCEDES CITARO II",
+        "model": "MERCEDES CITARO G II",
         "articulated": true,
         "lowFlor": true,
         "airConditioner": false,
@@ -2563,7 +2591,7 @@
     },
     {
         "sideNo": "186",
-        "model": "MERCEDES CITARO II",
+        "model": "MERCEDES CITARO G II",
         "articulated": true,
         "lowFlor": true,
         "airConditioner": false,
@@ -2577,7 +2605,7 @@
     },
     {
         "sideNo": "187",
-        "model": "MERCEDES CITARO II",
+        "model": "MERCEDES CITARO G II",
         "articulated": true,
         "lowFlor": true,
         "airConditioner": false,
@@ -2591,7 +2619,7 @@
     },
     {
         "sideNo": "188",
-        "model": "MERCEDES CITARO II",
+        "model": "MERCEDES CITARO G II",
         "articulated": true,
         "lowFlor": true,
         "airConditioner": false,
@@ -2605,7 +2633,7 @@
     },
     {
         "sideNo": "189",
-        "model": "MERCEDES CITARO II",
+        "model": "MERCEDES CITARO G II",
         "articulated": true,
         "lowFlor": true,
         "airConditioner": false,
@@ -2619,7 +2647,7 @@
     },
     {
         "sideNo": "190",
-        "model": "MERCEDES CITARO II",
+        "model": "MERCEDES CITARO G II",
         "articulated": true,
         "lowFlor": true,
         "airConditioner": false,
@@ -2633,7 +2661,7 @@
     },
     {
         "sideNo": "191",
-        "model": "MERCEDES CITARO II",
+        "model": "MERCEDES CITARO G II",
         "articulated": true,
         "lowFlor": true,
         "airConditioner": false,
@@ -2647,7 +2675,7 @@
     },
     {
         "sideNo": "192",
-        "model": "MERCEDES CITARO II",
+        "model": "MERCEDES CITARO G II",
         "articulated": true,
         "lowFlor": true,
         "airConditioner": false,
@@ -2661,7 +2689,7 @@
     },
     {
         "sideNo": "193",
-        "model": "MERCEDES CITARO II",
+        "model": "MERCEDES CITARO G II",
         "articulated": true,
         "lowFlor": true,
         "airConditioner": false,
@@ -2675,7 +2703,7 @@
     },
     {
         "sideNo": "194",
-        "model": "MERCEDES CITARO II",
+        "model": "MERCEDES CITARO G II",
         "articulated": true,
         "lowFlor": true,
         "airConditioner": false,
@@ -2689,7 +2717,7 @@
     },
     {
         "sideNo": "195",
-        "model": "MERCEDES CITARO II",
+        "model": "MERCEDES CITARO G II",
         "articulated": true,
         "lowFlor": true,
         "airConditioner": false,
