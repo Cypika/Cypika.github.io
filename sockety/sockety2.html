@@ -6,7 +6,8 @@
     <title>MPK Częstochowa</title>
     <link rel="stylesheet" href="sockety-style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 <body>
     <div id="black-viniette"></div>
 
@@ -27,6 +28,7 @@
     <button onclick="loadVehicleMap()">LoadVehicleMap</button>
     <button onclick="processVData()">processVData()</button>
     <button onclick="gpsTester()">gpsTester()</button>
+    <button onclick="test3()">test3()</button>
     <br><br>
 
     <button onclick="sendRequest(`15:40/vehicle_gps,`);">vehicle gps</button>
@@ -52,7 +54,7 @@
     <h2 style="clear: both;">Sprawdzanie wozów:</h2><br>
     <button onclick="autoQ('porecz')">Wszystkie poręczaki</button><br>
     <button onclick="autoQ('105')">Wszystkie 105Na</button><br>
-    <button onclick="autoQ('krakus')">Wszystkie szynki krakowskie</button><br>
+    <button onclick="autoQ('krakus')">Wszystkie krakusy</button><br>
     <button onclick="autoQ('218')">218</button><br>
     <button onclick="autoQ('219')">219</button><br>
     <button onclick="autoQ('128')">128</button><br>
@@ -123,7 +125,7 @@
             maxZoom: 22,
             subdomains: ['mt0','mt1','mt2','mt3']
         });
-        var osm = new L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        var osm = new L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxNativeZoom: 19, // OSM max available zoom is at 19.
             maxZoom: 22, // Match the map maxZoom, or leave map.options.maxZoom undefined.
             opacity: 0.7
@@ -1636,7 +1638,12 @@
                                             await sendRequest(qClose);
                                             //await sendRequest();
                                         } catch (error) {
-                                            //console.error("Błąd parsowania JSON:", error);
+
+
+                                            //uncomment
+                                            console.error("Błąd parsowania JSON:", error);
+
+
                                             konsola("error", `JSON parsing error: ${error}`);
                                             komunikat({
                                                 wariant: "error",
@@ -1759,11 +1766,21 @@
             })
             .catch(error => console.error('Błąd:', error));
 
-        function locations(locationID){
+        function locations(locationID, textPaste = false){
             if (locJson != undefined){
                 var find = locJson.find(item => item.locationID == locationID)
                 if (find){
-                    return(find.name);
+                    if (find.name == ""){
+                        if(textPaste == true){
+                            return(`<span class="old-stop" title="Przystanek zlikwidowany lub przeniesiony">${find.description}</span>`);
+                        }else{
+                            return(find.description); //CHANGED  + " | " + locationID
+                        }
+                    }
+                    else{
+                        return(find.name);
+                    }
+                    
                 } else{
                     console.log('Nie zalneziono elementu ' + locationID);
                 }
@@ -1832,6 +1849,91 @@
         var dataDsp = document.getElementById('data-dsp');
         var liveDataDsp = document.getElementById('live-data-dsp');
 
+
+        function changeTime(timeArg){
+            var [data, time] = timeArg.split(", ");
+            var [day, month, year] = data.split(".");
+            var [hour, minute, second] = time.split(":");
+
+            var timeObject = new Date(
+                parseInt(year, 10),      // Rok
+                parseInt(month, 10) - 1, // Miesiące są indeksowane od 0
+                parseInt(day, 10),       // Dzień
+                parseInt(hour, 10),      // Godzina
+                parseInt(minute, 10),    // Minuta
+                parseInt(second, 10)     // Sekunda
+            );
+
+            return timeObject;
+        }
+
+
+        const unitForms = {
+            seconds: ["sekunda", "sekundy", "sekund"],
+            minutes: ["minuta", "minuty", "minut"],
+            hours: ["godzina", "godziny", "godzin"],
+            days: ["dzień", "dni", "dni"],
+            months: ["miesiąc", "miesiące", "miesięcy"],
+            years: ["rok", "lata", "lat"]
+        };
+
+        function timeForm(time, number){
+            console.log(time + " | " + number);
+            if (number % 10 === 1 && number % 100 !== 11) {
+                return unitForms[time][0]; // forma pojedyncza
+            } else if (number % 10 >= 2 && number % 10 <= 4 && (number % 100 < 10 || number % 100 >= 20)) {
+                return unitForms[time][1]; // forma dla 2-4
+            } else {
+                return unitForms[time][2]; // forma dla innych liczb
+            }
+        }
+
+        function calcTimeAgo(date){
+            var timestamp = date.getTime();
+            console.log(timestamp);
+
+            var timeNow = new Date().getTime();
+            console.log(timeNow);
+
+            var timeDiff = timeNow - timestamp;
+
+            var diffSeconds = Math.floor(timeDiff / 1000);
+            var diffMinutes = Math.floor(diffSeconds / 60);
+            var diffHours = Math.floor(diffMinutes/ 60);
+            var diffDays = Math.floor(diffHours / 24);
+            var diffMonths = Math.floor(diffDays / 30);
+            var diffYears = Math.floor(diffDays / 356);
+
+            console.log(diffSeconds + " / " + diffMinutes + " / " + diffHours + " / " + diffDays + " / " + diffMonths + " / " + diffYears);
+
+            if (diffSeconds < 60){return `${diffSeconds} ${timeForm("seconds", diffSeconds)} temu`};
+            if (diffMinutes < 60){return `${diffMinutes} ${timeForm("minutes", diffMinutes)} temu`};
+            if (diffHours < 24){return `${diffHours} ${timeForm("hours", diffHours)} temu`};
+            if (diffDays < 30){return `${diffDays} ${timeForm("days", diffDays)} temu`};
+            if (diffMonths < 12){return `${diffMonths} ${timeForm("months", diffMonths)} temu`};
+            if (diffYears >= 1){
+                var calcMonths = diffMonths % 12;
+                if (calcMonths === 0){
+                    return `${diffYears} ${timeForm("years", diffYears)} temu`;
+                }else{
+                    return `${diffYears} ${timeForm("years", diffYears)} i ${calcMonths} ${timeForm("months", calcMonths)} temu`;
+                }
+            };
+            
+
+        }
+
+        function hideSup(parrent){
+            console.log(parrent);
+            var supTags = parrent.querySelectorAll('.sup-delay');
+            console.log(supTags);
+
+            supTags.forEach(sup =>{
+                sup.style.display = "none";
+            });
+        }
+
+
         function processVData(){
             if (getData != undefined){
                 console.log("getData ok");
@@ -1839,8 +1941,9 @@
                 liveDataDsp.innerHTML = "";
                 vehiclesMapObject = {};
 
-                getData[1].forEach(vehicle =>{
+                getData[1].forEach((vehicle, index) =>{
                     console.log("Pojazd " + vehicles(vehicle.vehicleID));
+                    konsola("info", "Pojazd:" + vehicles(vehicle.vehicleID));
                     console.log(vehicle);
 
                     var run = vehicle.currentRun;
@@ -1859,48 +1962,203 @@
 
 
 
-                    let startDateTime = run.start ? convertTime(run.start).dateTime : "Nie rozpoczęto kursu";
-                    let endDateTime = run.end ? convertTime(run.end).dateTime : "Kurs nie zakończył się";
+                    //let startDateTime = run.start ? convertTime(run.start).dateTime : "Nie rozpoczęto kursu";
+                    //let endDateTime = run.end ? convertTime(run.end).dateTime : "Kurs nie zakończył się";
+
+                    let runDate = run.start ? convertTime(run.start).date : "";
+                    let startTime = run.start ? convertTime(run.start).time : "Nie rozpoczęto kursu";
+                    let endTime = run.end ? convertTime(run.end).time : "Kurs nie zakończył się";
 
                     var dataDspPrepare = "";
 
                     var dataBlock = document.createElement('div');
                     dataBlock.classList.add('data-block');
+                    dataBlock.id = "dBlock" + index;
 
 
+
+                    //Początek kursu: ${startDateTime}<br>
+                    //Koniec kursu: ${endDateTime}<br>
+
+
+                    //<div class="vehicle-info">
+                            
+                    //</div>
+
+
+
+
+                    var vData = modelFinder(vehicles(vehicle.vehicleID));
+
+                    var registerNr = "";
+                    if (vData.regNo == "---"){
+                        registerNr = "";
+                    }else{
+                        registerNr = vData.regNo;
+                    }
 
                     dataDspPrepare += `
-                        <h2><span id='woz-${vehicles(vehicle.vehicleID)}'>Pojazd ${vehicles(vehicle.vehicleID)}</span></h2>
-                        Początek kursu: ${startDateTime}<br>
-                        Koniec kursu: ${endDateTime}<br>
+                        <h2 class="vehicle-h2"><a onclick="showVehInfo('${vData.sideNo}')" id='woz-${vData.sideNo}'>Pojazd ${vData.sideNo}</a></h2>
+                        <div class="v-info-container" id="v-info-c-id-${vData.sideNo}">
+                            <hr class="v-info-hr"><br>
+                            <span class="v-info-model-s" reg-data="${registerNr}"><i class="fas fa-bus-simple v-info-icon"></i>${vData.model}</span>
+                            <div class="reg-info" reg-data="${registerNr}">
+                                <i class="far fa-id-card v-info-icon"></i>${registerNr}
+                            </div>
+                        </div><br>
+
+                        Kurs: ${runDate}, ${startTime.slice(0, 5)} - ${endTime.slice(0, 5)}<br>
                     `;
                     console.log(convertTime(run.start).date);
-                    if (isToday(convertTime(run.start).date)){
+                    console.log(convertTime(run.start).dateTime);
+                    console.log(run.start);
+
+
+
+
+
+                    /*if (isToday(convertTime(run.start).date)){
                         dataDspPrepare += `
                             Dzisiaj<br>
                         `
+                    }*/
+
+                    var kiedyCzas = calcTimeAgo(changeTime(convertTime(run.start).dateTime));
+                    if (kiedyCzas){
+                        var timeTextShow = false;
+                        if (isToday(convertTime(run.start).date)){
+                            dataDspPrepare += `<span id="timeText-${index}" style="display: none;">Dzisiaj, ${kiedyCzas}<br></span>`
+                        }else{
+                            dataDspPrepare += `<span id="timeText-${index}" style="display: none;">${kiedyCzas}<br></span>`
+                        }
                     }
-                    dataDspPrepare += "<br>";
+
                     if (vehicle.lastPosition != null){
                         var lp = vehicle.lastPosition;
-                        dataDspPrepare += `
-                            Linia: ${lp.lineNo}<br>
-                            Kierunek: ${lp.direction}<br><br>
-                        `;
-                        if (lp.latitude && lp.longitude){ // Zmienić linie i direction
-                            vehiclesMapObject[lp.taborNo] = [lp.latitude, lp.longitude, lp.lineNo, lp.direction, lp.dateTime, actDriver];
-                        }
-                        
                     }else{
-                        //var liniaCut = run.name.split("-")[0];
-                        
-                        //dodano znaki zapytania 
-                        var kierCut = run.runStops[run.runStops.length-1]?.locationID ?? '???';
-                        dataDspPrepare += `
-                            Linia: ${lines(run.lineID)}<br>
-                            Kierunek: ${locations(kierCut)}<br><br>
-                        `;
+                        var lp = false;
                     }
+
+                    if (lp && lp.lineNo && lp.lineNo != null && lp.lineNo != " "){
+                        var line = lp.lineNo;
+                    }else{
+                        var line = lines(run.lineID);
+                    }
+                    if (lp.direction != null && lp){
+                        var direction = lp.direction
+                    }else{
+                        //dodano znaki zapytania
+                        var lokacjaKoncowa = run.runStops[run.runStops.length-1]?.locationID
+                        if (lokacjaKoncowa){
+                            var direction = locations(lokacjaKoncowa);
+                        }else{
+                            var direction = "";
+                        }
+                    }
+
+                    dataDspPrepare += `
+                        Linia: ${line}<br>
+                        Kierunek: ${direction}<br>
+                    `;
+
+                    if (lp.latitude && lp.longitude){ // Zmienić linie i direction
+                        vehiclesMapObject[lp.taborNo] = [lp.latitude, lp.longitude, lp.lineNo, lp.direction, lp.dateTime, actDriver];
+                    }
+
+                    dataDspPrepare += `
+                        Brygada: ${run.name}<br><br>
+                    `;
+
+
+                    //dataDspPrepare += "<br>";
+
+
+                    
+                    dataDspPrepare += `<button id="show-stops-bnr-${index}" class="show-stops-btn" onclick="showStops(${index})">Pokaż przystanki</button><br>`;
+
+
+                    if (/*index == 2*/2+2 == 4){
+                        //dataDspPrepare += `${run.runStops[0][]}`;
+                        var przystanki = run.runStops;
+                        //for (var stop in run.runStops)
+                        dataDspPrepare += `
+                            <div class="table-wrapper">
+                                <table id="s-table-${index}"class='tabela-godziny'>
+                                    <tr>
+                                        <th>PRZYSTANEK</th>
+                                        <th>ROZKŁAD</th>
+                                        <th>PRZYJAZD</th>
+                                    </tr>
+                        `;
+
+                        if (przystanki.length == 0){
+                            dataDspPrepare += `
+                                <tr>
+                                    <td colspan="3" class="brak-stops-warn">BRAK!</td>
+                                </tr>
+                            `;
+                        }else{
+
+                            var przystankiDesc = przystanki.slice();
+                            przystankiDesc = przystankiDesc.sort((a, b) => a - b).reverse();
+
+                            for (i=0; i<przystankiDesc.length; i++){
+                                var stopLen = przystankiDesc[i];
+                                if (stopLen.arrivalTime){
+                                    console.log(stopLen);
+                                    var aTStop = stopLen;
+                                    break;
+                                }
+                            }
+
+                            run.runStops.forEach((stop, indexStop) =>{
+                                var timeLose = "";
+                                if (stop.arrivalTime != null){
+                                    var czasArrival = convertTime(stop.arrivalTime).time;
+                                    //timeLose = "";
+                                }else{
+                                    var czasArrival = " --- ";
+                                    if ((run.runStops.length > indexStop) && (stop.stopOrder && aTStop && aTStop.stopOrder) && (stop.stopOrder > aTStop.stopOrder)){
+                                        var spoznienieMin = Math.floor(vehicle.delayMinutes);
+                                        if (spoznienieMin < 0){
+                                            timeLose = `<sup class="sup-delay">+${Math.abs(spoznienieMin)}</sup>`;
+                                        }else if (spoznienieMin > 0){
+                                            console.log(spoznienieMin);
+                                            timeLose = `<sup class="sup-delay">-${Math.abs(spoznienieMin)}</sup>`;
+                                        }else if (spoznienieMin == 0){
+                                            timeLose = `<sup class="sup-delay">OK</sup>`;
+                                        }
+                                        
+                                    }else{
+                                        //timeLose = "";
+                                    }
+                                }
+                                var stopOrd = stop.stopOrder;
+                                if (stopOrd == null){
+                                    stopOrd = (run.runStops[indexStop+1].stopOrder);
+                                }else if (stopOrd){
+                                    stopOrd = stopOrd + 1;
+                                }
+                                dataDspPrepare += `
+                                    <tr style="position: relative;">
+                                        <td>${stopOrd}. ${locations(stop.locationID, true)}</td>
+                                        <td class="td-center">${convertTime(stop.time).time.slice(0, 5)}${timeLose}</td>
+                                        <td class="td-center">${czasArrival}</td>
+                                    </tr>`;
+                            });
+                        }
+                        dataDspPrepare += "</table></div>";
+                    }
+
+
+
+
+                    //dataDspPrepare += "<br>";
+
+
+
+
+
                     if (actDriver != undefined){
                         if (actDriver.ocena != undefined){
                             var gwiazdkiHTML = '';
@@ -1922,123 +2180,149 @@
                         if (gwiazdkiHTML != undefined) dataDspPrepare += `Ocena:<br> ${gwiazdkiHTML}<br><br>`;
                     }else{
                         dataDspPrepare += `<h3>Nieznany kierowca</h3>`;
-                        if (run.driver) dataDspPrepare += run.driver + "<br>";
                     }
 
-                    //Prawdopodobnie sprawdzanie czy dojechał na końcowy, jak nie to gdzie jest
-                    if (run.runStops[0].arrivalTime != null && run.runStops[run.runStops.length-1].arrivalTime == null){
+                    if (run.runStops.length > 0){
+                        //Prawdopodobnie sprawdzanie czy dojechał na końcowy, jak nie to gdzie jest
+                        console.log("runStops:", run.runStops);
+                        console.log("runStops[0]:", run.runStops[0]);
+                        console.log("runStops[1]:", run.runStops[1]);
+                        console.log("runStops[last]:", run.runStops[run.runStops.length - 1]);
 
-                        //Tu pętla sprawdzająca kiedy dopiero jest puste arrivalTime
-                        console.log("start");
-                        var lastPos;
-                        for (var i = 0; i < run.runStops.length; i++){
-                            var tenStop = run.runStops[i];
-                            if (tenStop.arrivalTime != null){
-                                lastPos = tenStop;
-                            }else{
-                                console.log("Zatrzymano pętle");
-                                break;
+
+                        //if ((run.runStops[0]?.arrivalTime != null || run.runStops[1]?.arrivalTime != null) && run.runStops[run.runStops.length - 1]?.arrivalTime == null){
+                           
+                        
+                        //if ((run.runStops[0].arrivalTime != null || run.runStops[1].arrivalTime != null) && run.runStops[run.runStops.length-1].arrivalTime == null){
+                            
+
+
+
+                        //original
+                        //if (run.runStops[0].arrivalTime != null && run.runStops[run.runStops.length-1].arrivalTime == null){
+
+
+
+
+
+                        /*var hasAnyArrival = run.runStops
+                            .slice(0, -1) // pomijamy ostatni
+                            .some(stop => stop?.arrivalTime != null);
+
+                        if (hasAnyArrival && run.runStops[run.runStops.length-1].arrivalTime == null){*/
+
+
+                        const lastStop = run.runStops[run.runStops.length - 1];
+                        const stopsWithArrival = run.runStops.filter(stop => stop.arrivalTime != null);
+
+                        if (lastStop.arrivalTime == null && (stopsWithArrival.length >= 2 || run.runStops[0].arrivalTime)) {
+                            //Tu pętla sprawdzająca kiedy dopiero jest puste arrivalTime
+                            console.log("start");
+                            var lastPos;
+
+                        
+                            /*
+                            for (var i = 0; i < run.runStops.length; i++){
+                                var tenStop = run.runStops[i];
+                                if (tenStop.arrivalTime != null){
+                                    console.log(tenStop);
+                                    lastPos = tenStop;
+                                }else{
+                                    console.log("Zatrzymano pętle");
+                                    console.log(lastPos);
+                                    break;
+                                }
                             }
-                        }
+                            */
 
-                        var [data, czas] = convertTime(lastPos.arrivalTime).dateTime.split(", ");
-                        var [dzien, miesiac, rok] = data.split(".");
-                        var [godzina, minuta, sekunda] = czas.split(":");
 
-                        var czasObiekt = new Date(
-                            parseInt(rok, 10),         // Rok
-                            parseInt(miesiac, 10) - 1, // Miesiące są indeksowane od 0
-                            parseInt(dzien, 10),       // Dzień
-                            parseInt(godzina, 10),     // Godzina
-                            parseInt(minuta, 10),      // Minuta
-                            parseInt(sekunda, 10)      // Sekunda
-                        );
-
-                        var teraz = new Date();
-
-                        var roznicaCzasu = teraz - czasObiekt;
-                        console.log(roznicaCzasu + "  |  " + 60 * 60 * 1000)
-
-                        if (roznicaCzasu <= 60 * 60 * 1000){
-                            console.log("Znaleziono")
-
-                            var zmiennaId = "woz-"+ vehicles(vehicle.vehicleID);
-                            var tempSpanPodstawnik = `<span id='woz-${vehicles(vehicle.vehicleID)}'>`
-                            dataDspPrepare = dataDspPrepare.replace(
-                                tempSpanPodstawnik,
-                                '<span id="my-span" class="vehicle-span-highlight">'
-                            );
-
-                            dataDspPrepare += `Ostatnia odnotowana lokalizacja: ${locations(lastPos.locationID)}, ${convertTime(lastPos.arrivalTime).time}<br>`;
-                            var spoznienie = vehicle.delaySeconds;
-                            var dlMinuty, dlSekundy;
-
-                            if (spoznienie < 0){
-                                spoznienie = Math.abs(spoznienie);
-                                var dlMinuty = Math.floor(spoznienie / 60);
-                                var dlSekundy = spoznienie % 60;
-                                dataDspPrepare += `Aktualne opóźnienie: ${dlMinuty}min ${dlSekundy}s`
-                            }else{
-                                dlMinuty = Math.floor(spoznienie / 60);
-                                dlSekundy = spoznienie % 60;
-                                dataDspPrepare += `Kurs przyśpieszony o: ${dlMinuty}min ${dlSekundy}s`
+                            for (var i = run.runStops.length - 1; i >= 0; i--) {
+                                var tenStop = run.runStops[i];
+                                if (tenStop.arrivalTime != null) {
+                                    lastPos = tenStop;
+                                    console.log("Znaleziono ostatni z arrivalTime:", lastPos);
+                                    break;
+                                }
                             }
-                            dataBlock.innerHTML = dataDspPrepare;
-                            liveDataDsp.appendChild(dataBlock);
+
+
+
+                            var czasObiekt = changeTime(convertTime(lastPos.arrivalTime).dateTime);
+                            console.log(changeTime(convertTime(lastPos.arrivalTime).dateTime));
+
+                            var teraz = new Date();
+
+                            var roznicaCzasu = teraz - czasObiekt;
+                            console.log(roznicaCzasu + "  |  " + 60 * 60 * 1000)
+
+                            if (roznicaCzasu <= 60 * 60 * 1000){
+                                console.log("Znaleziono")
+
+                                dataDspPrepare += `Ostatnia odnotowana lokalizacja: ${locations(lastPos.locationID)}, ${convertTime(lastPos.arrivalTime).time}<br>`;
+                                var spoznienie = vehicle.delaySeconds;
+                                var dlMinuty, dlSekundy;
+
+                                if (spoznienie < 0){
+                                    spoznienie = Math.abs(spoznienie);
+                                    var dlMinuty = Math.floor(spoznienie / 60);
+                                    var dlSekundy = spoznienie % 60;
+                                    dataDspPrepare += `Aktualne opóźnienie: ${dlMinuty}min ${dlSekundy}s`
+                                }else{
+                                    dlMinuty = Math.floor(spoznienie / 60);
+                                    dlSekundy = spoznienie % 60;
+                                    dataDspPrepare += `Kurs przyśpieszony o: ${dlMinuty}min ${dlSekundy}s`
+                                }
+                                dataBlock.innerHTML = dataDspPrepare;
+                                liveDataDsp.appendChild(dataBlock);
+                            }else{
+                                var lastStopT = run.runStops[run.runStops.length-1].locationID;
+                                dataDspPrepare += `Zakończono kurs na ${locations(lastStopT)}`;
+
+                                timeTextShow = true;
+
+                                console.log('buger');
+                            }
                         }else{
+                            var czasObiekt2 = changeTime(convertTime(run.end).dateTime);
+                            console.log(czasObiekt2);
+
+                            var teraz = new Date();
+                            console.log(teraz);
+
+                            var roznicaCzasu2 = teraz - czasObiekt2;
+                            console.log(roznicaCzasu2 + "  |  " + 60 * 60 * 1000)
+
                             var lastStopT = run.runStops[run.runStops.length-1].locationID;
-                            dataDspPrepare += `Zakończono kurs na ${locations(lastStopT)}`;
-                            console.log('buger');
+                            if (roznicaCzasu2 <= 60 * 60 * 1000){
+                                console.log("%cCziluje", "color: red");
+
+                                dataDspPrepare += `<span class="red">Niedawno zakończył kurs na ${locations(lastStopT)}<span>`;
+
+                                dataBlock.innerHTML = dataDspPrepare;
+                                liveDataDsp.appendChild(dataBlock);
+                            }else{
+                                dataDspPrepare += `Zakończono kurs na ${locations(lastStopT)}`;
+
+                                timeTextShow = true;
+
+
+                                dataBlock.innerHTML = dataDspPrepare;
+                                dataDsp.appendChild(dataBlock);
+                            }
                         }
                     }else{
-                        console.log(convertTime(run.end).dateTime)
-                        var [data, czas] = convertTime(run.end).dateTime.split(", ");
-                        var [dzien, miesiac, rok] = data.split(".");
-                        var [godzina, minuta, sekunda] = czas.split(":");
-
-                        var czasObiekt2 = new Date(
-                            parseInt(rok, 10),         // Rok
-                            parseInt(miesiac, 10) - 1, // Miesiące są indeksowane od 0
-                            parseInt(dzien, 10),       // Dzień
-                            parseInt(godzina, 10),     // Godzina
-                            parseInt(minuta, 10),      // Minuta
-                            parseInt(sekunda, 10)      // Sekunda
-                        );
-
-                        console.log(czasObiekt2);
-
-                        var teraz = new Date();
-
-                        console.log(teraz);
-
-                        var roznicaCzasu2 = teraz - czasObiekt2;
-                        console.log(roznicaCzasu2 + "  |  " + 60 * 60 * 1000)
-
-                        var lastStopT = run.runStops[run.runStops.length-1].locationID;
-                        if (roznicaCzasu2 <= 60 * 60 * 1000){
-                            console.log("%cCziluje", "color: red");
-                            var zmiennaId = "woz-"+ vehicles(vehicle.vehicleID);
-
-                            var tempSpanPodstawnik = `<span id='woz-${vehicles(vehicle.vehicleID)}'>`
-                            dataDspPrepare = dataDspPrepare.replace(
-                                tempSpanPodstawnik,
-                                '<span id="my-span" class="vehicle-span-highlight">'
-                            );
-
-                            dataDspPrepare += `<span class="red">Niedawno zakończył kurs na ${locations(lastStopT)}<span>`;
-
-                            dataBlock.innerHTML = dataDspPrepare;
-                            liveDataDsp.appendChild(dataBlock);
-                        }else{
-                            dataDspPrepare += `Zakończono kurs na ${locations(lastStopT)}`;
-
-                            dataBlock.innerHTML = dataDspPrepare;
-                            dataDsp.appendChild(dataBlock);
-                        }
+                        timeTextShow = true;
                     }
                     if (dataBlock.innerHTML == ''){
                         dataBlock.innerHTML = dataDspPrepare;
                         dataDsp.appendChild(dataBlock);
+                    }
+
+                    if (timeTextShow){
+                        var ttsElement = document.getElementById(`timeText-${index}`);
+
+                        ttsElement.style.display = "block";
+                        hideSup(dataBlock);
                     }
 
 
@@ -2052,6 +2336,35 @@
             }
             
         }
+
+        function showStops(vehicleIndex){
+            var tableId = "s-table-"+vehicleIndex;
+            var tableEl = document.getElementById(tableId);
+            var buttonId = "show-stops-bnr-"+vehicleIndex;
+            var buttonEl = document.getElementById(buttonId);
+
+            var tableParent = tableEl.closest('.table-wrapper');
+
+            tableParent.classList.toggle('showTable');
+            if (buttonEl.innerHTML == "Pokaż przystanki"){
+                buttonEl.innerHTML = "Ukryj przystanki";
+            }else{
+                buttonEl.innerHTML = "Pokaż przystanki";
+            }
+        }
+
+        function showVehInfo(vehicleIndex){
+            var cInfoId = "v-info-c-id-"+vehicleIndex;
+            var cInfoEl = document.getElementById(cInfoId);
+
+            //var tableParent = tableEl.closest('.table-wrapper');
+
+            cInfoEl.classList.toggle('showVInfo');
+        }
+
+
+
+
 
         var dbJson;
 
@@ -2676,6 +2989,16 @@
             await sendRequest(`67:42/vehicle_gps,["vehicleID","e6c0a250-f18e-470f-b1cf-eda724cf1ea3"]`);
             await delay(500);
             await sendRequest(``);
+        }
+
+        function test3(){
+            loadWozy();
+            quickAll('select', 8);
+            setTimeout(() =>{
+                createRequest();
+                handshakeSelector('exec');
+            }, 500);
+            
         }
     </script>
 </body>
