@@ -2180,6 +2180,7 @@
                         if (gwiazdkiHTML != undefined) dataDspPrepare += `Ocena:<br> ${gwiazdkiHTML}<br><br>`;
                     }else{
                         dataDspPrepare += `<h3>Nieznany kierowca</h3>`;
+                        if (run.driver) dataDspPrepare += run.driver + "<br>";
                     }
 
                     if (run.runStops.length > 0){
