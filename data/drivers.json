@@ -33,7 +33,7 @@
             "driverID": "ab04f355-3c18-432c-b43a-c150f4106618",
             "nick": "Tomek",
             "imie": "Tomasz",
-            "nazwisko": "",
+            "nazwisko": "Ziębacz",
             "ocena": "5" 
         },
         {
@@ -161,13 +161,6 @@
             "imie": "",
             "nazwisko": "",
             "ocena": "5" 
-        },
-        {
-            "driverID": "8812050e-1705-4d69-bcd2-99de216df249",
-            "nick": "Jakaś prime woman",
-            "imie": "",
-            "nazwisko": "",
-            "ocena": "2" 
         },
         {
             "driverID": "81c6a0d5-bdfc-47cc-8b59-2a22d7f06a4b",
@@ -370,7 +363,7 @@
             "imie": "",
             "nazwisko": "",
             "ocena": "5",
-            "typ": "tram"
+            "typ": "tram-bus"
         },
         {
             "driverID": "5af1362b-bc6a-4f17-8a4d-c6f293a29e86",
@@ -414,7 +407,7 @@
         },
         {
             "driverID": "0c01655e-3314-4d23-935e-3a5c203029dc",
-            "nick": "",
+            "nick": "Szkło hartowane",
             "imie": "Patryk",
             "nazwisko": "Hartman",
             "ocena": "5",
@@ -423,6 +416,102 @@
         {
             "driverID": "63f86403-e532-4fa8-b871-8ad5ee01553b",
             "nick": "Krawężniker",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5",
+            "typ": "bus"
+        },
+        {
+            "driverID": "60c0c8de-cc9d-4484-b965-c06c7ba24e4b",
+            "nick": "",
+            "imie": "Krzysztof",
+            "nazwisko": "Zieliński",
+            "ocena": "5",
+            "typ": "tram"
+        },
+        {
+            "driverID": "1db6a781-c4ff-4f25-a0ee-bdfd031d8c51 ",
+            "nick": "Agent bus",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5",
+            "typ": "bus"
+        },
+        {
+            "driverID": "806094ab-86a1-4c53-bac5-641e0bccf481",
+            "nick": "a'la John Wick",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5",
+            "typ": "bus"
+        },
+        {
+            "driverID": "7fa69146-5c21-45f5-aacb-6e6eeca933b2",
+            "nick": "Przy silniku gorąco / American Boss",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5",
+            "typ": "bus"
+        },
+        {
+            "driverID": "cbbe3b1a-f183-441f-abb9-7c0c9e5ceba1",
+            "nick": "Technolog elektryk",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5",
+            "typ": "bus"
+        },
+        {
+            "driverID": "00d3bcef-8770-4b74-a1b5-64457dbe286b",
+            "nick": "A'la Wałęsa",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5",
+            "typ": "bus"
+        },
+        {
+            "driverID": "b184a600-1ee3-4708-be35-8c91b7f0fee3",
+            "nick": "Na minusie",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5",
+            "typ": "bus"
+        },
+        {
+            "driverID": "1552dfda-384b-42e7-8858-81870b6fc7ab ",
+            "nick": "Kadeksiarz odmachuję",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5",
+            "typ": "bus"
+        },
+        {
+            "driverID": "c6c271ac-55a2-48b9-8964-f552c752cc59",
+            "nick": "Warszawski zawodnik / majster",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5",
+            "typ": "tram"
+        },
+        {
+            "driverID": "4cc9cf95-e2d0-42c6-9151-1ccea01f11ae",
+            "nick": "117 busfaher",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5",
+            "typ": "bus"
+        },
+        {
+            "driverID": "8b0c3aff-46ba-4a3b-a617-1a47086e145a",
+            "nick": "Tomek praktykant",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5",
+            "typ": "bus"
+        },
+        {
+            "driverID": "8ede9485-0369-4e11-b07f-2d87d2a6fbf0",
+            "nick": "Arek / tiktoker / A'la Olaf Szulc /118 busfaher",
             "imie": "",
             "nazwisko": "",
             "ocena": "5",
@@ -602,6 +691,42 @@
             "nazwisko": "",
             "typ": "tram",
             "opis": "Nie widzi wozu technicznego"
+        },
+        {
+            "id": "w-19",
+            "driverID": "8812050e-1705-4d69-bcd2-99de216df249",
+            "nick": "",
+            "imie": "",
+            "nazwisko": "",
+            "typ": "tram",
+            "opis": "Prime"
+        },
+        {
+            "id": "w-20",
+            "driverID": "1acbc5b7-a6fe-4bc7-a967-dcd684264e35",
+            "nick": "",
+            "imie": "",
+            "nazwisko": "",
+            "typ": "bus",
+            "opis": ""
+        },
+        {
+            "id": "w-21",
+            "driverID": "1eb82691-46a4-4230-92e0-ece4e5884653",
+            "nick": "",
+            "imie": "",
+            "nazwisko": "",
+            "typ": "bus",
+            "opis": ""
+        },
+        {
+            "id": "w-22",
+            "driverID": "f2983c31-d519-4f61-8394-9f5c4cb13c2a",
+            "nick": "",
+            "imie": "",
+            "nazwisko": "",
+            "typ": "bus",
+            "opis": ""
         },
         {
             "id": "w-TEST",
