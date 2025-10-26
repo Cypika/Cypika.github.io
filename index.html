@@ -7,7 +7,7 @@
 </head>
 <body>
     
-    <button onclick="count()">Pracuj</button>
+    <button onclick="window.open('https://cors-anywhere.herokuapp.com/corsdemo', '_blank')">Pracuj</button>
 
     Linie tramwajowe: <input type="date" id="date-picker" onchange="dateF()">
     <button id="date-today-quick" class="date-button-quick" onclick="dateF('today')">Dzisiaj</button>
@@ -52,8 +52,16 @@
 
 
     </div>
+    <div id="errory">Brak błędów na razie</div>
 
     <script>
+        var errory = document.getElementById('errory');
+
+        window.onerror = function (message, source, lineno, colno, error) {
+            errory.innerHTML += (message + "<br>" + source + "<br>" +lineno + "<br>" + colno + "<br>" + error + "<br><br>");
+        };
+
+
         var today = new Date();
 
         var minDate = new Date();
@@ -227,7 +235,7 @@
                 console.log('cuda na kiju');
             }
             dirJson = '';
-            fetch('./proxy.php?type=directions&time='+proxyTime)
+            fetch("https://cors-anywhere.herokuapp.com/https://live.mpk.czest.pl/api/directions/"+proxyTime)
                 .then((response) => response.json())
                 .then(json => {
                     dirJson = json;
@@ -358,7 +366,7 @@
                 var stopsJson;
                 aktualnyKier = linia + location;
 
-                fetch('./proxy.php?type=stops&location='+liniaID+'/'+locationID+'&time='+proxyTime)
+                fetch("https://cors-anywhere.herokuapp.com/https://live.mpk.czest.pl/api/directions/full/"+proxyTime+"/"+liniaID+"/"+locationID)
                     .then((response) => response.json())
                     .then(json => {
 
@@ -457,9 +465,9 @@
 
         function wozInfo(id){
             if (wozyDownlOk && id != undefined){
-                /*if (id.length === 7 && id[0] === '6'){
+                if (id.length === 7 && id[0] === '6'){
                     id = id.split('/')[0]
-                }*/
+                }
                 return wozyJson.find(vehicle => vehicle.sideNo == id);
             } else if(id == undefined){
                 return "Undefined";
@@ -487,7 +495,7 @@
 
             console.log("Linia: "+lines(liniaID) + " Przystanek: " + locations(locationID) + " Z: " + firstStop + " Do: " + lastStop);
             
-            fetch('./proxy.php?type=location&location='+locationID+'&time='+proxyTime)
+            fetch("https://cors-anywhere.herokuapp.com/https://live.mpk.czest.pl/api/locations/"+locationID+"/timetables/"+proxyTime)
             .then((response) => response.json())
             .then(json => {
                 dataJson = json;
@@ -496,7 +504,6 @@
 
 
                 var actHour;
-                var lastTime;
                 var minHTable = [];
                 wozyNaLini = [];
                 var lastVehicle;
@@ -536,69 +543,54 @@
 
                                 var okCzas = tempHour + ":" + tempMin;
 
-                                //tutaj zrobić sprawdzanie ifem minuty i wozu na cały kod w dół, zrobić zmienną lasttime, chyba że już jest
+                                console.log(locations(locationID) + " | " + okCzas + " | " + vehicles(run.vehicleID));
+                                var tempVehicleC = vehicles(run.vehicleID);
+                                textRozklad.rozklad.push({okCzas, tempVehicleC});
 
-                                //okCzas != lastTime && run.vehicleID != lastVehicle
-                                //(okCzas != lastTime) || ((okCzas == lastTime) && (run.vehicleID != lastVehicle))
-                                if (okCzas != lastTime){
-                                    //console.log("%cokCzas: " + okCzas + " lastTime: " + lastTime + " run.vehicleID: " + run.vehicleID + " lastVehicle: " + lastVehicle, "color: red");
-
-
-                                    console.log(locations(locationID) + " | " + okCzas + " | " + vehicles(run.vehicleID));
-                                    var tempVehicleC = vehicles(run.vehicleID);
-                                    textRozklad.rozklad.push({okCzas, tempVehicleC});
-
-
-                                    if (actHour == ''){
-                                        actHour = tempHour;
-                                    }
-
-                                    var roznicaHour;
-
-                                    if (tempHour !== actHour) {
-                                        let timeKey = `${tempHour}:${tempMin}`;
-                                        vehiclesByMinute[timeKey] = run.vehicleID;
-
-                                        if (actHour) {
-                                            tabela += `
-                                                <tr>
-                                                    <td class="hour-td">${actHour}</td>
-                                                    <td>${minHTable.map(minute => {
-                                                        let timeKey = `${actHour}:${minute}`;
-                                                        return `<a onclick="vehicleInfoF('${vehiclesByMinute[timeKey]}', '${timeKey}')">${minute}</a>`;
-                                                    }).join(", ")}</td>
-                                                </tr>`;
-                                        }
-
-                                        roznicaHour = Number(tempHour) - Number(actHour);
-
-                                        for (var i = 1; i < roznicaHour; i++) {
-                                            let hourToAdd = Number(actHour) + i;
-                                            tabela += `
-                                                <tr>
-                                                    <td class="hour-td">${hourToAdd < 10 ? "0" + hourToAdd : hourToAdd}</td>
-                                                    <td></td> <!-- Pusta kolumna dla minut -->
-                                                </tr>`;
-                                        }
-
-                                        minHTable = [tempMin];
-                                        actHour = tempHour;
-                                        lastVehicle = run.vehicleID;
-                                        
-                                    } else {
-                                        minHTable.push(tempMin);
-
-                                        let timeKey = `${tempHour}:${tempMin}`;
-                                        vehiclesByMinute[timeKey] = run.vehicleID;
-
-                                    }
-                                
-                                    lastTime = okCzas;
-                                    console.log("%cLast time " + lastTime, "color: pink");
-                                }else{
-                                    console.log("Powtórka");
-                                    
+                                if (actHour == ''){
+                                    actHour = tempHour;
                                 }
+
+                                var roznicaHour;
+
+                                if (tempHour !== actHour) {
+                                    let timeKey = `${tempHour}:${tempMin}`;
+                                    vehiclesByMinute[timeKey] = run.vehicleID;
+
+                                    if (actHour) {
+                                        tabela += `
+                                            <tr>
+                                                <td class="hour-td">${actHour}</td>
+                                                <td>${minHTable.map(minute => {
+                                                    let timeKey = `${actHour}:${minute}`;
+                                                    return `<a onclick="vehicleInfoF('${vehiclesByMinute[timeKey]}', '${timeKey}')">${minute}</a>`;
+                                                }).join(", ")}</td>
+                                            </tr>`;
+                                    }
+
+                                    roznicaHour = Number(tempHour) - Number(actHour);
+
+                                    for (var i = 1; i < roznicaHour; i++) {
+                                        let hourToAdd = Number(actHour) + i;
+                                        tabela += `
+                                            <tr>
+                                                <td class="hour-td">${hourToAdd < 10 ? "0" + hourToAdd : hourToAdd}</td>
+                                                <td></td> <!-- Pusta kolumna dla minut -->
+                                            </tr>`;
+                                    }
+
+                                    minHTable = [tempMin];
+                                    actHour = tempHour;
+                                    lastVehicle = run.vehicleID;
+                                } else {
+                                    minHTable.push(tempMin);
+
+                                    let timeKey = `${tempHour}:${tempMin}`;
+                                    vehiclesByMinute[timeKey] = run.vehicleID;
+
+                                }
+                                
+                                
                             }
                         })
                         console.log(vehiclesByMinute);
