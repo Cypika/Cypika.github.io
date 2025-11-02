@@ -12,7 +12,7 @@
             "driverID": "85b80971-09b0-40c0-8ce2-6a2e9107cef0",
             "nick": "Mirek?",
             "imie": "Mirosław",
-            "nazwisko": "?",
+            "nazwisko": "",
             "ocena": "5" 
         },
         {
@@ -178,7 +178,7 @@
         },
         {
             "driverID": "8ef321d3-24ed-46ff-941b-7ccf9374dc82",
-            "nick": "jaro",
+            "nick": "jaro (fake/og id)",
             "imie": "Jarosław",
             "nazwisko": "Polaczkiewicz",
             "ocena": "5" 
@@ -279,7 +279,7 @@
         },
         {
             "driverID": "52b1af42-d99d-44ea-bec4-34ecfc3439dd",
-            "nick": "Koszula flanelowa",
+            "nick": "Koszula flanelowa / Zduniak",
             "imie": "",
             "nazwisko": "",
             "ocena": "5",
@@ -353,7 +353,7 @@
             "driverID": "890fc9e9-6153-4183-b501-b042b2ea7796",
             "nick": "Green hat / Czapkowiec",
             "imie": "Piotr",
-            "nazwisko": "Cała",
+            "nazwisko": "",
             "ocena": "5",
             "typ": "bus"
         },
@@ -478,7 +478,7 @@
             "typ": "bus"
         },
         {
-            "driverID": "1552dfda-384b-42e7-8858-81870b6fc7ab ",
+            "driverID": "1552dfda-384b-42e7-8858-81870b6fc7ab",
             "nick": "Kadeksiarz odmachuję",
             "imie": "",
             "nazwisko": "",
@@ -512,6 +512,62 @@
         {
             "driverID": "8ede9485-0369-4e11-b07f-2d87d2a6fbf0",
             "nick": "Arek / tiktoker / A'la Olaf Szulc /118 busfaher",
+            "imie": "Arkadiusz",
+            "nazwisko": "",
+            "ocena": "5",
+            "typ": "bus"
+        },
+        {
+            "driverID": "6d509025-a10e-40af-9a4e-482630a8135a",
+            "nick": "Profesor / Citaro G busfaher",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5",
+            "typ": "bus"
+        },
+        {
+            "driverID": "7a02ada9-b837-4e61-9630-e5653dbb7471",
+            "nick": "Gomułka",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5",
+            "typ": "bus"
+        },
+        {
+            "driverID": "a622b60d-6b10-4cfa-b482-78bcb251daa3",
+            "nick": "Jaro 100%",
+            "imie": "Jarosław",
+            "nazwisko": "Polaczkiewicz",
+            "ocena": "5",
+            "typ": "bus"
+        },
+        {
+            "driverID": "24b578d4-1aae-48d5-9dd9-69f369be69e4",
+            "nick": "Ojczym",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5",
+            "typ": "bus"
+        },
+        {
+            "driverID": "21605035-4738-4698-be1f-d85cbb570155",
+            "nick": "szybki 190 vmaxer / 30stka",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5",
+            "typ": "bus"
+        },
+        {
+            "driverID": "3c9b291f-1981-4408-8696-e3574f9f9bcf",
+            "nick": "Sweter (bus/tram?)",
+            "imie": "",
+            "nazwisko": "",
+            "ocena": "5",
+            "typ": "bus"
+        },
+        {
+            "driverID": "a524b5e3-33c7-445c-ac2b-4676f243c03c",
+            "nick": "Luz bluz",
             "imie": "",
             "nazwisko": "",
             "ocena": "5",
@@ -713,9 +769,9 @@
         {
             "id": "w-21",
             "driverID": "1eb82691-46a4-4230-92e0-ece4e5884653",
-            "nick": "",
-            "imie": "",
-            "nazwisko": "",
+            "nick": "LZN (?)",
+            "imie": "Ewa",
+            "nazwisko": "Lizon",
             "typ": "bus",
             "opis": ""
         },
@@ -734,7 +790,7 @@
             "nick": "NICK",
             "imie": "IMIE",
             "nazwisko": "NAZWISKO",
-            "typ": "tram",
+            "typ": "tram-bus",
             "opis": "Użytkownik testowy!"
         }
 
