@@ -19,7 +19,7 @@
             "driverID": "f1848e7a-b868-4685-ab5f-bcc4f307941c",
             "nick": "Turko / Turas / Doner / Rafaello",
             "imie": "Rafał",
-            "nazwisko": "Lizon",
+            "nazwisko": "",
             "ocena": "5" 
         },
         {
@@ -33,7 +33,7 @@
             "driverID": "ab04f355-3c18-432c-b43a-c150f4106618",
             "nick": "Tomek",
             "imie": "Tomasz",
-            "nazwisko": "Ziębacz",
+            "nazwisko": "",
             "ocena": "5" 
         },
         {
@@ -52,7 +52,7 @@
         },
         {
             "driverID": "e6c4ef4e-e9cc-4c49-9402-4164af6955ad",
-            "nick": "Krajzega man / ten z czapeczką",
+            "nick": "Krajzega man / ten z czapeczką / a'la Mariusz Pudzianowski",
             "imie": "",
             "nazwisko": "",
             "ocena": "5" 
@@ -61,7 +61,7 @@
             "driverID": "545a3e31-3164-4b9d-93df-23210dec3824",
             "nick": "FAKE",
             "imie": "Jarosław",
-            "nazwisko": "Polaczkiewicz",
+            "nazwisko": "",
             "ocena": "5" 
         },
         {
@@ -75,14 +75,14 @@
             "driverID": "93f0b964-37c1-4f69-a92e-182d43bf3d1d",
             "nick": "Rozczochraniec",
             "imie": "Marek",
-            "nazwisko": "Zbrojkiewicz",
+            "nazwisko": "",
             "ocena": "5" 
         },
         {
             "driverID": "7ee8138a-b399-4196-b6b5-e65782cb90b1",
             "nick": "",
             "imie": "Wojciech",
-            "nazwisko": "Niegowski",
+            "nazwisko": "",
             "ocena": "5" 
         },
         {
@@ -103,7 +103,7 @@
             "driverID": "a2ec2e7a-3713-4e64-b5c1-f04935af038c",
             "nick": "Adi / teren pentli / pentlasz",
             "imie": "Adrian",
-            "nazwisko": "Golis",
+            "nazwisko": "",
             "ocena": "5" 
         },
         {
@@ -131,7 +131,7 @@
             "driverID": "f4b6163b-ced8-4436-8e14-337becb73448",
             "nick": "Roberto / Robi",
             "imie": "Robert",
-            "nazwisko": "Szelka",
+            "nazwisko": "",
             "ocena": "5" 
         },
         {
@@ -173,14 +173,14 @@
             "driverID": "e2908040-e3ce-4719-89dd-491640cb4624",
             "nick": "MR",
             "imie": "Monika",
-            "nazwisko": "Rakowska",
+            "nazwisko": "",
             "ocena": "5" 
         },
         {
             "driverID": "8ef321d3-24ed-46ff-941b-7ccf9374dc82",
             "nick": "jaro (fake/og id)",
             "imie": "Jarosław",
-            "nazwisko": "Polaczkiewicz",
+            "nazwisko": "",
             "ocena": "5" 
         },
         {
@@ -313,7 +313,7 @@
             "driverID": "e1a66f8c-5c94-4469-ae52-abc069af04c8",
             "nick": "Ex CKMKM",
             "imie": "Konrad",
-            "nazwisko": "Machura",
+            "nazwisko": "",
             "ocena": "5",
             "typ": "bus"
         },
@@ -329,7 +329,7 @@
             "driverID": "f43d0015-8756-4476-9a99-e821d4e3f9eb",
             "nick": "Bos CKMKM",
             "imie": "Tomasz",
-            "nazwisko": "Rorat",
+            "nazwisko": "",
             "ocena": "5",
             "typ": "bus"
         },
@@ -337,7 +337,7 @@
             "driverID": "23fc2c83-ea3c-48b7-bd59-208ead9e3c0d",
             "nick": "Facebook Rząsawa / Solarisowiec",
             "imie": "Marcin",
-            "nazwisko": "Ciura",
+            "nazwisko": "",
             "ocena": "5",
             "typ": "bus"
         },
@@ -393,7 +393,7 @@
             "driverID": "26c798bf-16e0-476b-a976-38290a2a1b0b",
             "nick": "Sandałowiec",
             "imie": "Mariusz",
-            "nazwisko": "Bielawski",
+            "nazwisko": "",
             "ocena": "5",
             "typ": "bus"
         },
@@ -401,7 +401,7 @@
             "driverID": "20247e90-f79f-4620-b46a-c533e38e51f9",
             "nick": "Cezar",
             "imie": "Cezary",
-            "nazwisko": "Dabiach",
+            "nazwisko": "",
             "ocena": "5",
             "typ": "tram-bus"
         },
@@ -409,7 +409,7 @@
             "driverID": "0c01655e-3314-4d23-935e-3a5c203029dc",
             "nick": "Szkło hartowane",
             "imie": "Patryk",
-            "nazwisko": "Hartman",
+            "nazwisko": "",
             "ocena": "5",
             "typ": "bus"
         },
@@ -425,7 +425,7 @@
             "driverID": "60c0c8de-cc9d-4484-b965-c06c7ba24e4b",
             "nick": "",
             "imie": "Krzysztof",
-            "nazwisko": "Zieliński",
+            "nazwisko": "",
             "ocena": "5",
             "typ": "tram"
         },
@@ -537,7 +537,7 @@
             "driverID": "a622b60d-6b10-4cfa-b482-78bcb251daa3",
             "nick": "Jaro 100%",
             "imie": "Jarosław",
-            "nazwisko": "Polaczkiewicz",
+            "nazwisko": "",
             "ocena": "5",
             "typ": "bus"
         },
@@ -572,6 +572,15 @@
             "nazwisko": "",
             "ocena": "5",
             "typ": "bus"
+        },
+        {
+            "driverID": "d77dda6f-e363-4d6f-bf87-4f3ba6a9a207",
+            "nick": "NICK",
+            "imie": "IMIE",
+            "nazwisko": "NAZWISKO",
+            "ocena": "5",
+            "typ": "tram-bus",
+            "opis": "To jest przykładowy opis"
         }
 
     ],
@@ -627,7 +636,7 @@
             "driverID": "f6a0eb4d-44e1-4a3f-9f54-a1f34ad981e0",
             "nick": "",
             "imie": "Iwona",
-            "nazwisko": "Sikorska",
+            "nazwisko": "",
             "typ": "tram",
             "opis": "Prime"
         },
@@ -771,7 +780,7 @@
             "driverID": "1eb82691-46a4-4230-92e0-ece4e5884653",
             "nick": "LZN (?)",
             "imie": "Ewa",
-            "nazwisko": "Lizon",
+            "nazwisko": "",
             "typ": "bus",
             "opis": ""
         },
@@ -786,7 +795,7 @@
         },
         {
             "id": "w-TEST",
-            "driverID": "d77dda6f-e363-4d6f-bf87-4f3ba6a9a207",
+            "driverID": "d77dda6f-e363-4d6f-bf87-4f3ba6a9a207   -off",
             "nick": "NICK",
             "imie": "IMIE",
             "nazwisko": "NAZWISKO",
