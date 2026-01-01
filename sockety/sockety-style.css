@@ -12,6 +12,10 @@
 .red{
     color: red;
 }
+#data-dsp-container{
+    outline: 1px dashed green;
+    width: max-content !important;
+}
 #live-data-dsp{
     border: 1px red solid;
     border-radius: 20px;
@@ -20,6 +24,9 @@
 }
 #live-data-dsp:empty {
     border: none;
+}
+#data-dsp{
+    display: inline-block;
 }
 .vehicle-h2{
     margin-bottom: 0;
@@ -135,7 +142,23 @@
     margin: 10px 0 0 0;
     clear: both;
 }
-
+.content-freeze{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    margin-top: 8px; /*8px*/
+}
+#content-el{
+    width: 100%;
+}
+/*Zablokować overflow x w content-el i body*/
+body{
+    overflow-y: auto;
+    overflow-x: hidden;
+    /*width: 100%; wyłączono*/ 
+    margin: 8px;
+}
+  
 #alert-box{
     background-color: rgb(49, 49, 49);
     color: white;
@@ -143,19 +166,55 @@
     width: 600px;
     height: 200px;
     z-index: 1000; /* Utrzymujemy wysoki z-index, aby był na wierchu */
-    top: 25%;
-    left: 50%;
+    top: 25vh;
+    left: 50vw;
     /*transform: translate(-50%, -50%);*/
     transform: translate(-50%, -50%) scale(0.98); /* Skalowanie początkowe */
+    will-change: transform;
     opacity: 0; /* Ukryty na starcie */
     transition: opacity 0.3s ease, transform 0.2s ease;
     padding: 10px 20px;
     display: none;
+    border-radius: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400; /* normal */
+    transform-origin: center center;
+    /*overflow-x: hidden;*/
+
+}
+/* Duże telefony i małe tablety (np. 600px–480px) */
+@media (max-width: 600px) {
+    #alert-box {
+        transform: translate(-50%, -50%) scale(0.8) !important;
+    }
+}
+/* Standardowe telefony (np. iPhone 13 ma 390px) */
+@media (max-width: 480px) {
+    #alert-box {
+        transform: translate(-50%, -50%) scale(0.65) !important;
+    }
+}
+/* Mniejsze smartfony (~360px – Samsungi, starsze modele) */
+@media (max-width: 400px) {
+    #alert-box {
+        transform: translate(-50%, -50%) scale(0.55) !important;
+    }
+}
+/* Bardzo małe ekrany (~320px – starsze iPhone SE) */
+@media (max-width: 360px) {
+    #alert-box {
+        transform: translate(-50%, -50%) scale(0.45) !important;
+    }
+}
+@media (orientation: landscape) and (max-height: 500px) {
+    #alert-box {
+        transform: translate(-50%, -30%) scale(0.70) !important;
+    }
 }
 #alert-box.show {
     display: block; /* Pokazujemy element */
     opacity: 1; /* Widoczny */
-    transform: translate(-50%, -50%) scale(1); /* Skalowanie normalne */
+    transform: translate(-50%, -50%) scale(1); /* Skalowanie normalne | było 10%*/
 }
 #alert-box-header{
     display: flex;
@@ -165,30 +224,196 @@
 }
 #alert-title{
     font-size: 25px;
-    font-weight: bold;
+    font-weight: 500;
     border-bottom: 1px solid white;
 }
 #alert-close-button{
-    
+    border: 0;
+    background-color: transparent;
+    border-radius: 10px;
+    width: 32px;
+    height: 32px;
+    color: red;
+    font-size: 25px;
+    transition-duration: 0.3s;
+    cursor: pointer;
+    user-select: none;
 }
+#alert-close-button:hover{
+    color: rgb(160, 0, 0);
+}
+.driver-id-profile{
+    font-weight: 200;
+    color: #dddddd;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 7px 15px;
+    transition-duration: 0.3s;
+    cursor: pointer;
+    /*user-select: none;*/
+
+}
+.driver-id-profile:hover{
+    color: #add4fd;
+}
+.id-profile-colored{
+    color: #8aff88;
+}
+.copied-d-id-tooltip{
+    visibility: hidden;
+    background-color: #414141;
+    color: #8aff88;
+    text-align: center;
+    border-radius: 6px;
+    padding: 6px 8px;
+    position: absolute;
+    bottom: 115%; /* nad linkiem */
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 14px;
+    white-space: nowrap;
+    border: 1px solid #8aff88;
+}
+.driver-nick-span{
+    font-weight: 500;
+    font-size: 18px;
+    text-align: center;
+    display: block;
+}
+.driver-profile-hr{
+    border: 0;
+    border-bottom: 1px solid #c7c7c7;
+    width: 200px;
+}
+.driver-personalia-table{
+    min-width: 211px;
+}
+.driver-personalia-span{
+    font-weight: 300; /*200*/
+    color: #dddddd;
+}
+.driver-personalia-label{
+    text-align: right;
+    padding-right: 12px;
+}
+.driver-personalia-value{
+    font-weight: 500;
+    display: block;
+    height: 19px;
+}
+.driver-personalia-value .ikonaOcena{
+    display: inline-block;
+    height: 19px;
+}
+.driver-personalia-value .gwiazdyDriver{
+    max-height: 19px;
+    width: auto;
+}
+.driver-profile-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.driver-opis-p{
+    text-align: center;
+    padding: 0;
+    margin: 0 0 5px 0;
+    font-weight: 500;
+}
+.driver-opis{
+    background-color: #444;
+    border: 1px solid #4da3ff;
+    width: 220px;
+    /*min-height: 80px;*/
+    height: 100px;
+    border-radius: 15px;
+    padding: 10px 7px;
+
+}
+.driver-opis-scroll{
+    max-height: 100%;
+    overflow-y: auto;
+}
+.driver-undef-center-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.d-undef-id-p-update{
+    position: absolute;
+    bottom: auto;
+    left: auto;
+    padding: 5px 15px 15px 15px;
+}
+.driver-gwiazdki-panel-td{
+    text-align: center;
+}
+
+
+
+
+
+/*TUTAJ NOWY KOD*/
+
+
+
+
+
+
 #alert-content{
     clear: both;
 }
+
+
+
+
+
+/*
+
+#black-viniette {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0,0,0,0);
+    backdrop-filter: blur(0);
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 10s ease, backdrop-filter 10s ease;
+}
+
+#black-viniette.zakryte {
+    opacity: 1;
+    background-color: rgba(0,0,0,0.5);
+    backdrop-filter: blur(6px);
+    pointer-events: auto;
+}
+
+
+*/
+
+
+
 #black-viniette{
     display: none;
-    background-color: black;
-    opacity: 0;
     width: 100%;
     height: 100%;
     z-index: 999;
-    transition: opacity 0.3s ease;
+    backdrop-filter: blur(0) brightness(1);
+    transition: backdrop-filter 0.4s ease;
     position: fixed;
     top: 0;
     left: 0;
+    user-select: none;
+    outline: none; 
+    overflow-y: hidden;
+    
 }
 #black-viniette.zakryte{
     display: block;
-    opacity: 0.5;
+    backdrop-filter: blur(6px) brightness(0.5);
 }
 #check-vehicles-button{
     width: 200px;
@@ -196,7 +421,7 @@
 }
 #konsola-obszar{
     background-color: black;
-    width: 70%;
+    width: 932px;
     min-width: 700px;
     height: 700px;
     flex-direction: column;
@@ -282,7 +507,9 @@
     display: none;
  
 }
-
+.leaflet-left, .leaflet-right {
+    z-index: 998 !important;
+}
 .button-odswiez{
     border: none;
     background: none;
@@ -329,7 +556,7 @@
     position: absolute;
     bottom: 10px;
     left: 10px;
-    z-index: 1000;
+    z-index: 998;
     font-family: monospace;
     font-size: 18px;
     user-select: none;
@@ -354,7 +581,7 @@
     color: red;
     position: absolute;
     right: 10px;
-    z-index: 1000;
+    z-index: 998;
     font-family: monospace;
     font-size: 18px;
     user-select: none;

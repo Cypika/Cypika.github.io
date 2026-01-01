@@ -7,90 +7,100 @@
     <link rel="stylesheet" href="sockety-style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
 <body>
-    <div id="black-viniette"></div>
+    <!-- div id="content-el"-->
+    <div id="content-el">
+        <div id="black-viniette"></div>
 
-    <button id="fetchSid">Pobierz SID</button>
-    <button onclick="renewSid()">Ping SID</button>
-    <button id="sendRequest">Wyślij żądanie 1 vehicles</button>
-    <button id="sendRequest2">Wyślij żądanie 2 vehicles numery</button>
-    <button id="sendRequest3">Wyślij żądanie 3 Puste</button>
+        <button id="fetchSid">Pobierz SID</button>
+        <button onclick="renewSid()">Ping SID</button>
+        <button id="sendRequest">Wyślij żądanie 1 vehicles</button>
+        <button id="sendRequest2">Wyślij żądanie 2 vehicles numery</button>
+        <button id="sendRequest3">Wyślij żądanie 3 Puste</button>
 
-    <button onclick="gsid()">gsid()</button>
+        <button onclick="gsid()">gsid()</button>
 
-    <input type="text" id="input">
-    <button onclick="send()">Wyślij</button><br>
+        <input type="text" id="input">
+        <button onclick="send()">Wyślij</button><br>
 
-    <!--button onclick="wshandshake('exec', '')">WS handshake</button-->
-    <button onclick="handshakeSelector('exec')">WS handshake</button>
-    <button onclick="handshakeSelector('gps')">WS handshake GPS</button>
-    <button onclick="loadVehicleMap()">LoadVehicleMap</button>
-    <button onclick="processVData()">processVData()</button>
-    <button onclick="gpsTester()">gpsTester()</button>
-    <button onclick="test3()">test3()</button>
-    <br><br>
+        <!--button onclick="wshandshake('exec', '')">WS handshake</button-->
+        <button onclick="handshakeSelector('exec')">WS handshake</button>
+        <button onclick="handshakeSelector('gps')">WS handshake GPS</button>
+        <button onclick="loadVehicleMap()">LoadVehicleMap</button>
+        <button onclick="processVData()">processVData()</button>
+        <button onclick="gpsTester()">gpsTester()</button>
+        <button onclick="test3()">test3()</button>
+        <br><br>
 
-    <button onclick="sendRequest(`15:40/vehicle_gps,`);">vehicle gps</button>
-    <button onclick='sendRequest(`67:42/vehicle_gps,["vehicleID","e6c0a250-f18e-470f-b1cf-eda724cf1ea3"]`);'>gps dane</button>
-    <button onclick='sendRequest(`67:42/vehicle_gps,["vehicleID","daaad901-94e8-4950-92a7-b0a46dc77677"]`);'>gps dane2</button>
+        <button onclick="sendRequest(`15:40/vehicle_gps,`);">vehicle gps</button>
+        <button onclick='sendRequest(`67:42/vehicle_gps,["vehicleID","e6c0a250-f18e-470f-b1cf-eda724cf1ea3"]`);'>gps dane</button>
+        <button onclick='sendRequest(`67:42/vehicle_gps,["vehicleID","daaad901-94e8-4950-92a7-b0a46dc77677"]`);'>gps dane2</button>
 
-    <br><br>
+        <br><br>
 
-    <button onclick="loadWozy()">Załaduj wozy</button>
-    Ważność SID <span id="waznosc-sid-span">0</span>s
-    <div id="suma-select-dsp"></div>
-    <div id="wozy-data-kontener">
-        <div id="marki-kontener"></div>
-        <div id="wozy-right-kontener">
-            <div id="data-wozy-dsp"></div>
-            <div id="wozy-selected-kontener"></div>
+        <button onclick="loadWozy()">Załaduj wozy</button>
+        Ważność SID <span id="waznosc-sid-span">0</span>s
+        <div id="suma-select-dsp"></div>
+        <div id="wozy-data-kontener">
+            <div id="marki-kontener"></div>
+            <div id="wozy-right-kontener">
+                <div id="data-wozy-dsp"></div>
+                <div id="wozy-selected-kontener"></div>
+            </div>
+        </div>
+
+        <br>
+        <button onclick="createRequest()" id="check-vehicles-button">Sprawdź wozy</button>
+
+        <h2 style="clear: both;">Sprawdzanie wozów:</h2><br>
+        <button onclick="autoQ('porecz')">Wszystkie poręczaki</button><br>
+        <button onclick="autoQ('105')">Wszystkie 105Na</button><br>
+        <button onclick="autoQ('krakus')">Wszystkie szynki krakowskie</button><br>
+        <button onclick="autoQ('218')">218</button><br>
+        <button onclick="autoQ('219')">219</button><br>
+        <button onclick="autoQ('128')">128</button><br>
+
+        <br><br>
+        <div id="map" style="display: none;">
+            <div id="tracking-vmax"></div>
+            <div id="tracking-info"></div>
+        </div>
+        <br><br>
+
+        <button onclick="openConsole()">Konsoleta</button>
+        <button onclick="switchMap()">Mapa</button>
+
+        <br><br>
+
+        <div id="konsola-obszar" style="display: none;">
+            <div id="konsola-pole"></div>
+            <div id="konsola-input-kontener">
+                <span id="konsola-symbol">&gt;</span>
+                <input type="text" id="input-console">
+            </div>
+        </div>
+
+
+        <div id="data-dsp-container">
+            <div id="live-data-dsp"></div><br>
+            <div id="data-dsp"></div>
         </div>
     </div>
 
-    <br>
-    <button onclick="createRequest()" id="check-vehicles-button">Sprawdź wozy</button>
+        <!-- Tutaj cnt -->
 
-    <h2 style="clear: both;">Sprawdzanie wozów:</h2><br>
-    <button onclick="autoQ('porecz')">Wszystkie poręczaki</button><br>
-    <button onclick="autoQ('105')">Wszystkie 105Na</button><br>
-    <button onclick="autoQ('krakus')">Wszystkie krakusy</button><br>
-    <button onclick="autoQ('218')">218</button><br>
-    <button onclick="autoQ('219')">219</button><br>
-    <button onclick="autoQ('128')">128</button><br>
-
-    <br><br>
-    <div id="map" style="display: none;">
-        <div id="tracking-vmax"></div>
-        <div id="tracking-info"></div>
-    </div>
-    <br><br>
-
-    <button onclick="openConsole()">Konsoleta</button>
-    <button onclick="switchMap()">Mapa</button>
-
-    <br><br>
-
-    <div id="konsola-obszar" style="display: none;">
-        <div id="konsola-pole"></div>
-        <div id="konsola-input-kontener">
-            <span id="konsola-symbol">&gt;</span>
-            <input type="text" id="input-console">
+        <div id="alert-box">
+            <div id="alert-box-header">
+                <span id="alert-wariant"></span>
+                <div id="alert-title"></div>
+                <button id="alert-close-button" onclick="closeAlertF()" title="Zamknij">✕</button>
+            </div>
+            <div id="alert-content"></div>
         </div>
-    </div>
 
-
-    <div id="live-data-dsp"></div>
-    <div id="data-dsp"></div>
-
-    <div id="alert-box">
-        <div id="alert-box-header">
-            <span id="alert-wariant"></span>
-            <div id="alert-title"></div> <!-- Pomysły na alerta. Może kropke koloru jak w apple, i kolor tekst -->
-            <button id="alert-close-button" onclick="closeAlertF()">[X]</button>
-        </div>
-        <div id="alert-content"></div>
-    </div>
+    <!-- /div-->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     <script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
@@ -161,28 +171,20 @@
             </div>
         `);
 
-
-        // Tworzymy nowy div z napisem
-        const labelDiv = L.DomUtil.create('div', 'custom-label');
-        labelDiv.innerHTML = "Mój napis w rogu mapy";
-        labelDiv.style.position = 'absolute';
-        labelDiv.style.bottom = '10px';
-        labelDiv.style.right = '10px';
-        labelDiv.style.background = 'rgba(255,255,255,0.8)';
-        labelDiv.style.padding = '5px';
-        labelDiv.style.borderRadius = '5px';
-
-        // Dodajemy do mapy
-        map.getContainer().appendChild(labelDiv);
-
-
-
-        function driverTooltip(imgElement, text){
+        function driverTooltip(imgElement, woman, text){
             var driverInfo = imgElement.closest('.popup-div').querySelector('.driver-info');
+
+            if(text != ""){
+                text = ":" + text;
+            }
 
             // Sprawdź aktualną widoczność tooltipa
             if (driverInfo.style.display === 'none' || driverInfo.style.display === '') {
-                driverInfo.innerHTML = `<hr>Kierowca: ${text}<hr>`;
+                if (woman == true){
+                    driverInfo.innerHTML = `<hr>Kierowca <span class="red">(woman)</span>${text}<hr>`;
+                }else{
+                    driverInfo.innerHTML = `<hr>Kierowca${text}<hr>`;
+                }
                 driverInfo.style.display = 'block';
             } else {
                 driverInfo.style.display = 'none';
@@ -219,10 +221,10 @@
                     <span style="color: #e67e22;">Kierunek: ${direction}</span><br> 
                     <span style="color: green;">${dateTime}</span><br> 
                     <span style="color: #852a2a;">Prędkość: ${velocity} [km/h]</span><br>
-                    <div class="driver-info"></div>
+                    ${driverShow ? `<div class="driver-info"></div>` : ''}
                     <div class="driver-icon-roz">
                         <div class="d-icon-box">
-                            ${imageIcon}
+                            ${driverShow ? imageIcon : ''}
                         </div>
                         <div class='d-prowadnica-b'>
                             <button onclick="refreshVehicle(${taborNo}, ${markersLen});" class="button-odswiez">Odśwież</button>
@@ -258,16 +260,26 @@
                         <a style="float: right; color: blue;">Odśwież</a>
                     `);*/
 
-                    var imgToDsp = "";
+                    if (driverShow === true){
+                        var imgToDsp = "";
 
-                    if (driver != undefined){
-                        var driverText = [
-                            driver.imie && driver.nazwisko ? driver.imie + " " + driver.nazwisko : driver.imie || driver.nazwisko, 
-                            driver.nick
-                        ].filter(Boolean).join(", ");
+                        if (driver != undefined){
+                            if (driverRodo == false){
+                                var driverText = [
+                                    driver.imie && driver.nazwisko ? driver.imie + " " + driver.nazwisko : driver.imie || driver.nazwisko, 
+                                    driver.nick
+                                ].filter(Boolean).join(", ");
+                            }else{
+                                var driverText = driver.nick;
+                            }
 
-                        imgToDsp = `<img src="images/icon_good.png" class="d-icon" title="Zidentyfikowany kierowca" onclick="driverTooltip(this, '${driverText}')">`;
-                        imgObject[vehicleItem] = imgToDsp;
+                            if (driver.woman == false){
+                                imgToDsp = `<img src="images/icon_good.png" class="d-icon" title="Zidentyfikowany kierowca" onclick="driverTooltip(this, false, '${driverText}')">`;
+                            }else if (driver.woman == true){
+                                imgToDsp = `<img src="images/icon_bad.png" class="d-icon" title="Zidentyfikowany kierowca (woman)" onclick="driverTooltip(this, true, '${driverText}')">`;
+                            }
+                            imgObject[vehicleItem] = imgToDsp;
+                        }
                     }
 
                     var markerAdd = L.marker([latitude, longitude]).addTo(map)
@@ -357,10 +369,36 @@
         //Schematy kolorystyczne lini
 
 
-
-
         var oneVehicleTab = [];
-        var trackingState = false; //Zmienić na true w razie potrzeby
+
+        //DEFAULT USER PREFERENCES
+
+        var trackingState = false; // Zmienić na true w razie potrzeby
+        var driverRodo = true;
+        var driverShow = false; // Zmienić na false
+        var sidLoop = false;
+        var maxSelectNumber = 12;
+
+
+
+        //powyżej zmienić wszystko na zablokowane i tutaj pobieranie lokal local
+
+        if (localStorage.getItem('userSettings')){
+            var settingsObj = loadLocalSettings();
+            if (settingsObj){
+                console.log(settingsObj);
+
+                trackingState = settingsObj.trackingState;
+                driverRodo = settingsObj.driverRodo;
+                driverShow = settingsObj.driverShow;
+                sidLoop = settingsObj.sidLoop;
+                maxSelectNumber = settingsObj.maxSelectNumber;
+            }
+        }else{
+
+        }
+
+
 
         //SETTINGS
         var travelTime = 10;
@@ -503,16 +541,16 @@
         function trackingSwitch(stan){
             if(stan == "on"){
                 trackingState = true;
-                konsola("info", "Successfully <span style='color: LimeGreen;'>enabled</span> tracking");
                 trackingInfo.innerHTML = "Tracking: ON";
+                return "ok";
             }else if(stan == "off"){
                 trackingState = false;
                 cancelTracking("normal");
-                konsola("info", "Successfully <span style='color: red;'>disabled</span> tracking");
                 trackingInfo.innerHTML = "";
                 trackingVmax.innerHTML = "";
                 vMax = 0;
                 //trackingVNow = false;
+                return "ok";
             }else if(stan == "offstop"){
                 trackingState = false;
                 cancelTracking("stop");
@@ -674,7 +712,7 @@
                 "18059f7c0344c3e16e510afa762954cd17dc697917a45c6bdb9207e951c2dfdb",
                 "U2FsdGVkX1/4sdQOor27UEUDfmSikirLGqtbRJmkk+A=",
                 "Zmienia maksymalną ilość znaznaczeń wozów (domyślnie 12)",
-                " &lt;ilość&gt"
+                " &lt;ilość/+m&gt"
             ],
             cmd3: [ //color
                 "74284d9dcbcc09928ca5d7d6187270a62ac1b58ccdc4a44b81e47257ffa53b9e",
@@ -698,15 +736,53 @@
                 "5a95db2aa8e5d0883be7b8968983b8ea67d91f1e7ae5463b97258986a93de1be",
                 "U2FsdGVkX18QQaz+YtjDNgAI1YEhEesvpNTm6xfdQG0=",
                 "Automatyczne śledzenie wybranego wozu",
-                ""
+                " &lt;m&gt"
             ],
             cmd7: [ //sidloop
                 "e42913ec1db5f0672f564ffa4f82588f063b42cb05d5183518d929a1c3e17aea",
                 "U2FsdGVkX18rLJC8Jok+3vPA/MH5FUqTGWXxW8k61oM=",
                 "Nieskończony SID",
+                " &lt;m&gt"
+            ],
+            cmd8: [ //rodo
+                "931ec906ad92720c7c91622fef9e563f3f6db762b494d9693227af0e81c2e7b5",
+                "U2FsdGVkX19DH/TwmRBibTF3isLz7D3/j+iG2EAd1kQ=",
+                "Pokazuje dane driverów jeśli są uzupełnione",
+                " &lt;m&gt"
+            ],
+            cmd9: [ //showquery
+                "c8bf3e0d3ed249227cf5fb445a76c70d6e421764ea2d5cfb961bc8bfbe3a2588",
+                "U2FsdGVkX1+t/dRklXpNePYrE7n6W9unuNbzvXNu6FM=",
+                "Wyświetla załadowaną kwerendę zapytania do serwera",
+                ""
+            ],
+            cmd10: [ //drivers
+                "a71518107f3a70bc9b544c75c80bdffa8e8e0def85f68c3277f763d3dd82da32",
+                "U2FsdGVkX18ozfKNaaA6GC+jchmkb2smfNpU6zPkmmM=",
+                "Włącza moduł driverów",
+                " &lt;m&gt"
+            ],
+            cmd11: [ //useragent
+                "710922c8f49ee08698e4b3f9373aa7d4348bfca256da0529dc1ab28dfd9a9505",
+                "U2FsdGVkX19XXuM/AD4+ErsKvmlZXso3//g48+Yy9Ps=",
+                "Wyświetla dane navigator.userAgent",
+                ""
+            ],
+            cmd12: [ //rls
+                "c2c2016ae1b396ad5a96922e4d69be41322a04f97cf7a7ec0c17dcfc6670e6c8",
+                "U2FsdGVkX18XQDomaQkbe6z3VuWUTT7X9bQ/lu1+QNI=",
+                "Resetowanie ustawień lokalnych (zapamiętanych ustawień)",
+                ""
+            ],
+            cmd13: [ //cnt
+                "f60ee759709b097ff7b05d7848863f3e6021faef59537bbad5907f6875256eff",
+                "U2FsdGVkX18tnj4xsfkIzsiPYSp4gp2z22gTisDIs5k=",
+                "Wyświetla zapamiętane ustawienia",
                 ""
             ]
         };
+
+        var driverKomendyBanned = ["cmd8", "cmd10"];
 
         function encryptData(data, password) {
             return CryptoJS.AES.encrypt(data, password).toString();
@@ -728,7 +804,7 @@
             }
         }
 
-        newCommand("sidloop", "szczecinski105N");
+        newCommand("cnt", "szczecinski105N");
 
         //console.log(encryptData("leonard", "szczecinski105N"));
         //console.log(decryptData(komendy.cmd2[1], "szczecinski105Nb"))
@@ -752,7 +828,7 @@
             "f": ["#FFFFFF", "Bright White"]  // Jasna biel
         };
 
-        var version = "0.2";
+        var version = "0.4";
 
         var logColor = "white"; //#C0C0C0
 
@@ -766,7 +842,7 @@
 
                 const wpisyKonsoli = document.querySelectorAll('.konsola-wpis');
                 wpisyKonsoli.forEach(wpis => {
-                    if (wpis.getAttribute("logType") != "error"){
+                    if (wpis.getAttribute("logType") != "error" && wpis.getAttribute("logType") != "warn"){
                         wpis.style.color = fontKolor;
                         const spans = wpis.querySelectorAll('span');
                         spans.forEach(span => {
@@ -780,6 +856,100 @@
         }
 
 
+        //fukcje local zmiennych 
+
+
+
+
+        // Funkcja wpisująca obiekt z nowymi ustawieniami, do pamięci
+        function saveLocalSettings(settings){
+            localStorage.setItem('userSettings', JSON.stringify(settings));
+        }
+
+        // Obiekt (szablon) domyślnych ustawień local
+        const defaultSettings = {
+            trackingState: false,
+            driverRodo: true,
+            driverShow: false,
+            sidLoop: false,
+            maxSelectNumber: 12
+        };
+
+        // Funkcja aktualizująca konkretne ustawienie local
+        function updateLocalSetting(key, value){
+            if (localStorage.getItem('userSettings')){
+                var settings = JSON.parse(localStorage.getItem('userSettings'));
+            }else{
+                var settings = defaultSettings;
+            }
+
+            if(key in defaultSettings){
+                if (settings[key] != value){
+                    settings[key] = value;
+                    saveLocalSettings(settings);
+                }
+            }
+        }
+
+        // Funkcja ładująca ustawienia local, jeśli są zwraca je
+        function loadLocalSettings(){
+            var loadedSettings = localStorage.getItem('userSettings');
+            if (loadedSettings){
+                return JSON.parse(loadedSettings);
+            }else{
+                return false;
+            }
+        }
+
+        // Funkcja kasująca wszystkie ustawienia local
+        function remAllLocalSettings(){
+            localStorage.removeItem("userSettings");
+        }
+
+        function driverShowF(toState){
+            if (toState == "show"){
+                driverShow = true;
+                driversLoad();
+            }else if (toState == "hide"){
+                driverShow = false;
+                driversJson = {};
+            }
+        }
+
+        // Funkcja tworząca nagłówek komunikatu, tak by po bokach tekstu była równa ilość kresek
+        function generateLead(text, color, totalLength = 50) {
+            const dash = "─";
+            //const dash = "-";
+
+            const textLength = text.length;
+            const remaining = totalLength - textLength - 4; // 2 spacje z lewej i prawej
+
+            const leftLength = Math.floor(remaining / 2);
+            const rightLength = Math.ceil(remaining / 2);
+
+            const left = dash.repeat(leftLength);
+            const right = dash.repeat(rightLength);
+
+            return `${left}  <span style="color: ${color};">${text}</span>  ${right}`;
+        }
+
+        // Funkcja dodająca spacje po tekście, tak aby liczba wszystkich znaków była równa pierwszemu parametrowi
+        function makeSpaces(toThisAmt, cell){
+            var spaceChar = " ";
+
+            var diff = toThisAmt - String(cell).length;
+            if (diff > 0){
+                var charRepeat = spaceChar.repeat(diff);
+                return cell + charRepeat;
+            }else{
+                return cell;
+            }
+
+        }
+
+        // Tablica z możliwymi aliasami jako parametr komendy, do zapamiętania local
+        var paramMemAlias = ["-m", "m", "-M", "M"];
+
         function komenda(command){
             if (command){
                 if (command[0] === "/"){
@@ -791,6 +961,9 @@
                 var parts = command.split(' ');
                 var commandKey = parts[0].toLowerCase();
                 var parameter = parts.slice(1).join(' ');
+
+                commandKey = commandKey.split(" ").join("");
+                parameter = parameter.split(" ").join("");
 
                 hashText(commandKey).then(commandHash =>{
                     for (var cmd in komendy) {
@@ -804,7 +977,9 @@
 
                     if (znaleziono && jakiCmd){
                         if(jakiCmd == "cmd0"){
-                            konsola("info", "-------------  <span style='color: orange;'>VERSION CONTROL</span>  -------------");
+                            //konsola("info", "─────  <span style='color: orange;'>VERSION CONTROL</span>  ────────────────────────");
+                            //konsola("info", "────────────────  <span style='color: orange;'>VERSION CONTROL</span>  ────────────────");
+                            konsola("info", generateLead("VERSION CONTROL", "orange"));
                             konsola("info", "MPKCHEATS Shell");
                             konsola("info", "LATEST RELEASED VERSION:");
                             konsola("info", `UNSTABLE <span style="color: orange;">${version}</span>`);
@@ -823,20 +998,22 @@
                                 if (okPassword){
                                     //console.log("tutaj1234");
 
-                                    konsola("info", "-------------  <span style='color: orange;'>HELP MENU</span>  -------------");
-                                    konsola("info", "")
+                                    konsola("info", generateLead("HELP MENU", "orange"));
+                                    konsola("info", "Uwaga! dodatkowy parametr m oznacza zapamiętanie ustawienia.")
 
                                     for (var cmd in komendy) {
-                                        var tablicaSzyfru = komendy[cmd];
-                                        var mozliweParametry = tablicaSzyfru[3];
-                                        try{
-                                            var decryptedSzyfr = decryptData(tablicaSzyfru[1], parameter);
-                                            console.log(decryptedSzyfr);
-                                            konsola("info", `<span style='color: orange'>/${decryptedSzyfr}${tablicaSzyfru[3]}</span> - ${tablicaSzyfru[2]}`);
-                                        } catch(e){
-                                            konsola("warn", "Caught an error while displaying help");
-                                            konsolaPole.scrollTop = konsolaPole.scrollHeight;
-                                            break;
+                                        if (driverShow === true || !driverKomendyBanned.includes(cmd)){
+                                            var tablicaSzyfru = komendy[cmd];
+                                            var mozliweParametry = tablicaSzyfru[3];
+                                            try{
+                                                var decryptedSzyfr = decryptData(tablicaSzyfru[1], parameter);
+                                                console.log(decryptedSzyfr);
+                                                konsola("info", `<span style='color: orange'>/${decryptedSzyfr}${tablicaSzyfru[3]}</span> - ${tablicaSzyfru[2]}`);
+                                            } catch(e){
+                                                konsola("warn", "Caught an error while displaying help");
+                                                konsolaPole.scrollTop = konsolaPole.scrollHeight;
+                                                break;
+                                            }
                                         }
                                     }
                                 }else{
@@ -848,13 +1025,26 @@
                                 konsolaPole.scrollTop = konsolaPole.scrollHeight;
                             }
                         }else if (jakiCmd == "cmd2"){
-                            if (parameter && parameter.length < 3){
-                                var paramNumber = Number(parameter);
+                            var toMemC2 = parameter && paramMemAlias.some(alias => parameter.endsWith(alias));
+                            console.log(parameter);
+                            console.log(toMemC2);
+                            if (parameter && (parameter.length < 3 || (toMemC2 && parameter.length < 5))){
+                                if (toMemC2){
+                                    var match = parameter.match(/^\d+/);
+                                    var paramNumber = match ? Number(match[0]) : null;
+                                }else{
+                                    paramNumber = Number(parameter);
+                                }
                                 if ((typeof paramNumber === "number") && paramNumber > 0 && paramNumber <= 32){
                                     maxSelectNumber = paramNumber;
                                     sumaSelectDsp.innerHTML = `<p id="suma-p"><span id="suma-bold">SUMA: </span>${selectedVehiclesTab.length} / ${maxSelectNumber}</p>`;
                                     maxChecker();
-                                    konsola("info", "Succesfull set max select number to " + paramNumber);
+                                    if (toMemC2){
+                                        updateLocalSetting("maxSelectNumber", paramNumber);
+                                        konsola("info", "Succesfull set max select number and <span style='color: DodgerBlue;'>updated memory</span> to " + paramNumber);
+                                    }else{
+                                        konsola("info", "Succesfull set max select number to " + paramNumber);
+                                    }
                                 }else{
                                     konsola("info", "Max select number must be in the range 1-32");
                                 }
@@ -889,7 +1079,7 @@
                                     }
                                 }else if (parameter == "codes"){
                                     //Wyświetlanie kodów
-                                    konsola("info", "-------------  <span style='color: orange;'>COLOR CODES</span>  -------------");
+                                    konsola("info", generateLead("COLOR CODES", "orange"));
                                     konsola("info", "CODE    |    COLOR");
 
                                     for (var kod in colorCodes){
@@ -909,20 +1099,171 @@
                         }else if (jakiCmd == "cmd5"){
                             konsolaPole.innerHTML = "";
                         }else if (jakiCmd == "cmd6"){
-                            if (trackingState){
-                                trackingSwitch("off");
-                            }else if (!trackingState){
-                                trackingSwitch("on");
+                            var toMemC6 = parameter && paramMemAlias.includes(parameter);
+                            if (!parameter || (parameter && toMemC6)){
+                                if (trackingState){
+                                    if (trackingSwitch("off") == "ok"){
+                                        if (toMemC6){
+                                            updateLocalSetting("trackingState", trackingState);
+                                            konsola("info", "Successfully <span style='color: red;'>disabled</span> tracking, and <span style='color: DodgerBlue;'>updated memory</span>");
+                                        }else{
+                                            konsola("info", "Successfully <span style='color: red;'>disabled</span> tracking");
+                                        }
+                                    }
+                                }else if (!trackingState){
+                                    if (trackingSwitch("on") == "ok"){
+                                        if (toMemC6){
+                                            updateLocalSetting("trackingState", trackingState);
+                                            konsola("info", "Successfully <span style='color: LimeGreen;'>enabled</span> tracking, and <span style='color: DodgerBlue;'>updated memory</span>");
+                                        }else{
+                                            konsola("info", "Successfully <span style='color: LimeGreen;'>enabled</span> tracking");
+                                        }
+                                    }
+                                }
+                            }else{
+                                konsola("info", "Incorrect parameter. Use the help command to see the correct usage and required parameters.");
                             }
                         }else if (jakiCmd == "cmd7"){
-                            if (sidLoop){
-                                sidLoop = false;
-                                konsola("info", "Successfully <span style='color: red;'>disabled</span> SID loop");
-                            }else if (!sidLoop){
-                                sidLoop = true;
-                                konsola("info", "Successfully <span style='color: LimeGreen;'>enabled</span> SID loop");
+                            var toMemC7 = parameter && paramMemAlias.includes(parameter);
+                            if (!parameter || (parameter && toMemC7)){
+                                if (sidLoop === true){
+                                    sidLoop = false;
+                                    if (toMemC7){
+                                        updateLocalSetting("sidLoop", sidLoop);
+                                        konsola("info", "Successfully <span style='color: red;'>disabled</span> SID loop, and <span style='color: DodgerBlue;'>updated memory</span>");
+                                    }else{
+                                        konsola("info", "Successfully <span style='color: red;'>disabled</span> SID loop");
+                                    }
+                                }else if (sidLoop === false){
+                                    sidLoop = true;
+                                    if (toMemC7){
+                                        updateLocalSetting("sidLoop", sidLoop);
+                                        konsola("info", "Successfully <span style='color: LimeGreen;'>enabled</span> SID loop, and <span style='color: DodgerBlue;'>updated memory</span>");
+                                    }else{
+                                        konsola("info", "Successfully <span style='color: LimeGreen;'>enabled</span> SID loop");
+                                    }
+                                }
+                            }else{
+                                konsola("info", "Incorrect parameter. Use the help command to see the correct usage and required parameters.");
+                            }
+                        }else if (jakiCmd == "cmd8"){
+                            var toMemC8 = parameter && paramMemAlias.includes(parameter);
+                            if (!parameter || (parameter && toMemC8)){
+                                if (driverRodo === true){
+                                    driverRodo = false;
+                                    if (toMemC8){
+                                        updateLocalSetting("driverRodo", driverRodo);
+                                        konsola("info", "Drivers personal data <span style='color: LimeGreen;'>shown</span>, and <span style='color: DodgerBlue;'>updated memory</span>");
+                                    }else{
+                                        konsola("info", "Drivers personal data <span style='color: LimeGreen;'>shown</span>");
+                                    }
+                                }else if (driverRodo === false){
+                                    driverRodo = true;
+                                    if (toMemC8){
+                                        updateLocalSetting("driverRodo", driverRodo);
+                                        konsola("info", "Drivers personal data <span style='color: red;'>hidden</span>, and <span style='color: DodgerBlue;'>updated memory</span>");
+                                    }else{
+                                        konsola("info", "Drivers personal data <span style='color: red;'>hidden</span>");
+                                    }
+                                }
+                            }else{
+                                konsola("info", "Incorrect parameter. Use the help command to see the correct usage and required parameters.");
+                            }
+                        }else if (jakiCmd == "cmd9"){
+                            konsola("info", generateLead("PREPARED QUERY", "#1a98a6"));
+                            if (RLoad){
+                                konsola("info", " ");
+                                konsola("info", RLoad);
+                            }else{
+                                konsola("info", "Nothing to display");
+                            }
+                            konsolaPole.scrollTop = konsolaPole.scrollHeight;
+                        }else if (jakiCmd == "cmd10"){
+                            var toMemC10 = parameter && paramMemAlias.includes(parameter);
+                            if (!parameter || (parameter && toMemC10)){
+                                if (driverShow === true){
+                                    driverShowF("hide");
+                                    if (toMemC10){
+                                        updateLocalSetting("driverShow", driverShow);
+                                        konsola("info", "Drivers module turned <span style='color: red;'>off</span>, and <span style='color: DodgerBlue;'>updated memory</span>");
+                                    }else{
+                                        konsola("info", "Drivers module turned <span style='color: red;'>off</span>");
+                                    }
+                                }else if (driverShow === false){
+                                    driverShowF("show");
+                                    if (toMemC10){
+                                        updateLocalSetting("driverShow", driverShow);
+                                        konsola("info", "Drivers module turned <span style='color: LimeGreen;'>on</span>, and <span style='color: DodgerBlue;'>updated memory</span>");
+                                    }else{
+                                        konsola("info", "Drivers module turned <span style='color: LimeGreen;'>on</span>");
+                                    }
+                                }
+                            }else{
+                                konsola("info", "Incorrect parameter. Use the help command to see the correct usage and required parameters.");
+                            }
+                        }else if (jakiCmd == "cmd11"){
+                            komunikat({
+                                wariant: "info",
+                                title: "navigator.userAgent",
+                                content: `${navigator.userAgent}`
+                            });
+                        }else if (jakiCmd == "cmd12"){
+                            remAllLocalSettings();
+                            konsola("info", "All local settings have been <span style='color: red;'>reset</span>");
+                        }else if (jakiCmd == "cmd13"){
+                            konsola("info", generateLead("CONFIG STATUS | CNT", "#32a84e"));
+                            if (localStorage.getItem('userSettings')){
+                                var tableHead = `║ ${makeSpaces(15, "SETTING")} ║  ${makeSpaces(6, "IN MEM")}  ║  ${makeSpaces(7, "DEFAULT")}  ║`;
+                                
+                                var HLineChar = "=";
+                                var BHLineChar = "-";
+                                
+                                var tableHLine = HLineChar.repeat(tableHead.length);
+                                var tableBHLine = BHLineChar.repeat(tableHead.length);
+                                konsola("info", tableHLine);
+                                konsola("info", tableHead);
+                                konsola("info", tableHLine);
+
+                                var settingsObj = loadLocalSettings();
+                                var forbiddenToDsp = ["driverRodo", "driverShow"];
+                                for (var setting in settingsObj){
+                                    if (driverShow == true || !forbiddenToDsp.includes(setting)){
+                                        var defVar = defaultSettings[setting];
+                                        var stgsObj = settingsObj[setting];
+
+                                        settingPaste = makeSpaces(15, setting);
+                                        stgsObjPaste = makeSpaces(6, stgsObj);
+                                        defVar = makeSpaces(7, defVar);
+
+                                        var settingValue = "";
+
+                                        if (typeof stgsObj != "number"){
+                                            if ((stgsObj === true && setting != "driverRodo") ||
+                                                (stgsObj === false && setting == "driverRodo")){
+                                                settingValue = `<span style='color: LimeGreen'>${stgsObjPaste}</span>`; 
+                                            }else{
+                                                settingValue = `<span style='color: red'>${stgsObjPaste}</span>`;  
+                                            }
+                                        }else{
+                                            var defMSNum = defaultSettings["maxSelectNumber"];
+                                            if (stgsObj < defMSNum){
+                                                settingValue = `<span style='color: red'>${stgsObjPaste}</span>`;
+                                            }else if (stgsObj == defMSNum){
+                                                settingValue = `<span style='color: orange'>${stgsObjPaste}</span>`;
+                                            }else if (stgsObj > defMSNum){
+                                                settingValue = `<span style='color: LimeGreen'>${stgsObjPaste}</span>`;
+                                            }
+                                        }
+
+                                        konsola("info", `| ${settingPaste} |  ${settingValue}  |  ${defVar}  |`);
+                                    }
+                                }
+                                konsola("info", tableBHLine);
+                            }else{
+                                konsola("info", "Nothing to display, Local settings not set");
                             }
                         }
+                        konsolaPole.scrollTop = konsolaPole.scrollHeight;
                     }else{
                         konsola("info", "Unknown command. Type the help command for help.");
                         konsolaPole.scrollTop = konsolaPole.scrollHeight;
@@ -976,7 +1317,8 @@
                 var logTypeMsg = "";
                 var logTypeColor = "gray";
                 var logArrow = "";
-                var logColor = "white"; //added
+                /*var logColor = "white";*/ //added
+                var logSpecialColor = logColor;
 
                 if (logType == "request"){
                     logTypeMsg = "REQUEST ";
@@ -991,12 +1333,12 @@
                     logArrow = ": ";
                 }else if (logType == "warn"){
                     logTypeMsg = "WARN";
-                    logColor = "yellow";
+                    logSpecialColor = "yellow";
                     logTypeColor = "yellow";
                     logArrow = ": ";
                 }else if (logType == "error"){
                     logTypeMsg = "ERROR";
-                    logColor = "red";
+                    logSpecialColor = "red";
                     logTypeColor = "red";
                     logArrow = ": ";
                 }else{
@@ -1004,7 +1346,7 @@
                     return;
                 }
 
-                konsolaPole.innerHTML += `<p class="konsola-wpis" style="color: ${logColor}" logType="${logType}">[${terazCzas}] [<span style="color: ${logTypeColor}">${logTypeMsg}</span>]${logArrow}${txtToPrint} </p>`;
+                konsolaPole.innerHTML += `<p class="konsola-wpis" style="color: ${logSpecialColor}" logType="${logType}">[${terazCzas}] [<span style="color: ${logTypeColor}">${logTypeMsg}</span>]${logArrow}${txtToPrint} </p>`;
                 //console.log("Odpowiedź serwera:", txtToPrint);
             }
         }
@@ -1076,8 +1418,6 @@
         var sidStreak = 0;
         var lastSidRenew = 0;
 
-        var sidLoop = false;
-
         function startCountingSid(action){
             if (action == "start"){
                 clearInterval(odliczanieWaznosci);
@@ -1105,7 +1445,7 @@
                         aktualnaWaznosc--;
                         spanWaznosciSid.innerHTML = aktualnaWaznosc;
                         document.title = "SID " + aktualnaWaznosc;
-                        if (aktualnaWaznosc <= 4 && (trackingState || sidLoop)){
+                        if (aktualnaWaznosc <= 4 && (trackingVNow || sidLoop)){ // zamiast trackingState zmieniono na trackingVNow
                             renewSid();
                         }
                     }
@@ -1733,23 +2073,40 @@
 
         var driversJson;
 
-        fetch('../data/drivers.json')
-            .then((response) => response.json())
-            .then(json => {
-                driversJson = json;
-                console.log('Pobrano drivers.json '+ driversJson.drivers.length);
-                console.log(driversJson);
-                konsola("info", `<span class="loaded-span">Loaded drivers.json:     ${driversJson.drivers.length} drivers</span>`);
+        function driversLoad(){
+            if (driverShow === true){
 
-            })
-            .catch(error => console.error('Błąd:', error));
+                fetch('../data/drivers.json')
+                    .then((response) => response.json())
+                    .then(json => {
+                        driversJson = json;
+                        console.log('Pobrano drivers.json '+ (driversJson.drivers.length + driversJson.women.length));
+                        console.log(driversJson);
+                        konsola("info", `<span class="loaded-span">Loaded drivers.json:    ${(driversJson.drivers.length + driversJson.women.length)} drivers</span>`);
+
+                    })
+                    .catch(error => console.error('Błąd:', error));
+            }
+        }
+
+        if (driverShow === true){
+            driversLoad();
+        }
 
         function drivers(driverID){
-            if (driverID != undefined){
+            if (driverID != undefined && driversJson && driverShow === true){
                 var driver = driversJson.drivers.find(driver => driver.driverID === driverID);
                 
                 if (driver) {
+                    driver.woman = false;
                     return driver;
+                }else{
+                    var driverW = driversJson.women.find(driver => driver.driverID === driverID);
+                
+                    if (driverW) {
+                        driverW.woman = true;
+                        return driverW;
+                    } 
                 }
             }
         }
@@ -1948,19 +2305,18 @@
 
                     var run = vehicle.currentRun;
 
-                    console.log(run.driver);
-
-                    var actDriver = drivers(run.driver)
-
-
-                    if (actDriver != undefined){
-                        console.log(actDriver.nick)
-                    }else{
-                        console.log("Nieznany kierowca");
+                    if (driverShow === true){
+                        console.log(run.driver);
+                        var actDriver = drivers(run.driver)
+                        var actUndefinedDriver = run.driver;
+                    
+                        if (actDriver != undefined){
+                            console.log(actDriver.nick)
+                        }else{
+                            console.log("Nieznany kierowca");
+                        }
+                        console.log("");
                     }
-                    console.log("");
-
-
 
                     //let startDateTime = run.start ? convertTime(run.start).dateTime : "Nie rozpoczęto kursu";
                     //let endDateTime = run.end ? convertTime(run.end).dateTime : "Kurs nie zakończył się";
@@ -2158,29 +2514,35 @@
 
 
 
-
-                    if (actDriver != undefined){
-                        if (actDriver.ocena != undefined){
-                            var gwiazdkiHTML = '';
-                            for (var i = 1; i <= 5; i++) {
-                                var style = (i <= actDriver.ocena) ? 'fill: orange; stroke: orange;' : 'fill: none; stroke: black;';
-                                gwiazdkiHTML += `<span class="ikonaOcena">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="7mm" height="7mm" viewBox="0 0 189.29488 180.95416" version="1.1" style="${style}" class="gwiazdyDriver">
-                                        <g id="layer1" transform="translate(-10.352562,-58.022917)">
-                                            <path style="stroke-width:10;paint-order:markers fill stroke" id="gwiazda" d="m 66.562734,53.901334 c 0.402143,-1.258656 64.995336,-0.13721 66.060496,-0.91911 1.06516,-0.7819 19.35168,-62.7427105 20.67301,-62.7491957 1.32132,-0.00649 20.21516,61.7718407 21.28794,62.5432477 1.07278,0.771407 65.65186,-0.984022 66.06634,0.270626 0.41448,1.254648 -52.50168,38.314308 -52.90383,39.572963 -0.40214,1.258656 21.2234,62.134555 20.15824,62.916455 -1.06516,0.7819 -52.66298,-38.0923 -53.9843,-38.08581 -1.32132,0.006 -52.53508,39.38528 -53.60787,38.61388 -1.072779,-0.77141 19.95418,-61.856646 19.5397,-63.111294 C 119.43798,91.698448 66.160591,55.15999 66.562734,53.901334 Z" transform="translate(-48.608371,75.289946)"/>
-                                        </g>
-                                    </svg>
-                                </span>`;
+                    if (driverShow === true){
+                        if (actDriver != undefined){
+                            if (actDriver.ocena != undefined && actDriver.woman == false){
+                                var gwiazdkiHTML = '';
+                                for (var i = 1; i <= 5; i++) {
+                                    var style = (i <= actDriver.ocena) ? 'fill: orange; stroke: orange;' : 'fill: none; stroke: black;';
+                                    gwiazdkiHTML += `<span class="ikonaOcena">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="7mm" height="7mm" viewBox="0 0 189.29488 180.95416" version="1.1" style="${style}" class="gwiazdyDriver">
+                                            <g id="layer1" transform="translate(-10.352562,-58.022917)">
+                                                <path style="stroke-width:10;paint-order:markers fill stroke" id="gwiazda" d="m 66.562734,53.901334 c 0.402143,-1.258656 64.995336,-0.13721 66.060496,-0.91911 1.06516,-0.7819 19.35168,-62.7427105 20.67301,-62.7491957 1.32132,-0.00649 20.21516,61.7718407 21.28794,62.5432477 1.07278,0.771407 65.65186,-0.984022 66.06634,0.270626 0.41448,1.254648 -52.50168,38.314308 -52.90383,39.572963 -0.40214,1.258656 21.2234,62.134555 20.15824,62.916455 -1.06516,0.7819 -52.66298,-38.0923 -53.9843,-38.08581 -1.32132,0.006 -52.53508,39.38528 -53.60787,38.61388 -1.072779,-0.77141 19.95418,-61.856646 19.5397,-63.111294 C 119.43798,91.698448 66.160591,55.15999 66.562734,53.901334 Z" transform="translate(-48.608371,75.289946)"/>
+                                            </g>
+                                        </svg>
+                                    </span>`;
+                                }
                             }
+                            //dataDspPrepare += `<h3>Kierowca</h3>`;
+                            dataDspPrepare += `<div onclick="dInfo('${actDriver.driverID}')">`;
+                            if(actDriver.woman == true) dataDspPrepare += `<h3>Kierowca <span class="red" style="font-weight: normal;">(woman)</span></h3>`
+                            else dataDspPrepare += `<h3>Kierowca</h3>`;
+                            if (actDriver.nick) dataDspPrepare += `Ksywa: ${actDriver.nick}<br>`;
+                            if (driverRodo == false){
+                                if (actDriver.imie) dataDspPrepare += `Imię: ${actDriver.imie}<br>`;
+                                if (actDriver.nazwisko) dataDspPrepare += `Nazwisko: ${actDriver.nazwisko}<br>`;
+                            }
+                            if (gwiazdkiHTML != undefined) dataDspPrepare += `Ocena:<br> ${gwiazdkiHTML}<br><br>`;
+                            dataDspPrepare += "</div>";
+                        }else{
+                            dataDspPrepare += `<h3 onclick="undefDInfo('${actUndefinedDriver}')">Nieznany kierowca</h3>`;
                         }
-                        dataDspPrepare += `<h3>Kierowca</h3>`;
-                        if (actDriver.nick) dataDspPrepare += `Ksywa: ${actDriver.nick}<br>`;
-                        if (actDriver.imie) dataDspPrepare += `Imię: ${actDriver.imie}<br>`;
-                        if (actDriver.nazwisko) dataDspPrepare += `Nazwisko: ${actDriver.nazwisko}<br>`;
-                        if (gwiazdkiHTML != undefined) dataDspPrepare += `Ocena:<br> ${gwiazdkiHTML}<br><br>`;
-                    }else{
-                        dataDspPrepare += `<h3>Nieznany kierowca</h3>`;
-                        if (run.driver) dataDspPrepare += run.driver + "<br>";
                     }
 
                     if (run.runStops.length > 0){
@@ -2336,6 +2698,22 @@
                 });
             }
             
+        }
+
+        function dInfo(dId){
+            console.log(dId);
+            komunikat({
+                wariant: "driver",
+                content: dId
+            });
+        }
+
+        function undefDInfo(dId){
+            console.log(dId);
+            komunikat({
+                wariant: "undefDriver",
+                content: dId
+            });
         }
 
         function showStops(vehicleIndex){
@@ -2515,39 +2893,220 @@
         var alertWariant = document.getElementById('alert-wariant');
         var alertTitle = document.getElementById('alert-title');
         var alertContent= document.getElementById('alert-content');
+        var contentEl = document.getElementById("content-el");
 
         var warianty = {
             error: {
                 icon: "error_icon.svg",
-                color: "red"
+                color: "red",
+                title: "Błąd"
             },
             warning: {
                 icon: "warning_icon.svg",
-                color: "orange"
+                color: "orange",
+                title: "Ostrzeżenie"
             },
             info: {
                 icon: "info_icon.svg",
-                color: "#1f69ff"
+                color: "#1f69ff",
+                title: "Informacja"
             },
             success: {
                 icon: "success_icon.svg",
-                color: "#75FB4C"
+                color: "#75FB4C",
+                title: "Sukces"
+            },
+            driver: {
+                icon: "driver_icon.svg",
+                color: "#4DA3FF",
+                title: "Informacje o kierowcy"
+            },
+            driver: {
+                icon: "driver_icon.svg",
+                color: "#4DA3FF",
+                title: "Informacje o kierowcy"
+            },
+            undefDriver: {
+                icon: "driver_icon.svg",
+                color: "#4DA3FF",
+                title: "Niezdefiniowany kierowca"
             }
+        }
+
+        function driverIdCopyTooltip(element){
+            element.classList.add("id-profile-colored");
+
+            var wrapper = element.closest(".driver-id-profile");
+            var tooltip = wrapper.querySelector(".copied-d-id-tooltip");
+
+            tooltip.style.visibility = "visible";
+            tooltip.style.opacity = 1;
+
+            setTimeout(() => {
+                element.classList.remove("id-profile-colored");
+                tooltip.style.opacity = 0;
+                setTimeout(() => {
+                    tooltip.style.visibility = "hidden";
+                }, 310);
+            }, 2000);
+        }
+
+        function copyTextareaMethod(elementTooltip, idToCopy){
+            const textarea = document.createElement('textarea');
+            textarea.value = idToCopy;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            textarea.style.pointerEvents = 'none';
+            
+            document.body.appendChild(textarea);
+            textarea.focus();
+            textarea.select();
+
+            try {
+                document.execCommand('copy');
+            } catch (err) {
+                console.error("Fallback copy failed:", err);
+            }
+
+            document.body.removeChild(textarea);
+            driverIdCopyTooltip(elementTooltip);
+        }
+
+        function driverIdCopy(tElement, idValue){
+            if (navigator.clipboard && navigator.clipboard.writeText){
+                navigator.clipboard.writeText(idValue)
+                    .then(() => { driverIdCopyTooltip(tElement); })
+                    .catch(() => { copyTextareaMethod(tElement, idValue); });
+            }else{
+                copyTextareaMethod(tElement, idValue);
+            }
+        }
+
+        var scrollPosition;
+
+        function checker(){
+            setInterval(() =>{
+                console.log(window.pageYOffset + ", " + document.documentElement.scrollTop);
+            }, 500)
         }
 
         function komunikat(tresc){
             if (tresc != undefined){
                 if (typeof tresc === "object"){
-                    if (tresc.wariant && tresc.title){
+                    if (tresc.wariant && (tresc.title || ((tresc.wariant == "driver" || tresc.wariant == "undefDriver") && driverShow === true))){
                         if (warianty[tresc.wariant] != undefined){
-                            alertWariant.innerHTML = `<img src="images/${warianty[tresc.wariant].icon}">`;
+                            alertWariant.innerHTML = `<img src="images/${warianty[tresc.wariant].icon}" title="${warianty[tresc.wariant].title}">`;
                             alertTitle.style.color = warianty[tresc.wariant].color;
                             
-                            alertTitle.innerHTML = tresc.title;
-                            alertContent.innerHTML = tresc.content;
+                            if (tresc.wariant == "driver"){
+                                var driverAbout = drivers(tresc.content);
+                                if (driverAbout.id){
+                                    var driverAId = driverAbout.id;
+                                }else{
+                                    var driverAId = "brak-id";
+                                }
+
+
+                                alertTitle.innerHTML = `Informacje o kierowcy #${driverAId}`;
+
+                                var driverAlertCreate = `<div class="driver-profile-container"><div class='driver-profile-pLewy'>`;
+                                if (driverAbout.nick){
+                                    driverAlertCreate += `<span class="driver-nick-span">${driverAbout.nick}</span><hr class="driver-profile-hr">`;
+                                }else{
+                                    driverAlertCreate += "<br>";
+                                }
+                                if (driverRodo == false){
+                                    driverAlertCreate += "<table class='driver-personalia-table'>";
+                                    if (driverAbout.imie){
+                                        driverAlertCreate += `<tr><td class="driver-personalia-label"><span class="driver-personalia-span">Imię:</span></td><td class="driver-personalia-value">${driverAbout.imie}</td></tr>`;
+                                    }
+                                    if (driverAbout.nazwisko){
+                                        driverAlertCreate += `<tr><td class="driver-personalia-label"><span class="driver-personalia-span">Nazwisko:</span></td><td class="driver-personalia-value">${driverAbout.nazwisko}</td></tr>`;
+                                    }
+                                    if (driverAbout.typ){
+                                        var driverPType;
+                                        if (driverAbout.typ == "bus"){
+                                            driverPType = "autobus"
+                                        }else if (driverAbout.typ == "tram"){
+                                            driverPType = "tramwaj"
+                                        }else if (driverAbout.typ == "tram-bus"){
+                                            driverPType = "tramwaj, autobus"
+                                        }
+                                        if (driverPType){
+                                            driverAlertCreate += `<tr><td class="driver-personalia-label"><span class="driver-personalia-span">Pojazd:</span></td><td class="driver-personalia-value">${driverPType}</td></tr>`;
+                                        }
+                                    }
+                                    if (driverAbout.ocena){
+                                        var gwiazdkiDriverP = '';
+                                        for (var i = 1; i <= 5; i++) {
+                                            var style = (i <= driverAbout.ocena) ? 'fill: orange; stroke: orange;' : 'fill: none; stroke: #bbbbbb;';
+                                            gwiazdkiDriverP += `<span class="ikonaOcena">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="7mm" height="7mm" viewBox="0 0 189.29488 180.95416" version="1.1" style="${style}" class="gwiazdyDriver">
+                                                    <g id="layer1" transform="translate(-10.352562,-58.022917)">
+                                                        <path style="stroke-width:10;paint-order:markers fill stroke" id="gwiazda" d="m 66.562734,53.901334 c 0.402143,-1.258656 64.995336,-0.13721 66.060496,-0.91911 1.06516,-0.7819 19.35168,-62.7427105 20.67301,-62.7491957 1.32132,-0.00649 20.21516,61.7718407 21.28794,62.5432477 1.07278,0.771407 65.65186,-0.984022 66.06634,0.270626 0.41448,1.254648 -52.50168,38.314308 -52.90383,39.572963 -0.40214,1.258656 21.2234,62.134555 20.15824,62.916455 -1.06516,0.7819 -52.66298,-38.0923 -53.9843,-38.08581 -1.32132,0.006 -52.53508,39.38528 -53.60787,38.61388 -1.072779,-0.77141 19.95418,-61.856646 19.5397,-63.111294 C 119.43798,91.698448 66.160591,55.15999 66.562734,53.901334 Z" transform="translate(-48.608371,75.289946)"/>
+                                                    </g>
+                                                </svg>
+                                            </span>`;
+                                        }
+                                        //driverAlertCreate += `<tr><td colspan='2' class="driver-gwiazdki-panel-td">${gwiazdkiDriverP}</td></tr>`;
+
+                                        driverAlertCreate += `<tr><td class="driver-personalia-label"><span class="driver-personalia-span">Ocena:</span></td><td class="driver-personalia-value">${gwiazdkiDriverP}</td></tr>`;
+                                    }
+                                    driverAlertCreate += "</table></div>";
+                                }
+                                if (driverAbout.opis){
+                                    driverAlertCreate += `<div class="driver-profile-pPrawy"><p class="driver-opis-p">Informacje o kierowcy</p><div class="driver-opis"><div class="driver-opis-scroll">${driverAbout.opis}</div></div></div>`;
+                                }
+                                driverAlertCreate += `</div><span class="driver-id-profile"><a title="Skopiuj ID" onclick="driverIdCopy(this, '${tresc.content}')">${tresc.content}</a><span class="copied-d-id-tooltip">Skopiowano!</span></span>`;
+
+                                alertContent.innerHTML = driverAlertCreate;
+                            }else if(tresc.wariant == "undefDriver"){
+                                alertTitle.innerHTML = "Nieznany kierowca";
+
+                                var driverAlertCreate = `
+                                    <div class="driver-undef-center-container">
+                                        <h3 style="margin-bottom: 10px;">Kliknij poniżej, by skopiować ID</h3>
+                                    </div>
+                                    <div class="driver-undef-center-container">
+                                        <span class="driver-id-profile d-undef-id-p-update">
+                                            <a title="Skopiuj ID" onclick="driverIdCopy(this, '${tresc.content}')">${tresc.content}</a>
+                                            <span class="copied-d-id-tooltip">Skopiowano!</span>
+                                        </span>
+                                    </div>`;
+
+                                alertContent.innerHTML = driverAlertCreate;
+                            }else{
+                                alertTitle.innerHTML = tresc.title;
+                                alertContent.innerHTML = tresc.content;
+                            }
 
                             alertBox.style.display = "block";
                             blackViniette.style.display = "block";
+
+                            if (document.documentElement.scrollHeight > window.innerHeight){
+                                var userAgentCheck = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+                                //var userAgentCheckALT = true;
+                                console.log("Mobile user agent: " + userAgentCheck);
+                                scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+
+                                document.body.style.overflowX = "hidden";
+                                if (userAgentCheck === false){
+                                    /* Komputer */
+
+                                    document.body.style.overflowY = "hidden";
+                                    document.body.style.position = "fixed";
+                                    document.body.style.top = `-${scrollPosition}px`;
+                                }else{
+                                    /* Telefon, tablet */
+
+                                    document.body.style.overflowY = "hidden";
+                                    document.body.style.top = `-${scrollPosition}px`;
+                                    contentEl.style.overflowX = "auto";
+                                    contentEl.style.overflowY = "hidden";
+                                }
+                            }else{
+                                document.body.style.position = "fixed";  
+                            }
                             setTimeout(() => {
                                 alertBox.classList.add('show');
                                 blackViniette.classList.add('zakryte');
@@ -2557,6 +3116,12 @@
                 }
             }
         }
+
+        /*komunikat({
+            wariant: "info",
+            title: "navigator.userAgent",
+            content: `${navigator.userAgent}`
+        });*/
 
         function quickKomunikat(wiadomosc){
             if (wiadomosc != undefined){
@@ -2626,6 +3191,16 @@
             if (alertBox.style.display != "none"){
                 alertBox.classList.remove('show');
                 blackViniette.classList.remove('zakryte');
+                
+                document.body.style.overflowY = "";
+                document.body.style.position = "";
+                document.body.style.top = "";
+
+                contentEl.style.overflowX = "";
+                contentEl.style.overflowY = "";
+
+                window.scrollTo(window.scrollX, scrollPosition);
+
                 setTimeout(() => {
                     alertBox.style.display = 'none';
                     blackViniette.style.display = "none";
@@ -2646,7 +3221,7 @@
 
         //SETTING
         var selectDelayTime = 25;
-        var maxSelectNumber = 12;
+
 
 
         function quickAll(type, target){
