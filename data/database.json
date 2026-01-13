@@ -2254,7 +2254,7 @@
         "regNo": ""
     },
     {
-        "sideNo": "161",
+        "sideNo": "161-OG",
         "model": "IKARUS 280.70E",
         "articulated": true,
         "lowFlor": false,
@@ -2268,7 +2268,7 @@
         "regNo": "SC 21576"
     },
     {
-        "sideNo": "162",
+        "sideNo": "162-OG",
         "model": "IKARUS 280.70E",
         "articulated": true,
         "lowFlor": false,
@@ -2282,7 +2282,7 @@
         "regNo": "SC 32260"
     },
     {
-        "sideNo": "163",
+        "sideNo": "163-OG",
         "model": "IKARUS 280.70E",
         "articulated": true,
         "lowFlor": false,
@@ -2296,7 +2296,7 @@
         "regNo": "SC 32292"
     },
     {
-        "sideNo": "164",
+        "sideNo": "164-OG",
         "model": "IKARUS 280.70E",
         "articulated": true,
         "lowFlor": false,
@@ -2310,7 +2310,7 @@
         "regNo": "SC 32170"
     },
     {
-        "sideNo": "165",
+        "sideNo": "165-OG",
         "model": "IKARUS 280.70E",
         "articulated": true,
         "lowFlor": false,
@@ -2322,6 +2322,76 @@
         "networkWifi": false,
         "picture": "ikarus_p280.jpg",
         "regNo": "SC 32178"
+    },
+    {
+        "sideNo": "161",
+        "model": "SOLARIS URBINO 18 ELECTRIC",
+        "articulated": true,
+        "lowFlor": true,
+        "airConditioner": true,
+        "ticketMachine": true,
+        "ticketDriver": false,
+        "monitoring": true,
+        "usbCharger": true,
+        "networkWifi": true,
+        "picture": "",
+        "regNo": "??"
+    },
+    {
+        "sideNo": "162",
+        "model": "SOLARIS URBINO 18 ELECTRIC",
+        "articulated": true,
+        "lowFlor": true,
+        "airConditioner": true,
+        "ticketMachine": true,
+        "ticketDriver": false,
+        "monitoring": true,
+        "usbCharger": true,
+        "networkWifi": true,
+        "picture": "",
+        "regNo": "??"
+    },
+    {
+        "sideNo": "163",
+        "model": "SOLARIS URBINO 18 ELECTRIC",
+        "articulated": true,
+        "lowFlor": true,
+        "airConditioner": true,
+        "ticketMachine": true,
+        "ticketDriver": false,
+        "monitoring": true,
+        "usbCharger": true,
+        "networkWifi": true,
+        "picture": "",
+        "regNo": "??"
+    },
+    {
+        "sideNo": "164",
+        "model": "SOLARIS URBINO 18 ELECTRIC",
+        "articulated": true,
+        "lowFlor": true,
+        "airConditioner": true,
+        "ticketMachine": true,
+        "ticketDriver": false,
+        "monitoring": true,
+        "usbCharger": true,
+        "networkWifi": true,
+        "picture": "",
+        "regNo": "??"
+    },
+    {
+        "sideNo": "165",
+        "model": "SOLARIS URBINO 18 ELECTRIC",
+        "articulated": true,
+        "lowFlor": true,
+        "airConditioner": true,
+        "ticketMachine": true,
+        "ticketDriver": false,
+        "monitoring": true,
+        "usbCharger": true,
+        "networkWifi": true,
+        "picture": "",
+        "regNo": "??"
     },
     {
         "sideNo": "166",
@@ -3078,7 +3148,7 @@
         "usbCharger": false,
         "networkWifi": false,
         "picture": "solaris_u12_2_18.jpg",
-        "regNo": "SC",
+        "regNo": "SC 4853W",
         "loudVoith": null
     },
     {
@@ -3093,7 +3163,7 @@
         "usbCharger": false,
         "networkWifi": false,
         "picture": "solaris_u12_2_18.jpg",
-        "regNo": "SC",
+        "regNo": "SC 4854W",
         "loudVoith": null
     },
     {
@@ -3108,7 +3178,7 @@
         "usbCharger": false,
         "networkWifi": false,
         "picture": "solaris_u12_2_18.jpg",
-        "regNo": "SC",
+        "regNo": "SC 4222X",
         "loudVoith": null
     },
     {
@@ -3123,7 +3193,7 @@
         "usbCharger": false,
         "networkWifi": false,
         "picture": "solaris_u12_2_18.jpg",
-        "regNo": "SC ",
+        "regNo": "SC 4223X",
         "loudVoith": true
     },
     {
@@ -3138,7 +3208,7 @@
         "usbCharger": false,
         "networkWifi": false,
         "picture": "solaris_u12_2_18.jpg",
-        "regNo": "SC ",
+        "regNo": "SC 4224X",
         "loudVoith": null
     },
     {
@@ -3153,7 +3223,7 @@
         "usbCharger": false,
         "networkWifi": false,
         "picture": "solaris_u12_2_18.jpg",
-        "regNo": "SC ",
+        "regNo": "SC 4850W",
         "loudVoith": true
     },
     {
@@ -3168,7 +3238,7 @@
         "usbCharger": false,
         "networkWifi": false,
         "picture": "solaris_u12_2_18.jpg",
-        "regNo": "SC ",
+        "regNo": "SC 4852W",
         "loudVoith": null
     },
     {
@@ -3183,7 +3253,7 @@
         "usbCharger": false,
         "networkWifi": false,
         "picture": "solaris_u12_2_18.jpg",
-        "regNo": "SC ",
+        "regNo": "SC 4227X",
         "loudVoith": null
     },
     {
@@ -3198,7 +3268,7 @@
         "usbCharger": false,
         "networkWifi": false,
         "picture": "solaris_u12_2_18.jpg",
-        "regNo": "SC ",
+        "regNo": "SC 4228X",
         "loudVoith": null
     },
     {
@@ -3213,7 +3283,7 @@
         "usbCharger": false,
         "networkWifi": false,
         "picture": "solaris_u12_2_18.jpg",
-        "regNo": "SC ",
+        "regNo": "SC 4851W",
         "loudVoith": null
     },
     {
@@ -3228,7 +3298,7 @@
         "usbCharger": false,
         "networkWifi": false,
         "picture": "solaris_u12_2_18.jpg",
-        "regNo": "SC ",
+        "regNo": "SC 731AP",
         "loudVoith": null
     },
     {
