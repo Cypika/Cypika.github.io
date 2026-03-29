@@ -531,7 +531,7 @@
                             if (locations(run.direction) == lastStop){
                                 spanCzasy.innerHTML = locations(locationID);
 
-                                var tempHour = (time(run.dateTime).hour + 1) % 24;
+                                /*var tempHour = (time(run.dateTime).hour + 1) % 24;
                                 if (tempHour < 10){
                                     tempHour = "0" + tempHour;
                                 }
@@ -539,7 +539,15 @@
                                 var tempMin = time(run.dateTime).minute;
                                 if (tempMin < 10){
                                     tempMin = "0" + tempMin;
-                                }
+                                }*/
+
+                                const date = new Date(run.dateTime);
+
+                                let tempHour = date.getHours();
+                                let tempMin = date.getMinutes();
+
+                                tempHour = String(tempHour).padStart(2, '0');
+                                tempMin = String(tempMin).padStart(2, '0');
 
                                 var okCzas = tempHour + ":" + tempMin;
 
