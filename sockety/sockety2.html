@@ -2621,7 +2621,7 @@
                             if (roznicaCzasu <= 60 * 60 * 1000){
                                 console.log("Znaleziono")
 
-                                dataDspPrepare += `Ostatnia odnotowana lokalizacja: ${locations(lastPos.locationID)}, ${convertTime(lastPos.arrivalTime).time}<br>`;
+                                dataDspPrepare += `Ostatni odnotowany przystanek: ${locations(lastPos.locationID)}, ${convertTime(lastPos.arrivalTime).time}<br>`;
                                 var spoznienie = vehicle.delaySeconds;
                                 var dlMinuty, dlSekundy;
 
@@ -2773,8 +2773,8 @@
             "SOLBUS SM18HL Hybryda",
             "SOLBUS SM12HL Hybryda",
             "SOLBUS SM12DC23.05-61",
-            "SOLARIS URBINO 18 ELECTRIC",
             "MERCEDES CONECTO III",
+            "SOLARIS URBINO 18 ELECTRIC",
             "Autosan M10LFE",
             "Autosan M12LFE",
             "MAN Lion's City A37",
@@ -3209,6 +3209,9 @@
             }
         }
 
+        blackViniette.addEventListener("click", () => {
+            closeAlertF();
+        });
 
 
 
