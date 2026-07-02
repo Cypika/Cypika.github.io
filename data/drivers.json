@@ -294,8 +294,8 @@
         {
             "id": "29",
             "driverID": "9bba3f05-81b1-4273-904a-a0c7b6ef9c98",
-            "nick": "Czarne okulary, łysy",
-            "imie": "",
+            "nick": "Czarne okulary, łysy, Stasiek",
+            "imie": "Stanisław",
             "nazwisko": "",
             "typ": "tram",
             "opis": "",
@@ -328,7 +328,7 @@
             "imie": "",
             "nazwisko": "",
             "typ": "bus",
-            "opis": "",
+            "opis": "Macha do zdjęć #przyjazna_komunikacja",
             "ocena": "5"
         },
         {
@@ -388,7 +388,7 @@
             "imie": "",
             "nazwisko": "",
             "typ": "bus",
-            "opis": "",
+            "opis": "Uprzejmy kierowca informuje gestykulacjami, że drzwi są otwarte i można wsiadać",
             "ocena": "4"
         },
         {
@@ -528,7 +528,7 @@
             "imie": "Patryk",
             "nazwisko": "",
             "typ": "bus",
-            "opis": "",
+            "opis": "Macha do zdjęć #przyjazna_komunikacja",
             "ocena": "5"
         },
         {
@@ -887,7 +887,7 @@
             "nick": "40stka spriner",
             "imie": "",
             "nazwisko": "",
-            "typ": "bus",
+            "typ": "tram-bus",
             "opis": "Szybko jeździł na tymczasowej linii 40",
             "ocena": "3"
         },
@@ -1080,6 +1080,96 @@
             "typ": "bus",
             "opis": "Nie skręcił w f. Nila, kier. Gombrowicza, przez co pędził Sosabowskiego, do pętli Kukuczki by nawrócić i prawidłowo skręcić.",
             "ocena": "4"
+        },
+        {
+            "id": "111",
+            "driverID": "7c802c32-6d24-4794-8656-24d0f5806e1e",
+            "nick": "Kaganiec dla psa",
+            "imie": "",
+            "nazwisko": "",
+            "typ": "bus",
+            "opis": "Wyrzucił z autobusu pasażera, z psem mops, z powodu braku kagańca",
+            "ocena": "3"
+        },
+        {
+            "id": "112",
+            "driverID": "f4123149-eb73-47f8-a554-f52bcd491cd8",
+            "nick": "005 acquaintance",
+            "imie": "",
+            "nazwisko": "",
+            "typ": "bus",
+            "opis": "",
+            "ocena": "3"
+        },
+        {
+            "id": "113",
+            "driverID": "4644bea3-4ce5-40e9-945b-06565b22ee2c",
+            "nick": "A'la Maciej Dowbor / Solaris Elektryk busfaher",
+            "imie": "",
+            "nazwisko": "",
+            "typ": "bus",
+            "opis": "",
+            "ocena": "3"
+        },
+        {
+            "id": "114",
+            "driverID": "4a6e1ae8-729d-40dd-9a7a-0a198d77470a",
+            "nick": "A'la Tomasz Knapik",
+            "imie": "",
+            "nazwisko": "",
+            "typ": "bus",
+            "opis": "",
+            "ocena": "4"
+        },
+        {
+            "id": "115",
+            "driverID": "d77dda6f-e363-4d6f-bf87-4f3ba6a9a207",
+            "nick": "Sędzia",
+            "imie": "",
+            "nazwisko": "",
+            "typ": "bus",
+            "opis": "",
+            "ocena": "3"
+        },
+        {
+            "id": "116",
+            "driverID": "ad1dd39a-a8eb-4e17-945b-89f03b69bbba",
+            "nick": "Palacz / Szwed busfaher",
+            "imie": "",
+            "nazwisko": "",
+            "typ": "bus",
+            "opis": "",
+            "ocena": "4"
+        },
+        {
+            "id": "117",
+            "driverID": "afb6ecd2-eae6-4cc7-95a4-3926a7a71cb5",
+            "nick": "Gnieździu elektryk",
+            "imie": "",
+            "nazwisko": "",
+            "typ": "bus",
+            "opis": "",
+            "ocena": "3"
+        },
+        {
+            "id": "118",
+            "driverID": "70a33761-850b-4c6d-b806-2a04ad897dd4",
+            "nick": "Nie mam już siły",
+            "imie": "",
+            "nazwisko": "",
+            "typ": "tram",
+            "opis": "",
+            "ocena": "3"
+        },
+        {
+            "id": "119",
+            "driverID": "a532c1a0-ad7b-4922-a20b-5c50bf4554e0",
+            "nick": "Kowal Mateusz",
+            "imie": "",
+            "nazwisko": "",
+            "typ": "bus",
+            "opis": "Macha do zdjęć #przyjazna_komunikacja",
+            "ocena": "3"
         }
     ],
     "women":
@@ -1123,11 +1213,11 @@
         {
             "id": "w-4",
             "driverID": "a42dcc83-4d1b-42e5-95f3-fff3a00bb73f",
-            "nick": "Kanar",
+            "nick": "Kanar / Maryśka",
             "imie": "",
             "nazwisko": "",
             "typ": "tram",
-            "opis": "Kucelin ticket check"
+            "opis": "Kucelin ticket check, za każdym razem zasłania twarz rozkładem przy robieniu zdjęć pojazdowi"
         },
         {
             "id": "w-5",
@@ -1150,7 +1240,7 @@
         {
             "id": "w-7",
             "driverID": "8812050e-1705-4d69-bcd2-99de216df249",
-            "nick": "",
+            "nick": "Video kucelin aggressive",
             "imie": "",
             "nazwisko": "",
             "typ": "tram",
@@ -1243,7 +1333,7 @@
             "nick": "",
             "imie": "",
             "nazwisko": "",
-            "typ": "tram",
+            "typ": "tram-bus",
             "opis": ""
         },
         {
@@ -1402,8 +1492,8 @@
         {
             "id": "w-35",
             "driverID": "11c453ea-ae7e-4799-8ced-20ba85f59fbc",
-            "nick": "",
-            "imie": "",
+            "nick": "Ola tiktok / 130 busfaher",
+            "imie": "Ola",
             "nazwisko": "",
             "typ": "bus",
             "opis": ""
@@ -1433,6 +1523,69 @@
             "imie": "",
             "nazwisko": "",
             "typ": "bus",
+            "opis": ""
+        },
+        {
+            "id": "w-39",
+            "driverID": "518be96b-11f0-4e64-af91-a6c269c9d48b",
+            "nick": "",
+            "imie": "",
+            "nazwisko": "",
+            "typ": "bus",
+            "opis": ""
+        },
+        {
+            "id": "w-40",
+            "driverID": "99a2ee1c-c6a6-49d0-8ff2-51fe23fe92e7",
+            "nick": "",
+            "imie": "",
+            "nazwisko": "",
+            "typ": "bus",
+            "opis": ""
+        },
+        {
+            "id": "w-41",
+            "driverID": "6787c5a8-9161-4793-93d7-e721e5f0a5e7",
+            "nick": "",
+            "imie": "",
+            "nazwisko": "",
+            "typ": "bus",
+            "opis": ""
+        },
+        {
+            "id": "w-42",
+            "driverID": "89beefba-a9b8-40b0-aece-60629a6d2b44",
+            "nick": "",
+            "imie": "",
+            "nazwisko": "",
+            "typ": "bus",
+            "opis": ""
+        },
+        {
+            "id": "w-43",
+            "driverID": "d9da0aeb-4e5a-4e8b-95a8-4375a8dbff92",
+            "nick": "",
+            "imie": "",
+            "nazwisko": "",
+            "typ": "bus",
+            "opis": ""
+        },
+        {
+            "id": "w-44",
+            "driverID": "9faa1b38-6e7e-48e4-853b-8067c7e184b9",
+            "nick": "",
+            "imie": "",
+            "nazwisko": "",
+            "typ": "bus",
+            "opis": ""
+        },
+        {
+            "id": "w-45",
+            "driverID": "6a1dc3d4-f349-49b4-9a63-1931370566c9",
+            "nick": "",
+            "imie": "",
+            "nazwisko": "",
+            "typ": "tram",
             "opis": ""
         }
     ]
