@@ -1,5 +1,19 @@
 [
     {
+        "sideNo": "0",
+        "model": "MAN NG734 Lion`s City 18 E",
+        "articulated": true,
+        "lowFlor": true,
+        "airConditioner": true,
+        "ticketMachine": false,
+        "ticketDriver": false,
+        "monitoring": true,
+        "usbCharger": false,
+        "networkWifi": false,
+        "picture": "",
+        "regNo": "WPR 9020P"
+    },
+    {
         "sideNo": "1",
         "model": "SOLARIS URBINO 12 III",
         "articulated": false,
@@ -1386,7 +1400,7 @@
         "regNo": "SC 28591"
     },
     {
-        "sideNo": "101-OG",
+        "sideNo": "101-OLD",
         "model": "SOLARIS URBINO 12 II",
         "articulated": false,
         "lowFlor": true,
@@ -1414,7 +1428,7 @@
         "regNo": "SC 101FE"
     },
     {
-        "sideNo": "102-OG",
+        "sideNo": "102-OLD",
         "model": "MERCEDES CITARO CNG",
         "articulated": false,
         "lowFlor": true,
@@ -2254,7 +2268,7 @@
         "regNo": ""
     },
     {
-        "sideNo": "161-OG",
+        "sideNo": "161-OLD",
         "model": "IKARUS 280.70E",
         "articulated": true,
         "lowFlor": false,
@@ -2268,7 +2282,7 @@
         "regNo": "SC 21576"
     },
     {
-        "sideNo": "162-OG",
+        "sideNo": "162-OLD",
         "model": "IKARUS 280.70E",
         "articulated": true,
         "lowFlor": false,
@@ -2282,7 +2296,7 @@
         "regNo": "SC 32260"
     },
     {
-        "sideNo": "163-OG",
+        "sideNo": "163-OLD",
         "model": "IKARUS 280.70E",
         "articulated": true,
         "lowFlor": false,
@@ -2296,7 +2310,7 @@
         "regNo": "SC 32292"
     },
     {
-        "sideNo": "164-OG",
+        "sideNo": "164-OLD",
         "model": "IKARUS 280.70E",
         "articulated": true,
         "lowFlor": false,
@@ -2310,7 +2324,7 @@
         "regNo": "SC 32170"
     },
     {
-        "sideNo": "165-OG",
+        "sideNo": "165-OLD",
         "model": "IKARUS 280.70E",
         "articulated": true,
         "lowFlor": false,
@@ -2324,7 +2338,7 @@
         "regNo": "SC 32178"
     },
     {
-        "sideNo": "166-OG",
+        "sideNo": "166-OLD",
         "model": "IKARUS 280.70E",
         "articulated": true,
         "lowFlor": false,
@@ -2338,7 +2352,7 @@
         "regNo": "SC 32319"
     },
     {
-        "sideNo": "167-OG",
+        "sideNo": "167-OLD",
         "model": "IKARUS 280.70E",
         "articulated": true,
         "lowFlor": false,
@@ -2352,7 +2366,7 @@
         "regNo": "SC 32179"
     },
     {
-        "sideNo": "168-OG",
+        "sideNo": "168-OLD",
         "model": "IKARUS 280.70E",
         "articulated": true,
         "lowFlor": false,
@@ -2366,7 +2380,7 @@
         "regNo": "SC 21574"
     },
     {
-        "sideNo": "169-OG",
+        "sideNo": "169-OLD",
         "model": "IKARUS 280.70E",
         "articulated": true,
         "lowFlor": false,
@@ -2380,7 +2394,7 @@
         "regNo": "SC 32259"
     },
     {
-        "sideNo": "170-OG",
+        "sideNo": "170-OLD",
         "model": "IKARUS 280.70E",
         "articulated": true,
         "lowFlor": false,
@@ -2405,7 +2419,7 @@
         "usbCharger": true,
         "networkWifi": true,
         "picture": "",
-        "regNo": "??"
+        "regNo": "SC 084FT"
     },
     {
         "sideNo": "162",
@@ -2419,7 +2433,7 @@
         "usbCharger": true,
         "networkWifi": true,
         "picture": "",
-        "regNo": "??"
+        "regNo": "SC 085FT"
     },
     {
         "sideNo": "163",
@@ -2433,7 +2447,7 @@
         "usbCharger": true,
         "networkWifi": true,
         "picture": "",
-        "regNo": "??"
+        "regNo": "SC 086FT"
     },
     {
         "sideNo": "164",
@@ -2447,7 +2461,7 @@
         "usbCharger": true,
         "networkWifi": true,
         "picture": "",
-        "regNo": "??"
+        "regNo": "SC 087FT"
     },
     {
         "sideNo": "165",
@@ -2461,7 +2475,7 @@
         "usbCharger": true,
         "networkWifi": true,
         "picture": "",
-        "regNo": "??"
+        "regNo": "SC 083FT"
     },
     {
         "sideNo": "166",
@@ -2475,7 +2489,7 @@
         "usbCharger": true,
         "networkWifi": true,
         "picture": "",
-        "regNo": "??"
+        "regNo": "SC 003FV"
     },
     {
         "sideNo": "167",
@@ -2489,7 +2503,7 @@
         "usbCharger": true,
         "networkWifi": true,
         "picture": "",
-        "regNo": "??"
+        "regNo": "SC 004FV"
     },
     {
         "sideNo": "168",
@@ -2503,7 +2517,7 @@
         "usbCharger": true,
         "networkWifi": true,
         "picture": "",
-        "regNo": "??"
+        "regNo": "SC 005FV"
     },
     {
         "sideNo": "169",
@@ -2517,7 +2531,7 @@
         "usbCharger": true,
         "networkWifi": true,
         "picture": "",
-        "regNo": "??"
+        "regNo": "SC 006FV"
     },
     {
         "sideNo": "170",
@@ -2531,7 +2545,7 @@
         "usbCharger": true,
         "networkWifi": true,
         "picture": "",
-        "regNo": "??"
+        "regNo": "170"
     },
     {
         "sideNo": "171",
@@ -3443,7 +3457,7 @@
     },
     {
         "sideNo": "299",
-        "model": "Bristol Lodekka FLF ",
+        "model": "Bristol Lodekka FLF",
         "articulated": false,
         "lowFlor": false,
         "airConditioner": false,
@@ -3454,6 +3468,34 @@
         "networkWifi": false,
         "picture": "bristol_lodekka.jpg",
         "regNo": "SC 1299T"
+    },
+    {
+        "sideNo": "301",
+        "model": "Setra S415 LE Business",
+        "articulated": false,
+        "lowFlor": true,
+        "airConditioner": true,
+        "ticketMachine": false,
+        "ticketDriver": false,
+        "monitoring": false,
+        "usbCharger": false,
+        "networkWifi": false,
+        "picture": "",
+        "regNo": "SC 301FG"
+    },
+    {
+        "sideNo": "302",
+        "model": "Setra S415 LE Business",
+        "articulated": false,
+        "lowFlor": true,
+        "airConditioner": true,
+        "ticketMachine": false,
+        "ticketDriver": false,
+        "monitoring": false,
+        "usbCharger": false,
+        "networkWifi": false,
+        "picture": "",
+        "regNo": "SC 302FH"
     },
     {
         "sideNo": "358",
@@ -3484,6 +3526,20 @@
         "regNo": "SC 32905"
     },
     {
+        "sideNo": "400",
+        "model": "Mercedes-Benz Sprinter MidCity",
+        "articulated": false,
+        "lowFlor": true,
+        "airConditioner": true,
+        "ticketMachine": false,
+        "ticketDriver": true,
+        "monitoring": false,
+        "usbCharger": false,
+        "networkWifi": false,
+        "picture": "",
+        "regNo": "SC 400AX"
+    },
+    {
         "sideNo": "401",
         "model": "MAN NL 202",
         "articulated": false,
@@ -3512,7 +3568,7 @@
         "regNo": "SC 7719S"
     },
     {
-        "sideNo": "407",
+        "sideNo": "407-OLD",
         "model": "MAN NL 202",
         "articulated": false,
         "lowFlor": true,
@@ -3524,6 +3580,132 @@
         "networkWifi": false,
         "picture": "man_nl222.jpg",
         "regNo": "SC 7718S"
+    },
+    {
+        "sideNo": "407",
+        "model": "Mercedes-Benz Sprinter MidCity",
+        "articulated": false,
+        "lowFlor": true,
+        "airConditioner": true,
+        "ticketMachine": false,
+        "ticketDriver": true,
+        "monitoring": false,
+        "usbCharger": false,
+        "networkWifi": false,
+        "picture": "",
+        "regNo": "SC 407CN"
+    },
+    {
+        "sideNo": "411",
+        "model": "Iveco Daily / Vehixel Cytios",
+        "articulated": false,
+        "lowFlor": true,
+        "airConditioner": true,
+        "ticketMachine": false,
+        "ticketDriver": true,
+        "monitoring": false,
+        "usbCharger": false,
+        "networkWifi": false,
+        "picture": "",
+        "regNo": "SC 411EH"
+    },
+    {
+        "sideNo": "412",
+        "model": "Iveco Daily / Vehixel Cytios",
+        "articulated": false,
+        "lowFlor": true,
+        "airConditioner": true,
+        "ticketMachine": false,
+        "ticketDriver": true,
+        "monitoring": false,
+        "usbCharger": false,
+        "networkWifi": false,
+        "picture": "",
+        "regNo": "SC 412EH"
+    },
+    {
+        "sideNo": "413",
+        "model": "Mercedes-Benz Sprinter City 65",
+        "articulated": false,
+        "lowFlor": true,
+        "airConditioner": true,
+        "ticketMachine": false,
+        "ticketDriver": true,
+        "monitoring": false,
+        "usbCharger": false,
+        "networkWifi": false,
+        "picture": "",
+        "regNo": "SPI 24045"
+    },
+    {
+        "sideNo": "414",
+        "model": "Mercedes-Benz Sprinter City 65",
+        "articulated": false,
+        "lowFlor": true,
+        "airConditioner": true,
+        "ticketMachine": false,
+        "ticketDriver": true,
+        "monitoring": false,
+        "usbCharger": false,
+        "networkWifi": false,
+        "picture": "",
+        "regNo": "SPI 24035"
+    },
+    {
+        "sideNo": "415",
+        "model": "Mercedes-Benz Sprinter Atlas",
+        "articulated": false,
+        "lowFlor": true,
+        "airConditioner": true,
+        "ticketMachine": false,
+        "ticketDriver": true,
+        "monitoring": false,
+        "usbCharger": false,
+        "networkWifi": false,
+        "picture": "",
+        "regNo": "SC 909EN"
+    },
+    {
+        "sideNo": "416",
+        "model": "Mercedes-Benz Sprinter MidCity",
+        "articulated": false,
+        "lowFlor": true,
+        "airConditioner": true,
+        "ticketMachine": false,
+        "ticketDriver": true,
+        "monitoring": false,
+        "usbCharger": false,
+        "networkWifi": false,
+        "picture": "",
+        "regNo": "SC 008FH"
+    },
+    {
+        "sideNo": "420",
+        "model": "Mercedes-Benz Sprinter MidCity",
+        "articulated": false,
+        "lowFlor": true,
+        "airConditioner": true,
+        "ticketMachine": false,
+        "ticketDriver": true,
+        "monitoring": false,
+        "usbCharger": false,
+        "networkWifi": false,
+        "picture": "",
+        "regNo": "SC 770FV"
+    },
+    {
+        "sideNo": "421",
+        "model": "Mercedes-Benz Sprinter MidCity",
+        "articulated": false,
+        "lowFlor": true,
+        "airConditioner": true,
+        "ticketMachine": false,
+        "ticketDriver": true,
+        "monitoring": false,
+        "usbCharger": false,
+        "networkWifi": false,
+        "picture": "",
+        "regNo": "SC 139FU"
     },
     {
         "sideNo": "500",

@@ -501,7 +501,7 @@
     },
     {
       "regNo": "SC 28594",
-      "sideNo": "101-OG",
+      "sideNo": "101-OLD",
       "vehicleID": "262240f0-6477-4088-a9c4-5110a97d25b5"
     },
     {
@@ -696,52 +696,52 @@
     },
     {
       "regNo": "SC 21576",
-      "sideNo": "161-OG",
+      "sideNo": "161-OLD",
       "vehicleID": "63a1aaa0-af70-4919-9348-4d26d4cbe8d3"
     },
     {
       "regNo": "SC 32260",
-      "sideNo": "162-OG",
+      "sideNo": "162-OLD",
       "vehicleID": "bb8c4b1d-2847-4873-bd40-5c0c1e08799b"
     },
     {
       "regNo": "SC 32292",
-      "sideNo": "163-OG",
+      "sideNo": "163-OLD",
       "vehicleID": "95fbe0e9-c789-44c7-a34f-b9330ae9d509"
     },
     {
       "regNo": "SC 32170",
-      "sideNo": "164-OG",
+      "sideNo": "164-OLD",
       "vehicleID": "901d3772-f475-4afe-9718-bff7aef4528a"
     },
     {
       "regNo": "SC 32178",
-      "sideNo": "165-OG",
+      "sideNo": "165-OLD",
       "vehicleID": "0a32e15a-fc28-4ccf-aa70-6abd720517bb"
     },
     {
       "regNo": "SC 32319",
-      "sideNo": "166-OG",
+      "sideNo": "166-OLD",
       "vehicleID": "4ff0e481-c868-4eda-ab90-d690ebd81d84"
     },
     {
       "regNo": "SC 32179",
-      "sideNo": "167-OG",
+      "sideNo": "167-OLD",
       "vehicleID": "c964ca44-7cc8-4416-85f2-0fac673130e2"
     },
     {
       "regNo": "SC 21574",
-      "sideNo": "168-OG",
+      "sideNo": "168-OLD",
       "vehicleID": "defd79e3-f106-4637-8af1-2cd966abf1ea"
     },
     {
       "regNo": "SC 32259",
-      "sideNo": "169-OG",
+      "sideNo": "169-OLD",
       "vehicleID": "29e98e7d-45f4-4967-ade7-6dfe1b69e4a3"
     },
     {
       "regNo": "SC 32166",
-      "sideNo": "170-OG",
+      "sideNo": "170-OLD",
       "vehicleID": "95ed1d0b-cd80-42e8-abaf-e5faf80bcf99"
     },
     {
@@ -1426,7 +1426,7 @@
     },
     {
       "regNo": "SC 8733T",
-      "sideNo": "102-OG",
+      "sideNo": "102-OLD",
       "vehicleID": "f98a51a7-a34a-4990-a2b4-e942f5e33a26"
     },
     {
@@ -2138,5 +2138,15 @@
       "regNo": "SC 002FV",
       "sideNo": "170",
       "vehicleID": "ff544b7f-8a6c-44db-ab7e-61a2d19880cd"
+    },
+    {
+      "regNo": "SC 770FV",
+      "sideNo": "420",
+      "vehicleID": "b64d3c6b-e5b9-4407-b230-1801067d4588"
+    },
+    {
+      "regNo": "SC 139FU",
+      "sideNo": "421",
+      "vehicleID": "ad870954-c54d-4efe-8bae-255d302ad7b6"
     }
-  ]
+]
