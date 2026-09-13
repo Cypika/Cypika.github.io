@@ -297,7 +297,7 @@
             "nick": "Czarne okulary, łysy, Stasiek",
             "imie": "Stanisław",
             "nazwisko": "",
-            "typ": "tram",
+            "typ": "tram-bus",
             "opis": "",
             "ocena": "3"
         },
@@ -375,7 +375,7 @@
             "id": "38",
             "driverID": "9ef8b080-ecf0-4d46-8842-b07bf917ed98",
             "nick": "A'la Tomasz Muskała",
-            "imie": "",
+            "imie": "Robert",
             "nazwisko": "",
             "typ": "bus",
             "opis": "",
@@ -553,7 +553,7 @@
         },
         {
             "id": "56",
-            "driverID": "1db6a781-c4ff-4f25-a0ee-bdfd031d8c51",
+            "driverID": "6a53b282-d63f-4263-9b8d-d47ec87f28e5",
             "nick": "Agent bus",
             "imie": "",
             "nazwisko": "",
@@ -835,7 +835,7 @@
             "id": "85",
             "driverID": "ddb3fbfa-fea5-4dff-952f-cfbec8fefedb",
             "nick": "Barman / Bar rowerowy busfaher",
-            "imie": "",
+            "imie": "Tomasz",
             "nazwisko": "",
             "typ": "bus",
             "opis": "Kierowca mercedesa 185",
@@ -858,7 +858,7 @@
             "imie": "",
             "nazwisko": "",
             "typ": "bus",
-            "opis": "",
+            "opis": "Pojechał poza trasą na lini 73 kier. Airshow",
             "ocena": "4"
         },
         {
@@ -1170,6 +1170,106 @@
             "typ": "bus",
             "opis": "Macha do zdjęć #przyjazna_komunikacja",
             "ocena": "3"
+        },
+        {
+            "id": "120",
+            "driverID": "cd8566ac-1bc6-483f-8e65-162e6fbac075",
+            "nick": "Tik Tok father",
+            "imie": "",
+            "nazwisko": "",
+            "typ": "bus",
+            "opis": "",
+            "ocena": "3"
+        },
+        {
+            "id": "121",
+            "driverID": "24dab3d7-7958-4ace-94b8-12e10f209a50",
+            "nick": "Fake Wojciech L.",
+            "imie": "",
+            "nazwisko": "",
+            "typ": "bus",
+            "opis": "",
+            "ocena": "3"
+        },
+        {
+            "id": "122",
+            "driverID": "40589c59-9051-42bc-a230-71cba7747d31",
+            "nick": "Krótko i zwięźle, to nie jest bar",
+            "imie": "",
+            "nazwisko": "",
+            "typ": "bus",
+            "opis": "",
+            "ocena": "3"
+        },
+        {
+            "id": "123",
+            "driverID": "598d6b55-3061-4301-863e-dfb7c6abd08a",
+            "nick": "a'la Mikołaj Kopernik / delay boss",
+            "imie": "",
+            "nazwisko": "",
+            "typ": "bus",
+            "opis": "Przeważnie jeździ #135",
+            "ocena": "3"
+        },
+        {
+            "id": "124",
+            "driverID": "77a2df47-ed74-47df-b35e-3c0ca3d6fb2a",
+            "nick": "149 busfaher",
+            "imie": "Michał",
+            "nazwisko": "",
+            "typ": "bus",
+            "opis": "RKS Raków",
+            "ocena": "4"
+        },
+        {
+            "id": "125",
+            "driverID": "b6d70e35-e2ce-4c6a-a1b9-625ec50fe39f",
+            "nick": "Palacz kabinowy",
+            "imie": "",
+            "nazwisko": "",
+            "typ": "bus",
+            "opis": "",
+            "ocena": "3"
+        },
+        {
+            "id": "126",
+            "driverID": "a4b1269b-0d41-4ecc-95d9-cb694f01a338",
+            "nick": "Skiper 2",
+            "imie": "",
+            "nazwisko": "",
+            "typ": "bus",
+            "opis": "Nie obsłużył przystanku boh. Katynia na linii 15 w kierunku Kukuczki",
+            "ocena": "2"
+        },
+        {
+            "id": "127",
+            "driverID": "fe36bb86-cf33-4564-8b68-070eccba444a",
+            "nick": "Uczeń Pesa",
+            "imie": "",
+            "nazwisko": "",
+            "typ": "tram",
+            "opis": "",
+            "ocena": "3"
+        },
+        {
+            "id": "128",
+            "driverID": "8571b9a8-501b-425c-963b-47a6dcd3c447",
+            "nick": "A'la Detektyw Rutkowski",
+            "imie": "",
+            "nazwisko": "",
+            "typ": "bus",
+            "opis": "",
+            "ocena": "3"
+        },
+        {
+            "id": "129",
+            "driverID": "70cc2c68-9769-4cbe-8fb4-d2c2fb8e5326",
+            "nick": "Mateusz Tik Tok comment (do sprawdzenia)",
+            "imie": "Mateusz",
+            "nazwisko": "",
+            "typ": "bus",
+            "opis": "",
+            "ocena": "3"
         }
     ],
     "women":
@@ -1375,7 +1475,7 @@
         {
             "id": "w-22",
             "driverID": "70decd97-d0ba-4a1a-a91c-1a5ddfffee44",
-            "nick": "",
+            "nick": "DO WERYFIKACJI",
             "imie": "",
             "nazwisko": "",
             "typ": "bus",
@@ -1586,6 +1686,33 @@
             "imie": "",
             "nazwisko": "",
             "typ": "tram",
+            "opis": ""
+        },
+        {
+            "id": "w-46",
+            "driverID": "c39258d5-0716-42f7-9c8c-726f2ba7cfc3",
+            "nick": "",
+            "imie": "",
+            "nazwisko": "",
+            "typ": "bus",
+            "opis": ""
+        },
+        {
+            "id": "w-47",
+            "driverID": "b01b9b39-cab7-430d-a8b4-7d022c7622d4",
+            "nick": "",
+            "imie": "",
+            "nazwisko": "",
+            "typ": "bus",
+            "opis": ""
+        },
+        {
+            "id": "w-48",
+            "driverID": "34f41c73-57b8-498d-8ad0-8c7d359533ff",
+            "nick": "",
+            "imie": "",
+            "nazwisko": "",
+            "typ": "bus",
             "opis": ""
         }
     ]
